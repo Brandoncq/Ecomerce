@@ -41,8 +41,8 @@ export default function Laptops() {
       </section>
       <section className="w-full flex">
         <div className="w-full px-2 md:px-20 flex flex-wrap">
-          {laptops.map((lapto) => (
-            <div className="w-1/2 md:w-1/5 p-2">
+          {laptops.map((lapto, index) => (
+            <div className="w-1/2 md:w-1/5 p-2" key={index}>
               <div className="w-full p-2 flex flex-col shadow-md shadow-zinc-400">
                 <img
                   className="w-full cursor-pointer"

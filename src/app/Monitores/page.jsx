@@ -41,8 +41,8 @@ export default function Monitores() {
       </section>
       <section className="w-full flex">
         <div className="w-full px-2 md:px-20 flex flex-wrap">
-          {Monitores.map((Monitor) => (
-            <div className="w-1/2 md:w-1/5 p-2">
+          {Monitores.map((Monitor, index) => (
+            <div className="w-1/2 md:w-1/5 p-2" key={index}>
               <div className="w-full p-2 flex flex-col shadow-md shadow-zinc-400">
                 <img
                   className="w-full cursor-pointer"
