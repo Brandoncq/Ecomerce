@@ -26,7 +26,7 @@ function Header() {
           href="/Nosotros"
           className={`p-2 text-2xl font-bold bg-blue-700 text-white`}
         >
-          Brandon
+          Fenix
         </Link>
         <form className="w-full max-w-lg mx-auto max-md:order-last">
           <label
