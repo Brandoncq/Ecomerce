@@ -107,8 +107,8 @@ function Footer() {
         </div>
         <div className="px-2 md:px-16 py-6 bg-gray-700 md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-300 sm:text-center">
-            © 2024 <Link href="https://flowbite.com/">Compu-Fenix</Link>. Todos
-            los Derechos Reservados
+            © 2024 <Link href="/">Compu-Fenix</Link>. Todos los Derechos
+            Reservados
           </span>
           <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
             <a

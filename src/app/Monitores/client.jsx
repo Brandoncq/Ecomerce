@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function ClientLaptops() {
+export default function ClientMonitores() {
   const router = useRouter();
-  const [laptops, setLaptops] = useState([]);
+  const [Monitores, setMonitores] = useState([]);
   const getProducto = async () => {
     const productos = await fetch("/api/producto").then((res) => res.json());
     console.log(productos);
@@ -18,17 +18,18 @@ export default function ClientLaptops() {
         descripcion: values.descripcion,
       });
     });
-    setLaptops(refinando);
-  };
-  const redireccion = (suggestion) => {
-    router.push(`/Buscar/${suggestion}`);
+    setMonitores(refinando);
   };
   useEffect(() => {
     getProducto();
   }, []);
+  const redireccion = (suggestion) => {
+    router.push(`/Buscar/${suggestion}`);
+  };
+
   return (
     <div className="w-full px-2 md:px-20 flex flex-wrap">
-      {laptops.map((lapto, index) => (
+      {Monitores.map((Monitor, index) => (
         <div className="w-1/2 md:w-1/5 p-2" key={index}>
           <div className="w-full p-2 flex flex-col shadow-md shadow-zinc-400">
             <img
@@ -36,23 +37,23 @@ export default function ClientLaptops() {
               src="https://p1-ofp.static.pub//fes/cms/2024/04/01/w5xzl0a0vcja2jirmi04tmaxy7nw1g409296.png"
               alt=""
               onClick={() => {
-                redireccion(lapto.nombre_producto);
+                redireccion(Monitor.nombre_producto);
               }}
             />
             <h2
               className="text-lg text-blue-600 cursor-pointer"
               onClick={() => {
-                redireccion(lapto.nombre_producto);
+                redireccion(Monitor.nombre_producto);
               }}
             >
-              {lapto.nombre_producto}
+              {Monitor.nombre_producto}
             </h2>
             <h2 className="text-lg">A partir de:</h2>
             <h2 className="text-2xl font-semibold">
-              S/.{lapto.precio_unitario}
+              S/.{Monitor.precio_unitario}
             </h2>
-            <h3>{lapto.modelo}</h3>
-            <p className="text-xs my-2">{lapto.descripcion}</p>
+            <h3>{Monitor.modelo}</h3>
+            <p className="text-xs my-2">{Monitor.descripcion}</p>
           </div>
         </div>
       ))}
