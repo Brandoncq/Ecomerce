@@ -16,6 +16,9 @@ const geistMono = localFont({
 export const metadata = {
   title: "Compu-Fenix Ecomerce",
   description: "Tienda Online de Equipos de Computo",
+  openGraph: {
+    images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
+  },
 };
 
 export default function RootLayout({ children }) {

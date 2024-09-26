@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export default function Monitores() {
-  const [Monitores, setMonitores] = useState([]);
+export default function Computadoras() {
+  const [Computadoras, setComputadoras] = useState([]);
   const getProducto = async () => {
     const productos = await fetch("/api/producto").then((res) => res.json());
     console.log(productos);
@@ -16,7 +16,7 @@ export default function Monitores() {
         descripcion: values.descripcion,
       });
     });
-    setMonitores(refinando);
+    setComputadoras(refinando);
   };
   useEffect(() => {
     getProducto();
@@ -28,20 +28,20 @@ export default function Monitores() {
           className="w-full h-28 md:h-44 flex justify-center items-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+              "url('https://images.unsplash.com/photo-1582731595896-f959c4fb1509?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
           }}
         >
           <h2 className="text-white text-xl md:text-4xl font-bold text-center">
-            Monitores para computadoras
+            Computadoras de Escritorio y All in One
           </h2>
         </div>
       </section>
       <section className="w-full flex">
         <div className="w-full px-2 md:px-20 flex flex-wrap">
-          {Monitores.map((Monitor, index) => (
+          {Computadoras.map((Computadora, index) => (
             <div className="w-1/2 md:w-1/5 p-2" key={index}>
               <div className="w-full p-2 flex flex-col shadow-md shadow-zinc-400">
                 <img
@@ -50,14 +50,14 @@ export default function Monitores() {
                   alt=""
                 />
                 <h2 className="text-lg text-blue-600 cursor-pointer">
-                  {Monitor.nombre_producto}
+                  {Computadora.nombre_producto}
                 </h2>
                 <h2 className="text-lg">A partir de:</h2>
                 <h2 className="text-2xl font-semibold">
-                  S/.{Monitor.precio_unitario}
+                  S/.{Computadora.precio_unitario}
                 </h2>
-                <h3>{Monitor.modelo}</h3>
-                <p className="text-xs my-2">{Monitor.descripcion}</p>
+                <h3>{Computadora.modelo}</h3>
+                <p className="text-xs my-2">{Computadora.descripcion}</p>
               </div>
             </div>
           ))}
