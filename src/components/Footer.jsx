@@ -22,7 +22,7 @@ function Footer() {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/Ofertas" className=" hover:underline">
+                <Link href="/Comprar/Ofertas" className=" hover:underline">
                   Ofertas
                 </Link>
               </li>
@@ -34,32 +34,32 @@ function Footer() {
             </h2>
             <ul className="text-gray-500 font-medium">
               <li className="mb-2">
-                <Link href="/Laptops" className="hover:underline">
+                <Link href="/Comprar/Laptops" className="hover:underline">
                   Laptops
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/Computadoras" className="hover:underline">
+                <Link href="/Comprar/Computadoras" className="hover:underline">
                   Computadoras
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/Celulares" className="hover:underline">
+                <Link href="/Comprar/Celulares" className="hover:underline">
                   Celulares
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/Tablets" className="hover:underline">
+                <Link href="/Comprar/Tablets" className="hover:underline">
                   Tablets
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/Accesorios" className="hover:underline">
+                <Link href="/Comprar/Accesorios" className="hover:underline">
                   Accesorios
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/Monitores" className="hover:underline">
+                <Link href="/Comprar/Monitores" className="hover:underline">
                   Monitores
                 </Link>
               </li>

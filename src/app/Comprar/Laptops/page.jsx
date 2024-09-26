@@ -21,7 +21,7 @@ export const Laptops = async () => {
           }}
         >
           <h2 className="text-white text-xl md:text-4xl font-bold text-center">
-            Laptops Lenovo: Tu compañera para todos los días
+            Laptops Compu-Fenix: Tu compañera para todos los días
           </h2>
         </div>
       </section>
