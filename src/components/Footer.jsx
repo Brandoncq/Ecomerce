@@ -6,7 +6,7 @@ function Footer() {
     <footer className="w-full bg-zinc-300">
       <div className="w-full">
         <div className="grid grid-cols-2 gap-8 md:px-20 py-6 lg:py-8 md:grid-cols-4">
-          <div>
+          <div className="max-md:px-2">
             <h2 className="mb-4 text-base font-semibold text-gray-900 uppercase">
               Sobre Compu-Fenix
             </h2>
@@ -28,7 +28,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="max-md:px-2">
             <h2 className="mb-4 text-base font-semibold text-gray-900 uppercase">
               Productos
             </h2>
@@ -65,7 +65,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="max-md:px-2">
             <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase">
               RECURSOS
             </h2>
@@ -82,7 +82,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="max-md:px-2">
             <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase">
               Ayuda al Cliente
             </h2>
@@ -105,7 +105,7 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="md:px-16 py-6 bg-gray-700 md:flex md:items-center md:justify-between">
+        <div className="px-2 md:px-16 py-6 bg-gray-700 md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-300 sm:text-center">
             © 2024 <Link href="https://flowbite.com/">Compu-Fenix</Link>. Todos
             los Derechos Reservados
