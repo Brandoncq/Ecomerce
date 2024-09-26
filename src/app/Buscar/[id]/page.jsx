@@ -31,7 +31,7 @@ export default function Buscador({ params }) {
         {productos.map((producto, index) => (
           <div className="w-full flex flex-wrap px-2 md:px-20" key={index}>
             <div className="w-full md:w-1/2 p-2 flex flex-col justify-center">
-              <h2 className="text-2xl md:text-4xl text-blue-600 cursor-pointer font-semibold mb-1">
+              <h2 className="text-2xl md:text-4xl text-blue-600 font-semibold mb-1">
                 {producto.nombre_producto}
               </h2>
 
@@ -46,7 +46,7 @@ export default function Buscador({ params }) {
             </div>
             <div className="w-full md:w-1/2 p-2 md:px-20">
               <img
-                className="w-full cursor-pointer"
+                className="w-full"
                 src="https://p1-ofp.static.pub//fes/cms/2024/04/01/w5xzl0a0vcja2jirmi04tmaxy7nw1g409296.png"
                 alt=""
               />
