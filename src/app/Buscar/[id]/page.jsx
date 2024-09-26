@@ -4,12 +4,9 @@ import { useState, useEffect } from "react";
 export default function Buscador({ params }) {
   const [productos, setroductos] = useState([]);
   const getProducto = async () => {
-    console.log(params);
-    console.log(decodeURIComponent(params));
     const productos = await fetch(
       `/api/buscador?query=${decodeURIComponent(params.id)}`
     ).then((res) => res.json());
-    console.log(productos);
     const refinando = [];
     productos.map((values) => {
       refinando.push({

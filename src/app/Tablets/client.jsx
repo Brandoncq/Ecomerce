@@ -2,12 +2,11 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function ClientCelulares() {
+export default function ClientTablets() {
   const router = useRouter();
   const [tablets, setTablets] = useState([]);
   const getProducto = async () => {
     const productos = await fetch("/api/producto").then((res) => res.json());
-    console.log(productos);
     const refinando = [];
     productos.map((values) => {
       refinando.push({

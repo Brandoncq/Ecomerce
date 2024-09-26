@@ -7,7 +7,6 @@ export default function ClientComputadoras() {
   const [Computadoras, setComputadoras] = useState([]);
   const getProducto = async () => {
     const productos = await fetch("/api/producto").then((res) => res.json());
-    console.log(productos);
     const refinando = [];
     productos.map((values) => {
       refinando.push({
