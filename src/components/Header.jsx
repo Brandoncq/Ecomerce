@@ -86,7 +86,7 @@ function Header() {
                   className={`absolute top-full right-0 bg-blue-600 mt-2 shadow-lg p-2 rounded`}
                 >
                   <li className="py-2 px-4 text-zinc-200 hover:bg-blue-500 rounded">
-                    <Link href="/Login">Iniciar Sesión</Link>
+                    <Link href="/IniciarSesion">Iniciar Sesión</Link>
                   </li>
                   <li className="py-2 px-4 text-zinc-200 hover:bg-blue-500 rounded">
                     <Link href="/CrearCuenta/Crear">Crear Cuenta</Link>

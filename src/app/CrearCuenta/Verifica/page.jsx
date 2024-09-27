@@ -1,8 +1,10 @@
 "use client";
 
+import { useFormContext } from "../context";
 function VerificaCuenta() {
+  const { formData } = useFormContext();
   return (
-    <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4">
+    <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4 min-h-lvh">
       <div className="text-xl my-4 w-full flex flex-col items-center">
         <div className="w-full md:w-1/2 p-5 md:px-20 justify-between items-center flex">
           <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center bg-green-600 text-white">
@@ -36,10 +38,25 @@ function VerificaCuenta() {
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-20">
-        Gracias por crear una cuenta Comprueba tu dbccoicaq@unjbg.edu.pe Cuenta
-        para recibir un correo electrónico con el asunto “Te damos la bienvenida
-        al ID de Lenovo”. Después, haz clic en el enlace que contiene para
-        confirmar la cuenta. Este enlace de verificación caducará en 24 horas.
+        <h4 className="my-4">
+          ¡Gracias por verificar tu cuenta,{" "}
+          <a className="font-bold">{formData.nombre}</a>!
+        </h4>
+        <p>
+          Nos complace informarte que tu cuenta ha sido verificada con éxito. A
+          partir de este momento, puedes disfrutar de todos los beneficios que
+          ofrecemos en nuestra tienda. Navega por nuestra selección de productos
+          y comienza a disfrutar de una experiencia de compra única y
+          personalizada, {formData.nombre}.
+          <br />
+          <br />
+          Si tienes alguna duda o necesitas asistencia, no dudes en
+          contactarnos. ¡Estamos aquí para ayudarte a encontrar exactamente lo
+          que necesitas!
+          <br />
+          <br />
+          ¡Bienvenido/a a la familia Compu-Fenix!
+        </p>
       </div>
     </div>
   );

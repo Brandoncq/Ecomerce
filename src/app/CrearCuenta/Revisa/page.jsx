@@ -1,8 +1,17 @@
 "use client";
-
+import { useState } from "react";
+import { useFormContext } from "../context";
+import { useRouter } from "next/navigation";
 function RevisaCuenta() {
+  const router = useRouter();
+  const { formData } = useFormContext();
+  const [token, setToken] = useState("");
+  const Enviar = () => {
+    router.push("/CrearCuenta/Verifica");
+  };
+  console.log(formData);
   return (
-    <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4">
+    <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4 min-h-lvh">
       <div className="text-xl my-4 w-full flex flex-col items-center">
         <div className="w-full md:w-1/2 p-5 md:px-20 justify-between items-center flex">
           <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center bg-green-600 text-white">
@@ -36,10 +45,50 @@ function RevisaCuenta() {
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-20">
-        Gracias por crear una cuenta Comprueba tu dbccoicaq@unjbg.edu.pe Cuenta
-        para recibir un correo electrónico con el asunto “Te damos la bienvenida
-        al ID de Lenovo”. Después, haz clic en el enlace que contiene para
-        confirmar la cuenta. Este enlace de verificación caducará en 24 horas.
+        <h3 className="my-4">¡Gracias por crear una cuenta!</h3>
+        <p>
+          Hemos enviado un código de verificación a tu correo electrónico{" "}
+          <a className="font-bold">{formData.correo}</a>. Por favor, revisa tu
+          bandeja de entrada y utiliza el código para verificar tu cuenta.
+          <br />
+          <br />
+          Recuerda que el código expirará en{" "}
+          <a className="font-bold">5 minutos</a>, así que no olvides completarlo
+          a tiempo.
+          <br />
+          <br />
+          ¡Estamos emocionados de darte la bienvenida,{" "}
+          <a className="font-bold">{formData.nombre}</a>, a nuestra comunidad de
+          usuarios!
+        </p>
+        <div className="relative z-0 w-full my-5 group">
+          <input
+            type="email"
+            name="from_email"
+            id="from_email"
+            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+            value={token}
+            onChange={(e) => {
+              setToken(e.target.value);
+            }}
+          />
+          <label
+            htmlFor="from_email"
+            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >
+            Codigo de Verificación
+          </label>
+        </div>
+        <div className="w-full flex justify-center my-2 mt-6">
+          <button
+            className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg"
+            onClick={Enviar}
+          >
+            Crear ID
+          </button>
+        </div>
       </div>
     </div>
   );

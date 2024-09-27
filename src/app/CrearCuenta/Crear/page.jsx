@@ -1,7 +1,10 @@
 "use client";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useFormContext } from "../context";
 function CrearCuenta() {
+  const router = useRouter();
+  const { setFormData } = useFormContext();
   const [user, setUser] = useState({
     correo: "",
     nombres: "",
@@ -16,16 +19,22 @@ function CrearCuenta() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: user.email,
+        email: user.correo,
         nombres: user.nombres,
         apellidos: user.apellidos,
         password: user.password,
         password_validate: user.password_validate,
       }),
     });
-
     const data = await response.json();
     console.log(data);
+    setFormData((prev) => ({
+      ...prev,
+      nombre: user.nombres,
+      correo: user.correo,
+    }));
+
+    router.push("/CrearCuenta/Revisa");
   };
 
   return (
@@ -185,7 +194,7 @@ function CrearCuenta() {
         </div>
         <div className="w-full flex justify-center my-2 mt-6">
           <button
-            className="bg-blue-600 text-white px-5 py-2 rounded-md text-xl"
+            className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg"
             onClick={Enviar}
           >
             Crear ID
