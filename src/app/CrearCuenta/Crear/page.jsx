@@ -49,7 +49,7 @@ function CrearCuenta() {
             <p> Crear ID de Compu-Fenix</p>
           </div>
           <div className="flex justify-center items-center w-1/3">
-            <p>Revisa el correo electrónico.</p>
+            <p>Revisa el correo electrónico</p>
           </div>
           <div className="flex justify-center items-center w-1/3">
             <p>Verificar la cuenta creada</p>
