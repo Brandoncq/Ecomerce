@@ -28,7 +28,8 @@ function CrearCuenta() {
         }),
       });
       if (!response.ok) {
-        throw new Error("Error en la petición");
+        const errorDetails = await response.json();
+        throw new Error(errorDetails.message || "Error en la petición");
       }
       setFormData((prev) => ({
         ...prev,
