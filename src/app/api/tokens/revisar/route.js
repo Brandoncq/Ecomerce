@@ -5,10 +5,10 @@ export async function POST(req, res) {
   const { token } = await req.json();
   const date = new Date();
 
-  const [tokenData] = await pool.query(`SELECT * FROM tokens WHERE token = ?`, [
-    token,
-    date,
-  ]);
+  const [tokenData] = await pool.query(
+    `SELECT * FROM tokens WHERE token = ? AND expires_at > ?`,
+    [token, date]
+  );
 
   if (tokenData.length === 0) {
     return NextResponse.json(
