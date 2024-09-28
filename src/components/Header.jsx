@@ -4,7 +4,6 @@ import Busqueda from "./Busqueda";
 import Autenticacion from "./Autenticacion";
 import Link from "next/link";
 function Header() {
-  const [menuopen, setmenu] = useState(false);
   const [scrolled, setScrolled] = useState("");
   useEffect(() => {
     const handleScroll = () => {
@@ -19,8 +18,8 @@ function Header() {
     <header
       className={`w-full sticky top-0 z-20 transition-all duration-500 ease-in-out flex flex-col ${
         scrolled
-          ? "bg-zinc-900 text-zinc-200 md:px-2 px-1"
-          : "bg-zinc-200 text-zinc-800 px-0"
+          ? "bg-zinc-900 text-zinc-200 md:p-2 p-1"
+          : "bg-white text-zinc-800 px-0"
       }`}
     >
       <div className="w-full px-5 flex flex-wrap items-center justify-between pt-4 pb-2">
@@ -64,112 +63,6 @@ function Header() {
           </div>
         </div>
       </div>
-      <nav className="w-full">
-        <div className="w-full px-5 flex flex-wrap items-center justify-between mx-auto pt-2 pb-4">
-          <Link href="/Nosotros" className="block py-2 px-1">
-            Nosotros
-          </Link>
-          <div
-            className="md:hidden w-8 h-8 flex justify-center items-center"
-            onClick={() => {
-              setmenu(!menuopen);
-            }}
-          >
-            <h3 className="text-3xl hover:bg-zinc-600 hover:text-zinc-200 rounded-lg w-full text-center items-center">
-              &equiv;
-            </h3>
-            <span></span>
-            <span></span>
-          </div>
-          <div
-            className={`w-full md:w-auto  ${
-              menuopen ? "block" : "max-md:hidden"
-            }`}
-            id="navbar-dropdown"
-          >
-            <ul className="flex flex-col font-medium rounded-lg md:space-x-4 rtl:space-x-reverse md:flex-row">
-              <li className="group">
-                <Link
-                  href="/Comprar/Ofertas"
-                  className={`block py-2 px-1 rounded ${
-                    scrolled ? "hover:text-zinc-100" : "hover:text-zinc-600"
-                  }`}
-                  aria-current="page"
-                >
-                  Ofertas
-                </Link>
-                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-              </li>
-              <li className="group">
-                <Link
-                  href="/Comprar/Laptops"
-                  className={`block py-2 px-1 rounded ${
-                    scrolled ? "hover:text-zinc-100" : "hover:text-zinc-600"
-                  }`}
-                >
-                  Laptops
-                </Link>
-                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-              </li>
-              <li className="group">
-                <Link
-                  href="/Comprar/Computadoras"
-                  className={`block py-2 px-1 rounded ${
-                    scrolled ? "hover:text-zinc-100" : "hover:text-zinc-600"
-                  }`}
-                >
-                  Computadoras
-                </Link>
-                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-              </li>
-              <li className="group">
-                <Link
-                  href="/Comprar/Tablets"
-                  className={`block py-2 px-1 rounded ${
-                    scrolled ? "hover:text-zinc-100" : "hover:text-zinc-600"
-                  }`}
-                >
-                  Tablets
-                </Link>
-                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-              </li>
-              <li className="group">
-                <Link
-                  href="/Comprar/Accesorios"
-                  className={`block py-2 px-1 rounded ${
-                    scrolled ? "hover:text-zinc-100" : "hover:text-zinc-600"
-                  }`}
-                >
-                  Accesorios de Software
-                </Link>
-                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-              </li>
-              <li className="group">
-                <Link
-                  href="/Comprar/Monitores"
-                  className={`block py-2 px-1 rounded ${
-                    scrolled ? "hover:text-zinc-100" : "hover:text-zinc-600"
-                  }`}
-                >
-                  Monitores
-                </Link>
-                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-              </li>
-              <li className="group">
-                <Link
-                  href="/Comprar/Celulares"
-                  className={`block py-2 px-1 rounded ${
-                    scrolled ? "hover:text-zinc-100" : "hover:text-zinc-600"
-                  }`}
-                >
-                  Celulares
-                </Link>
-                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
     </header>
   );
 }

@@ -62,7 +62,7 @@ function Busqueda() {
           id="default-search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
+          className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
           placeholder="¿Qué estas buscando?"
           required
         />

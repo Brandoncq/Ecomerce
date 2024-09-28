@@ -26,11 +26,6 @@ export async function GET(request) {
   }
 }
 
-// Configuración para aplicar el middleware (si es necesario)
-export const config = {
-  matcher: ["/Usuario/:path*"], // Aplica este middleware a las rutas que comienzan con /Usuario
-};
-
 export async function POST(request) {
   try {
     const { email, password } = await request.json();

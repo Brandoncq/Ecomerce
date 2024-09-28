@@ -24,8 +24,26 @@ function IniciarSesion() {
         console.error("Error en la solicitud:", errorData);
         throw new Error(errorData.message || "Error desconocido");
       }
+      const response_auth = await fetch("/api/cliente", {
+        method: "GET",
+        credentials: "include",
+      });
+      const data = response_auth.json();
+      localStorage.setItem(
+        "auth",
+        JSON.stringify({
+          nombre: data.username,
+          email: data.email,
+        })
+      );
+      const loginEvent = new CustomEvent("login", {
+        detail: {
+          nombre: data.username,
+          email: data.email,
+        },
+      });
+      window.dispatchEvent(loginEvent);
       router.push("/");
-      router.refresh();
     } catch (error) {
       console.error("Error al enviar datos:", error);
     }

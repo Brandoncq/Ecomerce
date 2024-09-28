@@ -16,7 +16,7 @@ function Autenticacion() {
     setShowDropdown(!showDropdown);
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     const checkAuthStatus = async () => {
       try {
         const response = await fetch("/api/cliente", {
@@ -44,6 +44,43 @@ function Autenticacion() {
     };
 
     checkAuthStatus();
+  });*/
+  const evaluar = async () => {
+    try {
+      const response = await fetch("/api/cliente", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          setIsLoggedIn(true);
+          setPayload({
+            nombre: data.username,
+            email: data.email,
+          });
+        } else {
+          setIsLoggedIn(false);
+        }
+      } else {
+        setIsLoggedIn(false);
+      }
+    } catch (error) {
+      console.error("Error fetching auth status:", error);
+      setIsLoggedIn(false);
+    }
+  };
+  useEffect(() => {
+    evaluar();
+    const handleLogin = (event) => {
+      evaluar();
+    };
+
+    window.addEventListener("login", handleLogin);
+
+    return () => {
+      window.removeEventListener("login", handleLogin);
+    };
   }, []);
 
   useEffect(() => {

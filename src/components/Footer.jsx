@@ -105,7 +105,7 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="px-2 md:px-16 py-6 bg-gray-700 md:flex md:items-center md:justify-between">
+        <div className="px-2 md:px-16 py-6 bg-zinc-900 md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-300 sm:text-center">
             © 2024 <Link href="/">Compu-Fenix</Link>. Todos los Derechos
             Reservados

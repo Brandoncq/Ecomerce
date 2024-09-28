@@ -7,5 +7,5 @@ export const metadata = {
   },
 };
 export default function Comprar() {
-  return <ClientComprar />;
+  return <div className="w-full flex flex-col min-h-lvh"></div>;
 }

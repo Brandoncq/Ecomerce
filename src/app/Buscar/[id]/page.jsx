@@ -42,11 +42,7 @@ export default function Buscador({ params }) {
               </h2>
             </div>
             <div className="w-full md:w-1/2 p-2 md:px-20">
-              <img
-                className="w-full"
-                src="https://p1-ofp.static.pub//fes/cms/2024/04/01/w5xzl0a0vcja2jirmi04tmaxy7nw1g409296.png"
-                alt=""
-              />
+              <img className="w-full" src={producto.imagen} alt="" />
             </div>
           </div>
         ))}
