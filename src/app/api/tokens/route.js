@@ -82,6 +82,11 @@ export async function POST(req, res) {
     return NextResponse.json({ message: "Correo enviado correctamente" });
   } catch (error) {
     console.error("Error enviando el correo: ", error);
-    return NextResponse.json({ message: "Error enviando el correo" });
+    return NextResponse.json(
+      {
+        message: "Error enviando el correo",
+      },
+      { status: 400 }
+    );
   }
 }
