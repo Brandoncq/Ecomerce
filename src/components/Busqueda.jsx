@@ -124,7 +124,7 @@ function Busqueda() {
                   </div>
                   <img
                     className="w-1/4 cursor-pointer"
-                    src="https://p1-ofp.static.pub//fes/cms/2024/04/01/w5xzl0a0vcja2jirmi04tmaxy7nw1g409296.png"
+                    src={suggestion.imagen}
                     alt=""
                   />
                 </div>
