@@ -18,7 +18,8 @@ function RevisaCuenta() {
         }),
       });
       if (!response.ok) {
-        throw new Error("Error en la petición");
+        const errorDetails = await response.json();
+        throw new Error(errorDetails.message || "Error en la petición");
       }
 
       router.push("/CrearCuenta/Verifica");
@@ -26,7 +27,6 @@ function RevisaCuenta() {
       console.error("Error al enviar los datos:", error);
     }
   };
-  console.log(formData);
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4 min-h-lvh">
       <div className="text-xl my-4 w-full flex flex-col items-center">
