@@ -3,7 +3,7 @@
 import Link from "next/link";
 function Sections() {
   return (
-    <nav className="w-full bg-white mb-2">
+    <nav className="w-full bg-white mb-1">
       <div className="w-full px-5 flex flex-wrap items-center mx-auto md:space-x-4">
         <ul className="flex flex-col font-medium rounded-lg md:space-x-4 rtl:space-x-reverse md:flex-row text-lg">
           <li className="group">

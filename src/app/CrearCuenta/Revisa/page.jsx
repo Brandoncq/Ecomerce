@@ -70,8 +70,8 @@ function RevisaCuenta() {
           <br />
           <br />
           Recuerda que el código expirará en{" "}
-          <a className="font-bold">5 minutos</a>, así que no olvides completarlo
-          a tiempo.
+          <a className="font-bold">10 minutos</a>, así que no olvides
+          completarlo a tiempo.
           <br />
           <br />
           ¡Estamos emocionados de darte la bienvenida,{" "}

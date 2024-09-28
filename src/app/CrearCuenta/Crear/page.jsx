@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useFormContext } from "../context";
 function CrearCuenta() {
   const router = useRouter();
+  const [passwordError, setPasswordError] = useState("");
   const { setFormData } = useFormContext();
   const [user, setUser] = useState({
     correo: "",
@@ -13,6 +14,9 @@ function CrearCuenta() {
     password_validate: "",
   });
   const Enviar = async () => {
+    if (user.password !== user.password_validate) {
+      return;
+    }
     try {
       const response = await fetch("/api/tokens", {
         method: "POST",
@@ -152,7 +156,6 @@ function CrearCuenta() {
             </label>
           </div>
         </div>
-
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="password"
@@ -163,10 +166,16 @@ function CrearCuenta() {
             required
             value={user.password}
             onChange={(e) => {
+              const confirmPassword = e.target.value;
               setUser((prevUser) => ({
                 ...prevUser,
                 password: e.target.value,
               }));
+              if (confirmPassword !== user.password_validate) {
+                setPasswordError("Las contraseñas no coinciden.");
+              } else {
+                setPasswordError("");
+              }
             }}
           />
 
@@ -187,19 +196,29 @@ function CrearCuenta() {
             required
             value={user.password_validate}
             onChange={(e) => {
+              const confirmPassword = e.target.value;
               setUser((prevUser) => ({
                 ...prevUser,
                 password_validate: e.target.value,
               }));
+              if (confirmPassword !== user.password) {
+                setPasswordError("Las contraseñas no coinciden.");
+              } else {
+                setPasswordError("");
+              }
             }}
           />
-
           <label
             htmlFor="from_password_validate"
             className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
             Confirmar Contraseña
           </label>
+        </div>
+        <div className="w-full min-h-5">
+          {passwordError && (
+            <p className="text-red-500 text-sm">{passwordError}</p>
+          )}
         </div>
         <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
           <div className="w-3/4 md:w-1/2 my-1">
