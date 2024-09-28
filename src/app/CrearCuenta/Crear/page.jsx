@@ -14,6 +14,7 @@ function CrearCuenta() {
     password_validate: "",
   });
   const Enviar = async () => {
+    event.preventDefault();
     if (user.password !== user.password_validate) {
       return;
     }
@@ -85,161 +86,163 @@ function CrearCuenta() {
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-20">
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="email"
-            name="from_email"
-            id="from_email"
-            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-            value={user.correo}
-            onChange={(e) => {
-              setUser((prevUser) => ({
-                ...prevUser,
-                correo: e.target.value,
-              }));
-            }}
-          />
-          <label
-            htmlFor="from_email"
-            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Dirección de Correo Electrónico
-          </label>
-        </div>
-        <div className="grid md:grid-cols-2 md:gap-6">
+        <form onSubmit={Enviar} className="w-full flex-col">
           <div className="relative z-0 w-full mb-5 group">
             <input
-              type="text"
-              name="from_name"
-              id="from_name"
+              type="email"
+              name="from_email"
+              id="from_email"
               className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
-              value={user.nombres}
+              value={user.correo}
               onChange={(e) => {
                 setUser((prevUser) => ({
                   ...prevUser,
-                  nombres: e.target.value,
+                  correo: e.target.value,
                 }));
               }}
             />
             <label
-              htmlFor="from_name"
-              className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              htmlFor="from_email"
+              className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Nombres
+              Dirección de Correo Electrónico
             </label>
+          </div>
+          <div className="grid md:grid-cols-2 md:gap-6">
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="from_name"
+                id="from_name"
+                className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+                value={user.nombres}
+                onChange={(e) => {
+                  setUser((prevUser) => ({
+                    ...prevUser,
+                    nombres: e.target.value,
+                  }));
+                }}
+              />
+              <label
+                htmlFor="from_name"
+                className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Nombres
+              </label>
+            </div>
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="from_apellido"
+                id="from_apellido"
+                className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+                value={user.apellidos}
+                onChange={(e) => {
+                  setUser((prevUser) => ({
+                    ...prevUser,
+                    apellidos: e.target.value,
+                  }));
+                }}
+              />
+              <label
+                htmlFor="from_apellido"
+                className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Apellidos
+              </label>
+            </div>
           </div>
           <div className="relative z-0 w-full mb-5 group">
             <input
-              type="text"
-              name="from_apellido"
-              id="from_apellido"
+              type="password"
+              name="from_password"
+              id="from_password"
               className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
-              value={user.apellidos}
+              value={user.password}
               onChange={(e) => {
+                const confirmPassword = e.target.value;
                 setUser((prevUser) => ({
                   ...prevUser,
-                  apellidos: e.target.value,
+                  password: e.target.value,
                 }));
+                if (confirmPassword !== user.password_validate) {
+                  setPasswordError("Las contraseñas no coinciden.");
+                } else {
+                  setPasswordError("");
+                }
               }}
             />
-            <label
-              htmlFor="from_apellido"
-              className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Apellidos
-            </label>
-          </div>
-        </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="password"
-            name="from_password"
-            id="from_password"
-            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-            value={user.password}
-            onChange={(e) => {
-              const confirmPassword = e.target.value;
-              setUser((prevUser) => ({
-                ...prevUser,
-                password: e.target.value,
-              }));
-              if (confirmPassword !== user.password_validate) {
-                setPasswordError("Las contraseñas no coinciden.");
-              } else {
-                setPasswordError("");
-              }
-            }}
-          />
 
-          <label
-            htmlFor="from_password"
-            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Contraseña
-          </label>
-        </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="password"
-            name="from_password_validate"
-            id="from_password_validate"
-            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-            value={user.password_validate}
-            onChange={(e) => {
-              const confirmPassword = e.target.value;
-              setUser((prevUser) => ({
-                ...prevUser,
-                password_validate: e.target.value,
-              }));
-              if (confirmPassword !== user.password) {
-                setPasswordError("Las contraseñas no coinciden.");
-              } else {
-                setPasswordError("");
-              }
-            }}
-          />
-          <label
-            htmlFor="from_password_validate"
-            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Confirmar Contraseña
-          </label>
-        </div>
-        <div className="w-full min-h-5">
-          {passwordError && (
-            <p className="text-red-500 text-sm">{passwordError}</p>
-          )}
-        </div>
-        <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
-          <div className="w-3/4 md:w-1/2 my-1">
-            <button
-              className="w-full bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
-              onClick={Enviar}
+            <label
+              htmlFor="from_password"
+              className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Crear Cuenta
-            </button>
+              Contraseña
+            </label>
           </div>
-          <div className="w-3/4 md:w-1/2 my-1">
-            <button
-              className="w-full border border-blue-600 text-blue-600 px-5 py-2 rounded-md text-lg hover:bg-zinc-800 hover:border-zinc-800 hover:text-white"
-              onClick={() => {
-                router.push("/CrearCuenta/Revisa");
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="password"
+              name="from_password_validate"
+              id="from_password_validate"
+              className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+              value={user.password_validate}
+              onChange={(e) => {
+                const confirmPassword = e.target.value;
+                setUser((prevUser) => ({
+                  ...prevUser,
+                  password_validate: e.target.value,
+                }));
+                if (confirmPassword !== user.password) {
+                  setPasswordError("Las contraseñas no coinciden.");
+                } else {
+                  setPasswordError("");
+                }
               }}
+            />
+            <label
+              htmlFor="from_password_validate"
+              className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Saltar a Revisar
-            </button>
+              Confirmar Contraseña
+            </label>
           </div>
-        </div>
+          <div className="w-full min-h-5">
+            {passwordError && (
+              <p className="text-red-500 text-sm">{passwordError}</p>
+            )}
+          </div>
+          <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
+            <div className="w-3/4 md:w-1/2 my-1">
+              <button
+                className="w-full bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
+                onClick={Enviar}
+              >
+                Crear Cuenta
+              </button>
+            </div>
+            <div className="w-3/4 md:w-1/2 my-1">
+              <button
+                className="w-full border border-blue-600 text-blue-600 px-5 py-2 rounded-md text-lg hover:bg-zinc-800 hover:border-zinc-800 hover:text-white"
+                onClick={() => {
+                  router.push("/CrearCuenta/Revisa");
+                }}
+              >
+                Saltar a Revisar
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );

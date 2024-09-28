@@ -7,6 +7,7 @@ function RevisaCuenta() {
   const { formData } = useFormContext();
   const [token, setToken] = useState("");
   const Enviar = async () => {
+    event.preventDefault();
     try {
       const response = await fetch("/api/tokens/revisar", {
         method: "POST",
@@ -78,34 +79,37 @@ function RevisaCuenta() {
           <a className="font-bold">{formData.nombre}</a>, a nuestra comunidad de
           usuarios!
         </p>
-        <div className="relative z-0 w-full my-5 group">
-          <input
-            type="email"
-            name="from_email"
-            id="from_email"
-            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-            value={token}
-            onChange={(e) => {
-              setToken(e.target.value);
-            }}
-          />
-          <label
-            htmlFor="from_email"
-            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Codigo de Verificación
-          </label>
-        </div>
-        <div className="w-full flex justify-center my-2 mt-6">
-          <button
-            className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg"
-            onClick={Enviar}
-          >
-            Ingresar Token
-          </button>
-        </div>
+
+        <form onSubmit={Enviar} className="w-full flex-col">
+          <div className="relative z-0 w-full my-5 group">
+            <input
+              type="email"
+              name="from_email"
+              id="from_email"
+              className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+              value={token}
+              onChange={(e) => {
+                setToken(e.target.value);
+              }}
+            />
+            <label
+              htmlFor="from_email"
+              className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Codigo de Verificación
+            </label>
+          </div>
+          <div className="w-full flex justify-center my-2 mt-6">
+            <button
+              className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg"
+              onClick={Enviar}
+            >
+              Ingresar Token
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

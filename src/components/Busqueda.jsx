@@ -1,13 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 function Busqueda() {
   const [query, setQuery] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-
+  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+  const suggestionsRef = useRef(null);
   const router = useRouter();
   useEffect(() => {
-    if (query.length > 0) {
+    if (query.length > 0 && !isSelected) {
       const fetchData = async () => {
         try {
           const response = await fetch(`/api/buscador?query=${query}`).then(
@@ -15,6 +17,7 @@ function Busqueda() {
           );
           console.log(response);
           setFilteredSuggestions(response);
+          setIsSuggestionsOpen(true);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -22,13 +25,38 @@ function Busqueda() {
       fetchData();
     } else {
       setFilteredSuggestions([]);
+      setIsSuggestionsOpen(false);
     }
-  }, [query]);
+  }, [query, isSelected]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target)
+      ) {
+        setIsSuggestionsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSelect = (suggestion) => {
     setQuery(suggestion.nombre_producto);
     setFilteredSuggestions([]);
+    setIsSuggestionsOpen(false);
+    setIsSelected(true);
     router.push(`/Buscar/${suggestion.nombre_producto}`);
+  };
+
+  const handleFocus = () => {
+    if (filteredSuggestions.length > 0) {
+      setIsSuggestionsOpen(true);
+    }
   };
 
   return (
@@ -39,7 +67,7 @@ function Busqueda() {
       >
         Search
       </label>
-      <div className="relative">
+      <div className="relative" ref={suggestionsRef}>
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
             className="w-4 h-4 text-gray-500"
@@ -61,7 +89,11 @@ function Busqueda() {
           type="search"
           id="default-search"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onFocus={handleFocus}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setIsSelected(false);
+          }}
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
           placeholder="¿Qué estas buscando?"
           required
@@ -72,7 +104,7 @@ function Busqueda() {
         >
           Buscar
         </button>
-        {filteredSuggestions.length > 0 && (
+        {isSuggestionsOpen && filteredSuggestions.length > 0 && (
           <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg mt-1 z-10">
             {filteredSuggestions.map((suggestion, index) => (
               <li
