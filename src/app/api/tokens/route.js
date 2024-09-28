@@ -83,10 +83,8 @@ export async function POST(req, res) {
   } catch (error) {
     console.error("Error enviando el correo: ", error);
     return NextResponse.json(
-      {
-        message: "Error enviando el correo",
-      },
-      { status: 400 }
+      { message: "Error enviando el correo", error: error.message },
+      { status: 500 }
     );
   }
 }
