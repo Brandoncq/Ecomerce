@@ -8,20 +8,27 @@ function IniciarSesion() {
     password: "",
   });
   const Enviar = async () => {
-    const response = await fetch("/api/cliente", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: user.correo,
-        password: user.password,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-
-    router.push("/");
+    try {
+      const response = await fetch("/api/cliente", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.correo,
+          password: user.password,
+        }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error en la solicitud:", errorData);
+        throw new Error(errorData.message || "Error desconocido");
+      }
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      console.error("Error al enviar datos:", error);
+    }
   };
 
   return (

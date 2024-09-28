@@ -32,7 +32,7 @@ export default function ClientTablets() {
           <div className="w-full p-2 flex flex-col shadow-md shadow-zinc-400">
             <img
               className="w-full cursor-pointer"
-              src="https://p1-ofp.static.pub//fes/cms/2024/04/01/w5xzl0a0vcja2jirmi04tmaxy7nw1g409296.png"
+              src={tablet.imagen}
               alt=""
               onClick={() => {
                 redireccion(tablet.nombre_producto);

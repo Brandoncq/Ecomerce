@@ -13,28 +13,36 @@ function CrearCuenta() {
     password_validate: "",
   });
   const Enviar = async () => {
-    const response = await fetch("/api/tokens", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: user.correo,
-        nombres: user.nombres,
+    try {
+      const response = await fetch("/api/tokens", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.correo,
+          nombres: user.nombres,
+          apellidos: user.apellidos,
+          password: user.password,
+          password_validate: user.password_validate,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Error en la petición");
+      }
+      setFormData((prev) => ({
+        ...prev,
+        nombre: user.nombres,
+        correo: user.correo,
         apellidos: user.apellidos,
         password: user.password,
         password_validate: user.password_validate,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-    setFormData((prev) => ({
-      ...prev,
-      nombre: user.nombres,
-      correo: user.correo,
-    }));
+      }));
 
-    router.push("/CrearCuenta/Revisa");
+      router.push("/CrearCuenta/Revisa");
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    }
   };
 
   return (
@@ -192,13 +200,25 @@ function CrearCuenta() {
             Confirmar Contraseña
           </label>
         </div>
-        <div className="w-full flex justify-center my-2 mt-6">
-          <button
-            className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg"
-            onClick={Enviar}
-          >
-            Crear ID
-          </button>
+        <div className="w-full flex flex-wrap justify-center my-2 mt-6">
+          <div className="w-1/2 pr-1">
+            <button
+              className="w-full bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
+              onClick={Enviar}
+            >
+              Crear ID
+            </button>
+          </div>
+          <div className="w-1/2 pl-1">
+            <button
+              className="w-full bg-blue-500 border border-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800 hover:border-zinc-800"
+              onClick={() => {
+                router.push("/CrearCuenta/Revisa");
+              }}
+            >
+              Saltar a Revisar
+            </button>
+          </div>
         </div>
       </div>
     </div>

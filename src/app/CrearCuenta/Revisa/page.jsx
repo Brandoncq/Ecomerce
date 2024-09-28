@@ -6,8 +6,25 @@ function RevisaCuenta() {
   const router = useRouter();
   const { formData } = useFormContext();
   const [token, setToken] = useState("");
-  const Enviar = () => {
-    router.push("/CrearCuenta/Verifica");
+  const Enviar = async () => {
+    try {
+      const response = await fetch("/api/tokens/revisar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: token,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Error en la petición");
+      }
+
+      router.push("/CrearCuenta/Verifica");
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    }
   };
   console.log(formData);
   return (
@@ -86,7 +103,7 @@ function RevisaCuenta() {
             className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg"
             onClick={Enviar}
           >
-            Crear ID
+            Ingresar Token
           </button>
         </div>
       </div>
