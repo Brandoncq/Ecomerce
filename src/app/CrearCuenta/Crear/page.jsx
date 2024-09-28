@@ -201,18 +201,18 @@ function CrearCuenta() {
             Confirmar Contraseña
           </label>
         </div>
-        <div className="w-full flex flex-wrap justify-center my-2 mt-6">
-          <div className="w-1/2 pr-1">
+        <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
+          <div className="w-3/4 md:w-1/2 my-1">
             <button
               className="w-full bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
               onClick={Enviar}
             >
-              Crear ID
+              Crear Cuenta
             </button>
           </div>
-          <div className="w-1/2 pl-1">
+          <div className="w-3/4 md:w-1/2 my-1">
             <button
-              className="w-full bg-blue-500 border border-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800 hover:border-zinc-800"
+              className="w-full border border-blue-600 text-blue-600 px-5 py-2 rounded-md text-lg hover:bg-zinc-800 hover:border-zinc-800 hover:text-white"
               onClick={() => {
                 router.push("/CrearCuenta/Revisa");
               }}
