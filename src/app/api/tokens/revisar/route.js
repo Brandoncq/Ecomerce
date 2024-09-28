@@ -39,6 +39,10 @@ export async function POST(req, res) {
      VALUES (?, ?, ?, ?, NOW(), ?)`,
     [id_contacto, tipo_cliente, nro_documento, `${name} ${lastname}`, password]
   );
+  await pool.query(
+    `DELETE FROM tokens WHERE token = ?`,
+    [token]
+  );
 
   return NextResponse.json({ message: "Cliente creado correctamente" });
 }

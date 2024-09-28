@@ -51,10 +51,12 @@ function IniciarSesion() {
 
   return (
     <div className="w-full flex flex-wrap justify-center border-t-4 boerder-zinc-200">
-      <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4 md:my-10">
+      <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4 md:my-16">
         <div className="my-4 w-full flex flex-col items-center">
-          <div className="w-full md:w-1/2 max-md:mt-6 flex flex-col items-center justify-center">
-            <h2 className="px-2 font-bold md:text-3xl">Iniciar Sesion</h2>
+          <div className="w-full md:w-2/5 max-md:mt-6 flex flex-col items-center justify-center">
+            <h2 className="px-2 font-bold md:text-3xl text-xl">
+              Iniciar Sesion
+            </h2>
             <p className="md:px-10 text-base text-center my-4">
               Hemos creado una nueva experiencia que te permitirá hacer un
               seguimiento de todos los pedidos y productos de Lenovo en un solo
@@ -62,7 +64,7 @@ function IniciarSesion() {
             </p>
           </div>
         </div>
-        <div className="w-full md:w-1/2 p-5 shadow-lg md:px-20">
+        <div className="w-full md:w-2/5 p-5 shadow-lg md:px-20">
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="email"
@@ -114,7 +116,7 @@ function IniciarSesion() {
 
           <div className="w-full flex justify-center my-2 mt-6">
             <button
-              className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg"
+              className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
               onClick={Enviar}
             >
               Iniciar Sesión
