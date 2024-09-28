@@ -73,13 +73,12 @@ export async function POST(req, res) {
   });
   try {
     await transporter.sendMail({
-      from: '"COMPU-FENIX@gmail.com"',
+      from: process.env.EMAIL_USER,
       to: email,
       subject: "Verificación de cuenta",
       text: `Tu código de verificación es: ${token}`,
       html: `<p>Tu código de verificación es: <strong>${token}</strong></p>`,
     });
-    console.log(token);
     return NextResponse.json({ message: "Correo enviado correctamente" });
   } catch (error) {
     console.error("Error enviando el correo: ", error);
