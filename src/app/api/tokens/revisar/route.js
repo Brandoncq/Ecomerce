@@ -19,9 +19,9 @@ export async function POST(req, res) {
 
   const { email, name, lastname, password } = tokenData[0];
 
-  const defaultPhoneNumber = "123456789";
-  const defaultAddress = "Calle Falsa 123";
-  const defaultNationality = "PE";
+  const defaultPhoneNumber = "";
+  const defaultAddress = null;
+  const defaultNationality = null;
 
   const [contactResult] = await pool.query(
     `INSERT INTO contacto (email, nro_celular, direccion, nacionalidad) 
@@ -32,7 +32,7 @@ export async function POST(req, res) {
   const id_contacto = contactResult.insertId;
 
   const tipo_cliente = "DNI";
-  const nro_documento = "12345678";
+  const nro_documento = null;
 
   await pool.query(
     `INSERT INTO cliente (id_contacto, tipo_cliente, nro_documento, nombre, registro_cliente, password)
