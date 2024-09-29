@@ -7,7 +7,7 @@ import { serialize } from "cookie";
 import { jwtVerify } from "jose";
 
 export async function GET(request) {
-  const MytokenName = request.cookies.get("MytokenName");
+  const MytokenName = request.cookies.get("Sesion");
 
   if (MytokenName === undefined) {
     return NextResponse.json({ error: "No token found" }, { status: 401 });
@@ -56,7 +56,7 @@ export async function POST(request) {
             process.env.JWT_SECRET
           );
 
-          const serialized = serialize("MytokenName", token, {
+          const serialized = serialize("Sesion", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
@@ -84,13 +84,13 @@ export async function POST(request) {
 }
 export async function DELETE(request, response) {
   try {
-    const MytokenName = request.cookies.get("MytokenName");
+    const MytokenName = request.cookies.get("Sesion");
     if (!MytokenName) {
       return NextResponse.json("No token");
     }
     console.log(MytokenName);
     verify(MytokenName.value, process.env.JWT_SECRET);
-    const serialized = serialize("MytokenName", null, {
+    const serialized = serialize("Sesion", null, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",

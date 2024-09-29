@@ -98,12 +98,7 @@ function Busqueda() {
           placeholder="¿Qué estas buscando?"
           required
         />
-        <button
-          type="submit"
-          className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
-        >
-          Buscar
-        </button>
+
         {isSuggestionsOpen && filteredSuggestions.length > 0 && (
           <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg mt-1 z-10">
             {filteredSuggestions.map((suggestion, index) => (
