@@ -9,6 +9,7 @@ export default function ClientMonitores() {
     productos.map((values) => {
       refinando.push({
         nombre_producto: values.nombre_producto,
+        stock: values.stock,
         precio_unitario: values.precio_unitario,
         modelo: values.modelo,
         imagen: values.imagen,
