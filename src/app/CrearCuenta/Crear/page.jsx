@@ -6,6 +6,13 @@ function CrearCuenta() {
   const router = useRouter();
   const [passwordError, setPasswordError] = useState("");
   const { setFormData } = useFormContext();
+  const [validatepasword, setValidatepasword] = useState({
+    hasUpperCase: false,
+    hasLowerCase: false,
+    hasNumbers: false,
+    hasSpecialChar: false,
+    hasMinLength: false,
+  });
   const [user, setUser] = useState({
     correo: "",
     nombres: "",
@@ -13,9 +20,33 @@ function CrearCuenta() {
     password: "",
     password_validate: "",
   });
+  const checkPasswordStrength = (password) => {
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>-]/.test(password);
+    const hasMinLength = password.length >= 8;
+
+    if (
+      hasMinLength &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasNumbers &&
+      hasSpecialChar
+    ) {
+      return "Fuerte";
+    } else if (hasMinLength && (hasUpperCase || hasLowerCase) && hasNumbers) {
+      return "Media";
+    } else {
+      return "Débil";
+    }
+  };
   const Enviar = async () => {
     event.preventDefault();
     if (user.password !== user.password_validate) {
+      return;
+    }
+    if (checkPasswordStrength(user.password) != "Fuerte") {
       return;
     }
     try {
@@ -168,16 +199,32 @@ function CrearCuenta() {
               required
               value={user.password}
               onChange={(e) => {
-                const confirmPassword = e.target.value;
+                const password = e.target.value;
                 setUser((prevUser) => ({
                   ...prevUser,
                   password: e.target.value,
                 }));
-                if (confirmPassword !== user.password_validate) {
-                  setPasswordError("Las contraseñas no coinciden.");
+                if (checkPasswordStrength(password) == "Fuerte") {
+                  if (password == user.password_validate) {
+                    setPasswordError("");
+                  } else {
+                    setPasswordError("Las contraseñas no coinciden.");
+                  }
                 } else {
-                  setPasswordError("");
+                  setPasswordError("La contraseña es demasiado débil.");
                 }
+                const hasUpperCase = /[A-Z]/.test(password);
+                const hasLowerCase = /[a-z]/.test(password);
+                const hasNumbers = /[0-9]/.test(password);
+                const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>-]/.test(password);
+                const hasMinLength = password.length >= 8;
+                setValidatepasword({
+                  hasUpperCase: hasUpperCase,
+                  hasLowerCase: hasLowerCase,
+                  hasNumbers: hasNumbers,
+                  hasSpecialChar: hasSpecialChar,
+                  hasMinLength: hasMinLength,
+                });
               }}
             />
 
@@ -203,10 +250,12 @@ function CrearCuenta() {
                   ...prevUser,
                   password_validate: e.target.value,
                 }));
-                if (confirmPassword !== user.password) {
-                  setPasswordError("Las contraseñas no coinciden.");
-                } else {
-                  setPasswordError("");
+                if (checkPasswordStrength(user.password) == "Fuerte") {
+                  if (confirmPassword == user.password) {
+                    setPasswordError("");
+                  } else {
+                    setPasswordError("Las contraseñas no coinciden.");
+                  }
                 }
               }}
             />
@@ -217,11 +266,65 @@ function CrearCuenta() {
               Confirmar Contraseña
             </label>
           </div>
+
           <div className="w-full min-h-5">
             {passwordError && (
-              <p className="text-red-500 text-sm">{passwordError}</p>
+              <p className="text-red-500 text-sm my-4">{passwordError}</p>
             )}
           </div>
+          <p className="text-sm text-gray-600 font-medium mt-2">
+            La contraseña tiene que contener por lo menos:
+            <span
+              className={`block my-1 ${
+                validatepasword.hasLowerCase
+                  ? "bg-green-100 text-green-800 font-semibold"
+                  : ""
+              }`}
+            >
+              {validatepasword.hasLowerCase ? "✓ 1 minúscula" : ". 1 minúscula"}
+            </span>
+            <span
+              className={`block my-1 ${
+                validatepasword.hasUpperCase
+                  ? "bg-green-100 text-green-800 font-semibold"
+                  : ""
+              }`}
+            >
+              {validatepasword.hasUpperCase ? "✓ 1 mayuscula" : ". 1 mayuscula"}
+            </span>
+            <span
+              className={`block my-1 ${
+                validatepasword.hasNumbers
+                  ? "bg-green-100 text-green-800 font-semibold"
+                  : ""
+              }`}
+            >
+              {validatepasword.hasNumbers ? "✓ Un número" : ". Un número"}
+            </span>
+            <span
+              className={`block my-1 ${
+                validatepasword.hasSpecialChar
+                  ? "bg-green-100 text-green-800 font-semibold"
+                  : ""
+              }`}
+            >
+              {validatepasword.hasSpecialChar
+                ? "✓ 1 símbolo (ej: !@#$%^&)"
+                : ". 1 símbolo (ej: !@#$%^&)"}
+            </span>
+            <span
+              className={`block my-1 ${
+                validatepasword.hasMinLength
+                  ? "bg-green-100 text-green-800 font-semibold"
+                  : ""
+              }`}
+            >
+              {validatepasword.hasMinLength
+                ? "✓ Minimo 8 Carateres"
+                : ". Minimo 8 Carateres"}
+            </span>
+          </p>
+
           <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
             <div className="w-3/4 md:w-1/2 my-1">
               <button

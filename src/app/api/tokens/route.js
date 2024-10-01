@@ -12,11 +12,29 @@ export async function POST(req, res) {
       { status: 400 }
     );
   }
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumbers = /[0-9]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>-]/.test(password);
+  const hasMinLength = password.length >= 8;
+  if (
+    !hasMinLength ||
+    !hasUpperCase ||
+    !hasLowerCase ||
+    !hasNumbers ||
+    !hasSpecialChar
+  ) {
+    console.log("La contraseña es muy débil");
+    return NextResponse.json(
+      { error: "La contraseña es muy débil" },
+      { status: 400 }
+    );
+  }
   const [existingCliente] = await pool.query(
     `SELECT * FROM contacto WHERE email = ?`,
     [email]
   );
-
+  console.log(existingCliente);
   if (existingCliente.length > 0) {
     return NextResponse.json(
       { error: "El correo electrónico ya está registrado." },
@@ -30,7 +48,6 @@ export async function POST(req, res) {
     `SELECT * FROM tokens WHERE email = ?`,
     [email]
   );
-
   if (existingUser.length > 0) {
     await pool.query(
       `UPDATE tokens 
