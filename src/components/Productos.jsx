@@ -8,7 +8,7 @@ export default function Productos({ produtos }) {
   };
 
   return (
-    <div className="w-full md:px-2 md:p-10 flex flex-wrap items-stretch">
+    <div className="w-full md:p-10 flex flex-wrap items-stretch">
       {produtos.map((produto, index) => (
         <div
           className="w-1/2 md:w-1/4 hover:border-zinc-500 border-2 border-zinc-200 group md:h-full"

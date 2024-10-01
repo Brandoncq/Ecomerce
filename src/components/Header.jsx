@@ -25,7 +25,7 @@ function Header() {
       <div className="w-full px-5 flex flex-wrap items-center justify-between pt-4 pb-2">
         <Link
           href="/"
-          className={`p-2 text-2xl font-bold bg-blue-700 text-white`}
+          className={`p-2 rounded text-2xl font-bold bg-blue-700 text-white`}
         >
           Compu-Fenix
         </Link>

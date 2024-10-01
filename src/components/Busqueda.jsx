@@ -60,7 +60,7 @@ function Busqueda() {
   };
 
   return (
-    <form className="w-full max-w-lg mx-auto max-md:order-last">
+    <form className="w-full max-w-lg mx-auto max-md:order-last max-md:mt-3">
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium sr-only text-white"
