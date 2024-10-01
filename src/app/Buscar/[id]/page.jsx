@@ -23,8 +23,8 @@ export default function Buscador({ params }) {
     getProducto();
   }, []);
   return (
-    <div className="w-full flex flex-col min-h-lvh">
-      <section className="w-full flex">
+    <div className="w-full flex flex-col min-h-lvh border-t-4 border-zinc-200">
+      <section className="w-full flex md:px-4 md:py-10">
         {productos.map((producto, index) => (
           <div className="w-full flex flex-wrap px-2 md:px-20" key={index}>
             <div className="w-full md:w-1/2 p-2 flex flex-col justify-center">

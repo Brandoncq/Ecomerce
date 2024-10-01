@@ -69,13 +69,22 @@ export async function POST(request) {
             },
           });
         } else {
-          return NextResponse.json("Incorrect password", { status: 401 });
+          return NextResponse.json(
+            { error: "Contraseña Incorrecta" },
+            { status: 401 }
+          );
         }
       } else {
-        return NextResponse.json("User not found", { status: 404 });
+        return NextResponse.json(
+          { error: "Usuario no encontrado" },
+          { status: 404 }
+        );
       }
     } else {
-      return NextResponse.json("Email not found", { status: 404 });
+      return NextResponse.json(
+        { error: "Email no encontrado" },
+        { status: 404 }
+      );
     }
   } catch (error) {
     console.error("Error during authentication:", error);

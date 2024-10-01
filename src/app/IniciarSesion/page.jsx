@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 function IniciarSesion() {
   const router = useRouter();
+  const [error, setError] = useState("");
   const [user, setUser] = useState({
     correo: "",
     password: "",
@@ -23,7 +24,8 @@ function IniciarSesion() {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error en la solicitud:", errorData);
-        throw new Error(errorData.message || "Error desconocido");
+        setError(errorData.error);
+        throw new Error(errorData.error || "Error desconocido");
       }
       const response_auth = await fetch("/api/cliente", {
         method: "GET",
@@ -115,7 +117,9 @@ function IniciarSesion() {
                 Contraseña
               </label>
             </div>
-
+            <div className="w-full min-h-5 flex justify-center">
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+            </div>
             <div className="w-full flex justify-center my-2 mt-6">
               <button
                 type="submit"

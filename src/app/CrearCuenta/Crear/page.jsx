@@ -90,7 +90,7 @@ function CrearCuenta() {
       <div className="text-xl my-4 w-full flex flex-col items-center">
         <div className="w-full md:w-1/2 p-5 md:px-20 justify-between items-center flex">
           <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center bg-green-600 text-white">
-            1{/* &#10003; Simbolo de check*/}
+            1
           </div>
           <hr className="flex-grow border-zinc-600 mx-2" />
           <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center">
