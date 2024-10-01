@@ -16,7 +16,7 @@ function Header() {
   }, []);
   return (
     <header
-      className={`w-full sticky top-0 z-20 transition-all duration-500 ease-in-out flex flex-col ${
+      className={`w-full sticky top-0 z-40 transition-all duration-500 ease-in-out flex flex-col ${
         scrolled
           ? "bg-zinc-900 text-zinc-200 md:p-2 p-1"
           : "bg-white text-zinc-800 px-0"
