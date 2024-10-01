@@ -25,18 +25,27 @@ export default function Computadoras() {
     <div className="w-full flex flex-col min-h-lvh">
       <section className="w-full flex">
         <div
-          className="w-full h-28 md:h-44 flex justify-center items-center"
+          className="w-full h-auto md:h-20 flex flex-wrap justify-start items-center px-5 max-md:py-4"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1582731595896-f959c4fb1509?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
+              "linear-gradient(to right, #6a11cb 0%, #2575fc 100%)",
           }}
         >
-          <h2 className="text-white text-xl md:text-4xl font-bold text-center">
-            Computadoras de Escritorio y All in One
-          </h2>
+          <div className="w-full md:w-auto">
+            <h2 className="text-white text-3xl md:text-6xl font-bold text-center">
+              Ofertas
+            </h2>
+          </div>
+          <div className="flex flex-col px-6 text-white items-start w-full md:w-auto">
+            <h3 className="text-xl md:text-3xl font-bold text-center">
+              ¡Aprovecha las mejores ofertas y envío gratis!
+            </h3>
+            <p className="text-base">
+              Comprar un equipo Compu-Fenix tiene sus beneficios, conoce
+              nuestras Promociones vigentes Descuentos para Pymes | Descuentos
+              para estudiantes
+            </p>
+          </div>
         </div>
       </section>
       <section className="w-full flex">
