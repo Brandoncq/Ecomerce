@@ -4,10 +4,12 @@ import { useFormContext } from "../context";
 import { useRouter } from "next/navigation";
 function RevisaCuenta() {
   const router = useRouter();
+  const [error, setError] = useState("");
   const { formData } = useFormContext();
   const [token, setToken] = useState("");
   const Enviar = async () => {
     event.preventDefault();
+    setError("");
     try {
       const response = await fetch("/api/tokens/revisar", {
         method: "POST",
@@ -20,7 +22,8 @@ function RevisaCuenta() {
       });
       if (!response.ok) {
         const errorDetails = await response.json();
-        throw new Error(errorDetails.message || "Error en la petición");
+        setError(errorDetails.error);
+        throw new Error(errorDetails.error || "Error en la petición");
       }
 
       router.push("/CrearCuenta/Verifica");
@@ -100,6 +103,9 @@ function RevisaCuenta() {
             >
               Codigo de Verificación
             </label>
+          </div>
+          <div className="w-full min-h-8 flex justify-center">
+            {error && <p className="text-red-500 text-sm">{error}</p>}
           </div>
           <div className="w-full flex justify-center my-2 mt-6">
             <button

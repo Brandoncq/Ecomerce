@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useFormContext } from "../context";
 function CrearCuenta() {
   const router = useRouter();
+  const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const { setFormData } = useFormContext();
   const [validatepasword, setValidatepasword] = useState({
@@ -43,6 +44,7 @@ function CrearCuenta() {
   };
   const Enviar = async () => {
     event.preventDefault();
+    setError("");
     if (user.password !== user.password_validate) {
       return;
     }
@@ -65,7 +67,8 @@ function CrearCuenta() {
       });
       if (!response.ok) {
         const errorDetails = await response.json();
-        throw new Error(errorDetails.message || "Error en la petición");
+        setError(errorDetails.error);
+        throw new Error(errorDetails.error || "Error en la petición");
       }
       setFormData((prev) => ({
         ...prev,
@@ -267,9 +270,9 @@ function CrearCuenta() {
             </label>
           </div>
 
-          <div className="w-full min-h-5">
+          <div className="w-full min-h-8">
             {passwordError && (
-              <p className="text-red-500 text-sm my-4">{passwordError}</p>
+              <p className="text-red-500 text-sm">{passwordError}</p>
             )}
           </div>
           <p className="text-sm text-gray-600 font-medium mt-2">
@@ -324,7 +327,9 @@ function CrearCuenta() {
                 : ". Minimo 8 Carateres"}
             </span>
           </p>
-
+          <div className="w-full min-h-5 flex justify-center">
+            {error && <p className="text-red-500 text-sm my-4">{error}</p>}
+          </div>
           <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
             <div className="w-3/4 md:w-1/2 my-1">
               <button

@@ -12,7 +12,7 @@ export async function POST(req, res) {
 
   if (tokenData.length === 0) {
     return NextResponse.json(
-      { message: "Token inválido o expirado" },
+      { error: "Token inválido o expirado" },
       { status: 400 }
     );
   }
@@ -39,10 +39,7 @@ export async function POST(req, res) {
      VALUES (?, ?, ?, ?, NOW(), ?)`,
     [id_contacto, tipo_cliente, nro_documento, `${name} ${lastname}`, password]
   );
-  await pool.query(
-    `DELETE FROM tokens WHERE token = ?`,
-    [token]
-  );
+  await pool.query(`DELETE FROM tokens WHERE token = ?`, [token]);
 
   return NextResponse.json({ message: "Cliente creado correctamente" });
 }
