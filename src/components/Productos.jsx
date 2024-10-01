@@ -8,10 +8,10 @@ export default function Productos({ produtos }) {
   };
 
   return (
-    <div className="w-full px-2 md:p-10 flex flex-wrap items-stretch">
+    <div className="w-full md:px-2 md:p-10 flex flex-wrap items-stretch">
       {produtos.map((produto, index) => (
         <div
-          className="w-1/2 md:w-1/4 hover:border-zinc-500 border-2 border-zinc-200 group h-full"
+          className="w-1/2 md:w-1/4 hover:border-zinc-500 border-2 border-zinc-200 group md:h-full"
           key={index}
         >
           <div className="w-full p-6 flex flex-col h-full">
@@ -51,7 +51,7 @@ export default function Productos({ produtos }) {
               <button className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-sm w-full text-lg my-2">
                 Comprar
               </button>
-              <div className="flex items-center justify-between w-full my-1">
+              <div className="flex max-md:flex-col items-center justify-between w-full my-2">
                 <div className="cursor-pointer">
                   <a
                     onClick={() => {
@@ -76,7 +76,7 @@ export default function Productos({ produtos }) {
                     </svg>
                   </a>
                 </div>
-                <button className="p-3 bg-zinc-900 text-white rounded text-lg font-semibold mx-1 hover:bg-zinc-700">
+                <button className="p-3 bg-zinc-900 text-white rounded text-sm md:text-lg font-semibold mx-1 hover:bg-zinc-700">
                   Agregar al Carrito
                 </button>
               </div>
