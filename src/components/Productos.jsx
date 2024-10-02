@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-
+import AgregarCarrito from "./AgregarCarrito";
 export default function Productos({ produtos }) {
   const router = useRouter();
   const redireccion = (suggestion) => {
@@ -76,9 +76,7 @@ export default function Productos({ produtos }) {
                     </svg>
                   </a>
                 </div>
-                <button className="p-3 bg-zinc-900 text-white rounded text-sm md:text-lg font-semibold mx-1 hover:bg-zinc-700">
-                  Agregar al Carrito
-                </button>
+                <AgregarCarrito productId={produto.id} />
               </div>
             </div>
           </div>

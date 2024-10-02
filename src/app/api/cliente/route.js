@@ -21,7 +21,6 @@ export async function GET(request) {
     return NextResponse.json(payload, { status: 200 });
   } catch (error) {
     console.error("Token verification failed:", error);
-    // Retorna error si el token es inválido
     return NextResponse.json({ error: "Invalid token" }, { status: 401 });
   }
 }
@@ -52,6 +51,7 @@ export async function POST(request) {
             {
               email: email,
               username: rows_email[0].nombre,
+              id: rows_email[0].id_cliente,
             },
             process.env.JWT_SECRET
           );
@@ -97,7 +97,6 @@ export async function DELETE(request, response) {
     if (!MytokenName) {
       return NextResponse.json("No token");
     }
-    console.log(MytokenName);
     verify(MytokenName.value, process.env.JWT_SECRET);
     const serialized = serialize("Sesion", null, {
       httpOnly: true,

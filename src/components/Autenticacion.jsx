@@ -15,36 +15,6 @@ function Autenticacion() {
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
-  /*useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        const response = await fetch("/api/cliente", {
-          method: "GET",
-          credentials: "include",
-        });
-        if (response.ok) {
-          const data = await response.json();
-          if (data) {
-            setIsLoggedIn(true);
-            setPayload({
-              nombre: data.username,
-              email: data.email,
-            });
-          } else {
-            setIsLoggedIn(false);
-          }
-        } else {
-          setIsLoggedIn(false);
-        }
-      } catch (error) {
-        console.error("Error fetching auth status:", error);
-        setIsLoggedIn(false);
-      }
-    };
-
-    checkAuthStatus();
-  });*/
   const evaluar = async () => {
     try {
       const response = await fetch("/api/cliente", {
@@ -99,6 +69,8 @@ function Autenticacion() {
     await fetch("/api/cliente", {
       method: "DELETE",
     });
+    const LogOutEvent = new CustomEvent("logout");
+    window.dispatchEvent(LogOutEvent);
     setIsLoggedIn(false);
     router.push("/");
   };
@@ -157,22 +129,40 @@ function Autenticacion() {
         >
           {isLoggedIn ? (
             <>
-              <li className="p-2 text-zinc-200 hover:bg-blue-500 rounded cursor-pointer">
+              <li
+                className="p-2 text-zinc-200 hover:bg-blue-500 rounded cursor-pointer"
+                onClick={() => {
+                  setShowDropdown(false);
+                }}
+              >
                 <Link href="/Usuario">Usuario</Link>
               </li>
               <li
                 className="p-2 text-zinc-200 hover:bg-blue-500 rounded cursor-pointer"
-                onClick={handleLogout}
+                onClick={() => {
+                  setShowDropdown(false);
+                  handleLogout();
+                }}
               >
                 Cerrar Sesión
               </li>
             </>
           ) : (
             <>
-              <li className="p-2 text-zinc-200 hover:bg-blue-500 rounded">
+              <li
+                className="p-2 text-zinc-200 hover:bg-blue-500 rounded"
+                onClick={() => {
+                  setShowDropdown(false);
+                }}
+              >
                 <Link href="/IniciarSesion">Iniciar Sesión</Link>
               </li>
-              <li className="p-2 text-zinc-200 hover:bg-blue-500 rounded">
+              <li
+                className="p-2 text-zinc-200 hover:bg-blue-500 rounded"
+                onClick={() => {
+                  setShowDropdown(false);
+                }}
+              >
                 <Link href="/CrearCuenta/Crear">Crear Cuenta</Link>
               </li>
             </>

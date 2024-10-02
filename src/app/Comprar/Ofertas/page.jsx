@@ -8,6 +8,7 @@ export default function Computadoras() {
     const refinando = [];
     productos.map((values) => {
       refinando.push({
+        id: values.id_producto,
         nombre_producto: values.nombre_producto,
         precio_unitario: values.precio_unitario,
         modelo: values.modelo,

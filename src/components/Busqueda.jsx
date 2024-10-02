@@ -111,16 +111,18 @@ function Busqueda() {
                     <h2 className="text-base text-blue-600 cursor-pointer">
                       {suggestion.nombre_producto}
                     </h2>
-                    <h2 className="text-lg font-semibold">
+                    <h2 className="text-lg font-semibold text-black">
                       S/.{suggestion.precio_unitario}
                     </h2>
-                    <h3>{suggestion.modelo}</h3>
+                    <h3 className="text-black">{suggestion.modelo}</h3>
                   </div>
-                  <img
-                    className="w-1/4 cursor-pointer"
-                    src={suggestion.imagen}
-                    alt=""
-                  />
+                  <div className="w-1/4 md:w-1/3 h-auto md:p-2 text-black">
+                    <img
+                      className="w-full h-auto object-cover"
+                      src={suggestion.imagen}
+                      alt=""
+                    />
+                  </div>
                 </div>
               </li>
             ))}

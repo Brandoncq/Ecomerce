@@ -26,7 +26,10 @@ export default function Buscador({ params }) {
     <div className="w-full flex flex-col min-h-lvh border-t-4 border-zinc-200">
       <section className="w-full flex md:px-4 md:py-10">
         {productos.map((producto, index) => (
-          <div className="w-full flex flex-wrap px-2 md:px-20" key={index}>
+          <div
+            className="w-full flex flex-wrap px-2 md:px-10 lg:px-20"
+            key={index}
+          >
             <div className="w-full md:w-1/2 p-2 flex flex-col justify-center">
               <h2 className="text-2xl md:text-4xl text-blue-600 font-semibold mb-1">
                 {producto.nombre_producto}
@@ -41,7 +44,7 @@ export default function Buscador({ params }) {
                 S/.{producto.precio_unitario}
               </h2>
             </div>
-            <div className="w-full md:w-1/2 p-2 md:px-20">
+            <div className="w-full md:w-1/2 p-2 md:px-5 lg:px-20 flex justify-center items-center">
               <img className="w-full" src={producto.imagen} alt="" />
             </div>
           </div>

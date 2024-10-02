@@ -8,6 +8,7 @@ export default function ClientCelulares() {
     const refinando = [];
     productos.map((values) => {
       refinando.push({
+        id: values.id_producto,
         nombre_producto: values.nombre_producto,
         stock: values.stock,
         precio_unitario: values.precio_unitario,
