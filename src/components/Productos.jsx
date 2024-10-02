@@ -51,7 +51,7 @@ export default function Productos({ produtos }) {
               <button className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-sm w-full text-lg my-2">
                 Comprar
               </button>
-              <div className="flex max-md:flex-col items-center justify-between w-full my-2">
+              <div className="flex max-lg:flex-col items-center justify-between w-full my-2">
                 <div className="cursor-pointer">
                   <a
                     onClick={() => {

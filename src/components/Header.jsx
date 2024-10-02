@@ -22,7 +22,7 @@ function Header() {
           : "bg-white text-zinc-800 px-0"
       }`}
     >
-      <div className="w-full px-5 flex flex-wrap items-center justify-between pt-4 pb-2">
+      <div className="w-full px-5 flex flex-wrap items-center justify-between pt-3 pb-2">
         <Link
           href="/"
           className={`p-2 rounded text-2xl font-bold bg-blue-700 text-white`}

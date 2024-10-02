@@ -106,6 +106,13 @@ function Autenticacion() {
   return (
     <li className="relative inline-block" ref={dropdownRef}>
       <button className={`flex items-center px-1`} onClick={toggleDropdown}>
+        {isLoggedIn && (
+          <img
+            src="https://res.cloudinary.com/dmo6ofy2z/image/upload/v1707577045/dlre8qsx4xwxrwf8ns22.jpg"
+            alt=""
+            className="w-10 h-10 rounded-full mx-1"
+          />
+        )}
         <p className="max-md:hidden font-semibold">
           {isLoggedIn ? payload.email : ""}
         </p>

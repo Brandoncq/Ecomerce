@@ -15,7 +15,6 @@ function Busqueda() {
           const response = await fetch(`/api/buscador?query=${query}`).then(
             (res) => res.json()
           );
-          console.log(response);
           setFilteredSuggestions(response);
           setIsSuggestionsOpen(true);
         } catch (error) {
@@ -60,7 +59,7 @@ function Busqueda() {
   };
 
   return (
-    <form className="w-full max-w-lg mx-auto max-md:order-last max-md:mt-3">
+    <form className="w-full max-w-lg mx-auto max-lg:order-last max-lg:mt-3">
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium sr-only text-white"
