@@ -32,7 +32,7 @@ function RevisaCuenta() {
     }
   };
   return (
-    <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 min-h-lvh">
+    <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4">
       <div className="text-xl my-4 w-full flex flex-col items-center">
         <div className="w-full md:w-1/2 p-5 md:px-10 lg:px-20 justify-between items-center flex">
           <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center bg-green-600 text-white">
@@ -58,7 +58,7 @@ function RevisaCuenta() {
             <p>Verificar la cuenta creada</p>
           </div>
         </div>
-        <div className="text-left w-full max-md:mt-6 flex items-center">
+        <div className="text-left w-full mt-3 max-lg:mt-6 flex items-center">
           <div className="border-2 border-green-600 rounded-full w-10 h-10 flex justify-center items-center">
             2
           </div>

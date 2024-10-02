@@ -112,7 +112,7 @@ function CrearCuenta() {
             <p>Verificar la cuenta creada</p>
           </div>
         </div>
-        <div className="text-left w-full max-md:mt-6 flex items-center">
+        <div className="text-left w-full mt-3 max-lg:mt-6 flex items-center">
           <div className="border-2 border-green-600 rounded-full w-10 h-10 flex justify-center items-center">
             1
           </div>
