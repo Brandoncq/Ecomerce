@@ -4,9 +4,9 @@ import { useFormContext } from "../context";
 function VerificaCuenta() {
   const { formData } = useFormContext();
   return (
-    <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4 min-h-lvh">
+    <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 min-h-lvh">
       <div className="text-xl my-4 w-full flex flex-col items-center">
-        <div className="w-full md:w-1/2 p-5 md:px-20 justify-between items-center flex">
+        <div className="w-full md:w-1/2 p-5 md:px-10 lg:px-20 justify-between items-center flex">
           <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center bg-green-600 text-white">
             &#10003;
           </div>
@@ -37,7 +37,7 @@ function VerificaCuenta() {
           <h2 className="px-2">Verificar la cuenta creada</h2>
         </div>
       </div>
-      <div className="w-full md:w-1/2 p-5 shadow-lg md:px-20">
+      <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
         <h4 className="my-4">
           ¡Gracias por verificar tu cuenta,{" "}
           <a className="font-bold">{formData.nombre}</a>!

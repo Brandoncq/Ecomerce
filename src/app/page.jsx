@@ -47,7 +47,7 @@ export default function Home() {
             </h2>
           </div>
           <div className="w-full flex flex-wrap justify-center px-4 md:px-10 mb-5 md:mb-10">
-            <div className="w-1/3 md:w-1/5 px-2 md:px-20 flex flex-col justify-center items-center">
+            <div className="w-1/3 md:w-1/5 px-2 lg:px-20 flex flex-col justify-center items-center">
               <Link
                 href="/Comprar/Computadoras"
                 className="w-full flex flex-col justify-center items-center"
@@ -76,7 +76,7 @@ export default function Home() {
                 </h3>
               </Link>
             </div>
-            <div className="w-1/3 md:w-1/5 px-2 md:px-20 flex flex-col justify-center items-center">
+            <div className="w-1/3 md:w-1/5 px-2 lg:px-20 flex flex-col justify-center items-center">
               <Link
                 href="/Comprar/Laptops"
                 className="w-full flex flex-col justify-center items-center"
@@ -101,7 +101,7 @@ export default function Home() {
                 </h3>
               </Link>
             </div>
-            <div className="w-1/3 md:w-1/5 px-2 md:px-20 flex flex-col justify-center items-center">
+            <div className="w-1/3 md:w-1/5 px-2 lg:px-20 flex flex-col justify-center items-center">
               <Link
                 href="/Nosotros"
                 className="w-full flex flex-col justify-center items-center"
@@ -130,7 +130,7 @@ export default function Home() {
                 </h3>
               </Link>
             </div>
-            <div className="w-1/3 md:w-1/5 px-2 md:px-20 flex flex-col justify-center items-center">
+            <div className="w-1/3 md:w-1/5 px-2 lg:px-20 flex flex-col justify-center items-center">
               <Link
                 href="/Soporte"
                 className="w-full flex flex-col justify-center items-center"
@@ -159,7 +159,7 @@ export default function Home() {
                 </h3>
               </Link>
             </div>
-            <div className="w-1/3 md:w-1/5 px-2 md:px-20 flex flex-col justify-center items-center">
+            <div className="w-1/3 md:w-1/5 px-2 lg:px-20 flex flex-col justify-center items-center">
               <Link
                 href="/Comprar/Ofertas"
                 className="w-full flex flex-col justify-center items-center"

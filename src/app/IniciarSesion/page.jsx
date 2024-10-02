@@ -54,9 +54,9 @@ function IniciarSesion() {
 
   return (
     <div className="w-full flex flex-wrap justify-center border-t-4 boerder-zinc-200">
-      <div className="w-full flex flex-wrap justify-center p-5 md:px-20 mb-4 md:my-16">
+      <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 md:my-16">
         <div className="my-4 w-full flex flex-col items-center">
-          <div className="w-full md:w-2/5 max-md:mt-6 flex flex-col items-center justify-center">
+          <div className="w-full md:w-3/5 lg:w-2/5 max-md:mt-6 flex flex-col items-center justify-center">
             <h2 className="px-2 font-bold md:text-3xl text-xl">
               Iniciar Sesion
             </h2>
@@ -67,7 +67,7 @@ function IniciarSesion() {
             </p>
           </div>
         </div>
-        <div className="w-full md:w-2/5 p-5 shadow-lg md:px-20">
+        <div className="w-full md:w-3/5 lg:w-2/5 p-5 shadow-lg md:px-5 lg:px-20">
           <form onSubmit={Enviar} className="w-full flex-col">
             <div className="relative z-0 w-full mb-5 group">
               <input
