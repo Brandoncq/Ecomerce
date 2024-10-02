@@ -8,7 +8,6 @@ export async function GET(request) {
     const MytokenName = request.cookies.get("Sesion");
     let payload;
 
-    // Verificar el token de sesión para obtener el ID del cliente
     if (MytokenName) {
       try {
         const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -19,14 +18,12 @@ export async function GET(request) {
       }
     }
 
-    // Si el token de sesión es válido, buscar en la base de datos
     if (payload) {
       const [buscar_carrito] = await pool.query(
         `SELECT * FROM carrito WHERE id_cliente = ?`,
         [payload.id]
       );
 
-      // Si existe el carrito en la base de datos, obtener los items
       if (buscar_carrito.length > 0) {
         const [carrito_items] = await pool.query(
           `SELECT * FROM carrito_item WHERE id_carrito = ?`,
@@ -60,7 +57,6 @@ export async function GET(request) {
         );
       }
     } else {
-      // Si no hay sesión, verificar las cookies
       const CarritoCookie = request.cookies.get("Carrito");
       if (CarritoCookie) {
         const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -128,10 +124,23 @@ export async function POST(request) {
       );
 
       if (buscar_carrito.length > 0) {
-        await pool.query(
-          `INSERT INTO carrito_item (id_producto, id_carrito, cantidad) VALUES (?, ?, ?)`,
-          [id, buscar_carrito[0].id_carrito, 1]
+        const [existingItem] = await pool.query(
+          `SELECT * FROM carrito_item WHERE id_producto = ? AND id_carrito = ?`,
+          [id, buscar_carrito[0].id_carrito]
         );
+
+        if (existingItem.length > 0) {
+          const newQuantity = existingItem[0].cantidad + 1;
+          await pool.query(
+            `UPDATE carrito_item SET cantidad = ? WHERE id_producto = ? AND id_carrito = ?`,
+            [newQuantity, id, buscar_carrito[0].id_carrito]
+          );
+        } else {
+          await pool.query(
+            `INSERT INTO carrito_item (id_producto, id_carrito, cantidad) VALUES (?, ?, ?)`,
+            [id, buscar_carrito[0].id_carrito, 1]
+          );
+        }
       } else {
         const date = new Date();
         const [result] = await pool.query(
@@ -159,7 +168,6 @@ export async function POST(request) {
         const productoIndex = carrito.findIndex(
           (item) => item.id_producto === id
         );
-
         if (productoIndex !== -1) {
           carrito[productoIndex].cantidad += 1;
         } else {
