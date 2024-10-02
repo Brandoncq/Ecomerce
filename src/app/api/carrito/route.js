@@ -170,7 +170,10 @@ export async function POST(request) {
       }
 
       const token = jwt.sign(
-        { carrito: JSON.stringify(carrito) },
+        {
+          carrito: JSON.stringify(carrito),
+          exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
+        },
         process.env.JWT_SECRET
       );
 
@@ -179,6 +182,7 @@ export async function POST(request) {
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
         path: "/",
+        maxAge: 1000 * 60 * 60 * 24 * 30,
       });
 
       return NextResponse.json(
