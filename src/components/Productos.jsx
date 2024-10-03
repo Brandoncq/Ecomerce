@@ -108,7 +108,7 @@ export default function Productos({ produtos }) {
                       ></path>
                     </svg>
                   </a>
-                </div> // Optional message for out of stock
+                </div> 
               )}
             </div>
           </div>

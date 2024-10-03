@@ -56,17 +56,17 @@ const Carousel = ({ slides }) => {
               alt={`Slide ${slide.id}`}
             />
             <div className="absolute inset-0 flex flex-col items-start justify-center px-4 md:px-20 text-white bg-black bg-opacity-50 p-3 rounded-md">
-              <h2 className="text-4xl md:text-7xl font-bold my-1 px-4">
+              <h2 className="text-4xl md:text-7xl font-bold my-1 px-12 lg:px-4">
                 {slide.titulo}
               </h2>
-              <h3 className="text-xl md:text-5xl font-normal my-1 px-4">
+              <h3 className="text-xl md:text-5xl font-semibold my-1 px-12 lg:px-4">
                 {slide.frase}
               </h3>
-              <p className="my-1 px-4 text-base">{slide.text}</p>
-              <div className="px-4 my-3">
+              <p className="my-1 px-12 lg:px-4 text-base">{slide.text}</p>
+              <div className="px-12 lg:px-4 my-3">
                 <Link
                   href={slide.url}
-                  className="px-6 py-2 bg-white text-black text-lg md:text-xl font-normal rounded-md hover:bg-zinc-300"
+                  className="px-6 py-2 bg-white text-black text-base md:text-xl font-normal rounded-md hover:bg-zinc-300"
                 >
                   {slide.button}
                 </Link>

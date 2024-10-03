@@ -15,7 +15,7 @@ function AgregarCarrito({ productId }) {
   };
   return (
     <button
-      className="p-3 bg-zinc-900 text-white rounded text-sm md:text-lg font-semibold mx-1 hover:bg-zinc-700"
+      className="p-3 bg-zinc-700 text-white rounded text-sm md:text-lg font-semibold mx-1 hover:bg-zinc-900"
       onClick={() => addToCart(productId)}
     >
       Agregar al Carrito
