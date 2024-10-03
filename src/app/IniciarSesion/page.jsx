@@ -92,7 +92,6 @@ function IniciarSesion() {
                 Correo Electrónico
               </label>
             </div>
-
             <div className="relative z-0 w-full mb-5 group">
               <input
                 type="password"

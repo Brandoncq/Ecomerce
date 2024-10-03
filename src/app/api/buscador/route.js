@@ -1,6 +1,5 @@
 import pool from "../config/route";
 import { NextResponse } from "next/server";
-console.log(pool);
 export async function GET(request) {
   const query = request.nextUrl.searchParams.get("query");
   const [rows] = await pool.query(

@@ -49,7 +49,7 @@ function RevisaCuenta() {
         </div>
         <div className="w-full md:w-1/2 justify-center items-center flex text-sm md:text-base text-center">
           <div className="flex justify-center items-center w-1/3">
-            <p> Crear ID de Compu-Fenix</p>
+            <p>Crear ID de Compu-Fenix</p>
           </div>
           <div className="flex justify-center items-center w-1/3">
             <p>Revisa el correo electrónico</p>
