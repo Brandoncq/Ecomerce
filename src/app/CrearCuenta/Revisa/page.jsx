@@ -109,7 +109,7 @@ function RevisaCuenta() {
           </div>
           <div className="w-full flex justify-center my-2 mt-6">
             <button
-              className="bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
+              className="transition-all duration-300 ease-in-out bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
               onClick={Enviar}
             >
               Ingresar Token

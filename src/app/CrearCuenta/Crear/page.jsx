@@ -333,7 +333,7 @@ function CrearCuenta() {
           <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
             <div className="w-3/4 md:w-1/2 my-1">
               <button
-                className="w-full bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
+                className="w-full transition-all duration-300 ease-in-out bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
                 onClick={Enviar}
               >
                 Crear Cuenta
@@ -341,7 +341,7 @@ function CrearCuenta() {
             </div>
             <div className="w-3/4 md:w-1/2 my-1">
               <button
-                className="w-full border border-blue-600 text-blue-600 px-5 py-2 rounded-md text-lg hover:bg-zinc-800 hover:border-zinc-800 hover:text-white"
+                className="w-full border transition-all duration-300 ease-in-out border-blue-600 text-blue-600 px-5 py-2 rounded-md text-lg hover:bg-zinc-800 hover:border-zinc-800 hover:text-white"
                 onClick={() => {
                   router.push("/CrearCuenta/Revisa");
                 }}

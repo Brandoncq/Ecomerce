@@ -70,7 +70,7 @@ function Carrito() {
     getcart();
   };
   return (
-    <div className="relative  w-full">
+    <div className="relative w-full" ref={dropdownRefCart}>
       <div className="w-full cursor-pointer" onClick={toggleCart}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,10 @@ function Carrito() {
       </div>
 
       {cartItems.length > 0 && (
-        <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+        <span
+          className="absolute top-0 right-0 cursor-pointer bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs select-none"
+          onClick={toggleCart}
+        >
           {cartItems.reduce((total, item) => {
             return total + item.cantidad;
           }, 0)}
@@ -101,10 +104,7 @@ function Carrito() {
       {isOpen && (
         <>
           {cartItems.length > 0 ? (
-            <div
-              className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 rounded-md w-64 md:w-96 z-10"
-              ref={dropdownRefCart}
-            >
+            <div className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 p-1 rounded-md w-64 md:w-96 z-10">
               <div className="w-full flex flex-col p-2 md:p-4 text-black">
                 <div className="flex flex-col">
                   <div className="w-full flex justify-between items-center">
@@ -185,7 +185,6 @@ function Carrito() {
                             <div className="pl-1">
                               <button
                                 onClick={(e) => {
-                                  e.stopPropagation();
                                   eliminar(item.id_producto);
                                 }}
                               >

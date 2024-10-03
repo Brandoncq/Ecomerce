@@ -52,7 +52,7 @@ export default function Productos({ produtos }) {
               {/* Conditionally render the button and the Add to Cart component */}
               {produto.stock > 0 ? (
                 <>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-sm w-full text-lg my-2">
+                  <button className="transition-all duration-300 ease-in-out bg-blue-500 hover:bg-blue-700 text-white p-2 rounded w-full text-lg my-2">
                     Comprar
                   </button>
                   <div className="flex max-lg:flex-col items-center justify-between w-full my-2">
@@ -84,7 +84,7 @@ export default function Productos({ produtos }) {
                   </div>
                 </>
               ) : (
-                <div className="text-gray-500 py-5">
+                <div className="text-gray-500 py-5 cursor-pointer">
                   {" "}
                   <a
                     onClick={() => {
@@ -108,7 +108,7 @@ export default function Productos({ produtos }) {
                       ></path>
                     </svg>
                   </a>
-                </div> 
+                </div>
               )}
             </div>
           </div>
