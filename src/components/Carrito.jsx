@@ -28,12 +28,14 @@ function Carrito() {
 
     window.addEventListener("addcart", handleCart);
     window.addEventListener("updatecart", handleCart);
+    window.addEventListener("deletecart", handleCart);
     window.addEventListener("login", handleCart);
     window.addEventListener("logout", handleCart);
 
     return () => {
       window.removeEventListener("addcart", handleCart);
       window.removeEventListener("updatecart", handleCart);
+      window.removeEventListener("deletecart", handleCart);
       window.removeEventListener("login", handleCart);
       window.removeEventListener("logout", handleCart);
     };
@@ -209,8 +211,19 @@ function Carrito() {
               </ul>
             </div>
           ) : (
-            <div className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 rounded-md w-60 md:w-96 z-10 p-4 text-center">
-              <p className="text-gray-600">
+            <div
+              className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 rounded-md w-60 md:w-96 z-10 p-4 text-center"
+              ref={dropdownRefCart}
+            >
+              <div className="flex w-full justify-end">
+                <button
+                  className="text-zinc-500 hover:text-blue-700 font-bold"
+                  onClick={() => setIsOpen(false)}
+                >
+                  X
+                </button>
+              </div>
+              <p className="text-gray-600 py-4">
                 No hay artículos en su carrito de compras.
               </p>
             </div>

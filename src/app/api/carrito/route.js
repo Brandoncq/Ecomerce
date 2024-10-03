@@ -264,6 +264,13 @@ export async function POST(request) {
 export async function PUT(request) {
   try {
     const { id, nuevaCantidad } = await request.json();
+    if (nuevaCantidad <= 0) {
+      return NextResponse.json(
+        { error: "Cantidad no valida" },
+        { status: 404 }
+      );
+    }
+
     const [producto] = await pool.query(
       `SELECT stock FROM producto WHERE id_producto = ?`,
       [id]

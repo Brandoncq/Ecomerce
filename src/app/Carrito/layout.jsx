@@ -1,3 +1,3 @@
 export default function LayoutCarrito({ children }) {
-  return <div className="border-t-4 boerder-zinc-200">{children}</div>;
+  return <div className="border-t boerder-zinc-200">{children}</div>;
 }

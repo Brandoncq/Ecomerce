@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 function CarritoCompra() {
   const [cartItems, setCartItems] = useState([]);
+  const [error, setError] = useState([]);
   const getcart = async () => {
     const response = await fetch("/api/carrito");
     const data = await response.json();
@@ -21,15 +22,17 @@ function CarritoCompra() {
         id: id,
       }),
     });
+    const UpdateCarEvent = new CustomEvent("deletecart");
+    window.dispatchEvent(UpdateCarEvent);
     getcart();
   };
-  const actualizarCantidad = (id, nuevaCantidad) => {
+  const actualizarCantidad = async (id, nuevaCantidad) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.id_producto === id ? { ...item, cantidad: nuevaCantidad } : item
       )
     );
-    fetch("/api/carrito", {
+    const response = await fetch("/api/carrito", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +42,19 @@ function CarritoCompra() {
         nuevaCantidad: nuevaCantidad,
       }),
     });
-    const UpdateCarEvent = new CustomEvent("updatecart");
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error en la solicitud:", errorData);
+      setError((prevError) => ({
+        ...prevError,
+        [id]: errorData.error || "Error desconocido",
+      }));
+      setTimeout(() => {
+        setError((prevError) => ({ ...prevError, [id]: "" }));
+      }, 3000);
+      throw new Error(errorData.error || "Error desconocido");
+    }
+    const UpdateCarEvent = new CustomEvent("deletecart");
     window.dispatchEvent(UpdateCarEvent);
   };
   return (
@@ -80,118 +95,151 @@ function CarritoCompra() {
         {cartItems.length > 0 &&
           cartItems.map((item, index) => (
             <div
-              className="w-full flex flex-wrap justify-center p-2 md:py-5 lg:py-10 border-t-4 border-zinc-200"
+              className="w-full flexp-2 md:py-5 lg:py-10 border-t-4 border-zinc-200"
               key={index}
             >
-              <div className="w-full md:w-1/6 flex justify-center items-center">
-                <img
-                  src={item.imagen}
-                  alt=""
-                  className="w-full h-auto object-cover p-1"
-                />
-              </div>
-              <div className="w-full md:w-5/6 mt-3 md:mt-0 flex flex-col md:px-10">
-                <div className="w-full flex justify-between">
-                  <h2 className="text-lg md:text-xl text-black font-semibold">
-                    {item.nombre}
-                  </h2>
-                  <h2 className="text-lg md:text-xl text-black font-semibold">
-                    S/.{item.precio * item.cantidad}
-                  </h2>
+              <div className="w-full flex flex-wrap justify-center">
+                <div className="w-full md:w-1/6 flex justify-center items-center">
+                  <img
+                    src={item.imagen}
+                    alt=""
+                    className="w-full h-auto object-cover p-1"
+                  />
                 </div>
-                <div className="w-full flex justify-between mt-5">
-                  <div className="flex flex-col">
-                    <h3 className="text-base md:text-lg">{item.modelo}</h3>
-                    <Link
-                      href={"/Buscar/" + item.nombre}
-                      className="font-semibold text-blue-500 hover:underline hover:underline-offset-8"
-                    >
-                      Mostrar mas detalles
-                    </Link>
+                <div className="w-full md:w-5/6 mt-3 md:mt-0 flex flex-col md:px-10">
+                  <div className="w-full flex justify-between">
+                    <h2 className="text-lg md:text-xl text-black font-semibold">
+                      {item.nombre}
+                    </h2>
+                    <h2 className="text-lg md:text-xl text-black font-semibold">
+                      S/.{item.precio * item.cantidad}
+                    </h2>
                   </div>
-                  <div className="flex flex-col">
-                    <div className="relative flex items-center max-w-[8rem]">
-                      <button
-                        type="button"
-                        id="decrement-button"
-                        data-input-counter-decrement="quantity-input"
-                        className="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none"
-                        onClick={() => {
-                          if (0 < item.cantidad - 1) {
-                            actualizarCantidad(
-                              item.id_producto,
-                              item.cantidad - 1
-                            );
-                          }
-                        }}
+                  <div className="w-full flex justify-between mt-5">
+                    <div className="flex flex-col">
+                      <h3 className="text-base md:text-lg">{item.modelo}</h3>
+                      <Link
+                        href={"/Buscar/" + item.nombre}
+                        className="font-semibold text-blue-500 hover:underline hover:underline-offset-8"
                       >
-                        <svg
-                          className="w-3 h-3 text-gray-900"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 18 2"
+                        Mostrar mas detalles
+                      </Link>
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="relative flex items-center max-w-[8rem]">
+                        <button
+                          type="button"
+                          id="decrement-button"
+                          data-input-counter-decrement="quantity-input"
+                          className="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+                          onClick={() => {
+                            if (0 < item.cantidad - 1) {
+                              actualizarCantidad(
+                                item.id_producto,
+                                item.cantidad - 1
+                              );
+                            } else {
+                              setError((prevError) => ({
+                                ...prevError,
+                                [item.id_producto]: "Cantidad no válida",
+                              }));
+                              setTimeout(() => {
+                                setError((prevError) => ({
+                                  ...prevError,
+                                  [item.id_producto]: "",
+                                }));
+                              }, 5000);
+                            }
+                          }}
                         >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M1 1h16"
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        type="text"
-                        id="quantity-input"
-                        data-input-counter
-                        aria-describedby="helper-text-explanation"
-                        className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
-                        placeholder="999"
-                        required
-                        value={item.cantidad}
-                      />
+                          <svg
+                            className="w-3 h-3 text-gray-900"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 18 2"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M1 1h16"
+                            />
+                          </svg>
+                        </button>
+                        <input
+                          type="text"
+                          id="quantity-input"
+                          data-input-counter
+                          aria-describedby="helper-text-explanation"
+                          className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
+                          placeholder="999"
+                          required
+                          value={item.cantidad}
+                        />
+                        <button
+                          type="button"
+                          id="increment-button"
+                          data-input-counter-increment="quantity-input"
+                          className="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+                          onClick={() => {
+                            if (item.stock >= item.cantidad + 1) {
+                              actualizarCantidad(
+                                item.id_producto,
+                                item.cantidad + 1
+                              );
+                            } else {
+                              setError((prevError) => ({
+                                ...prevError,
+                                [item.id_producto]:
+                                  "No hay suficiente stock disponible",
+                              }));
+                              setTimeout(() => {
+                                setError((prevError) => ({
+                                  ...prevError,
+                                  [item.id_producto]: "",
+                                }));
+                              }, 5000);
+                            }
+                          }}
+                        >
+                          <svg
+                            className="w-3 h-3 text-gray-900"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 18 18"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M9 1v16M1 9h16"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+
                       <button
-                        type="button"
-                        id="increment-button"
-                        data-input-counter-increment="quantity-input"
-                        className="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none"
-                        onClick={() => {
-                          if (item.stock >= item.cantidad + 1) {
-                            actualizarCantidad(
-                              item.id_producto,
-                              item.cantidad + 1
-                            );
-                          }
+                        onClick={(e) => {
+                          eliminar(item.id_producto);
                         }}
+                        className="font-semibold text-blue-500 hover:underline hover:underline-offset-8"
                       >
-                        <svg
-                          className="w-3 h-3 text-gray-900"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 18 18"
-                        >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M9 1v16M1 9h16"
-                          />
-                        </svg>
+                        Eliminar
                       </button>
                     </div>
-                    <button
-                      onClick={(e) => {
-                        eliminar(item.id_producto);
-                      }}
-                      className="font-semibold text-blue-500 hover:underline hover:underline-offset-8"
-                    >
-                      Eliminar
-                    </button>
                   </div>
                 </div>
+              </div>
+              <div className="w-full flex min-h-6 mt-2 justify-center">
+                {error[item.id_producto] && (
+                  <p className="text-red-500 text-sm font-semibold">
+                    {error[item.id_producto]}
+                  </p>
+                )}
               </div>
             </div>
           ))}

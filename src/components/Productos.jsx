@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import AgregarCarrito from "./AgregarCarrito";
+
 export default function Productos({ produtos }) {
   const router = useRouter();
   const redireccion = (suggestion) => {
@@ -48,11 +49,43 @@ export default function Productos({ produtos }) {
             <h3>{produto.modelo}</h3>
             <p className="text-xs my-2">{produto.descripcion}</p>
             <div className="mt-auto flex flex-col items-start">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-sm w-full text-lg my-2">
-                Comprar
-              </button>
-              <div className="flex max-lg:flex-col items-center justify-between w-full my-2">
-                <div className="cursor-pointer">
+              {/* Conditionally render the button and the Add to Cart component */}
+              {produto.stock > 0 ? (
+                <>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-sm w-full text-lg my-2">
+                    Comprar
+                  </button>
+                  <div className="flex max-lg:flex-col items-center justify-between w-full my-2">
+                    <div className="cursor-pointer">
+                      <a
+                        onClick={() => {
+                          redireccion(produto.nombre_producto);
+                        }}
+                        className="px-1 rounded hover:text-zinc-600 flex items-center hover:underline hover:underline-offset-8"
+                      >
+                        Ver detalles{" "}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="50"
+                          height="100"
+                          fill="none"
+                          viewBox="0 0 50 100"
+                          className="w-5 h-8"
+                        >
+                          <path
+                            stroke="#000"
+                            strokeWidth="3"
+                            d="M11 31l28 25-28 25"
+                          ></path>
+                        </svg>
+                      </a>
+                    </div>
+                    <AgregarCarrito productId={produto.id} />
+                  </div>
+                </>
+              ) : (
+                <div className="text-gray-500 py-5">
+                  {" "}
                   <a
                     onClick={() => {
                       redireccion(produto.nombre_producto);
@@ -75,9 +108,8 @@ export default function Productos({ produtos }) {
                       ></path>
                     </svg>
                   </a>
-                </div>
-                <AgregarCarrito productId={produto.id} />
-              </div>
+                </div> // Optional message for out of stock
+              )}
             </div>
           </div>
         </div>
