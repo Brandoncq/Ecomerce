@@ -1,5 +1,3 @@
-import ClientTablets from "./client";
-import Productos from "@/components/Productos";
 export const metadata = {
   title: "Soporte Tecnico Compu-Fenix",
   description: "Soporte Tecnico de la Empresa Compu-Fenix",
@@ -22,7 +20,7 @@ export default function Soporte() {
           }}
         >
           <h2 className="text-white text-xl md:text-4xl font-bold text-center">
-            Tablets
+            Soporte
           </h2>
         </div>
       </section>

@@ -1,12 +1,5 @@
 import Carousel from "@/components/Carrusel";
 import Link from "next/link";
-export const metadata = {
-  title: "Tablets Compu-Fenix",
-  description: "Compra los Productos o Equipos de Computo en un solo lugar.",
-  openGraph: {
-    images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
-  },
-};
 const slides = [
   {
     id: 1,

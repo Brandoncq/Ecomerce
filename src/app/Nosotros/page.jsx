@@ -1,26 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
 
 export default function Monitores() {
-  const [Monitores, setMonitores] = useState([]);
-  const getProducto = async () => {
-    const productos = await fetch("/api/producto").then((res) => res.json());
-    console.log(productos);
-    const refinando = [];
-    productos.map((values) => {
-      refinando.push({
-        nombre_producto: values.nombre_producto,
-        precio_unitario: values.precio_unitario,
-        modelo: values.modelo,
-        imagen: values.imagen,
-        descripcion: values.descripcion,
-      });
-    });
-    setMonitores(refinando);
-  };
-  useEffect(() => {
-    getProducto();
-  }, []);
   return (
     <div className="w-full flex flex-col">
       <section className="w-full flex min-h-lvh">
