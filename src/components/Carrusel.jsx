@@ -21,7 +21,7 @@ const Carousel = ({ slides }) => {
     if (isAutoPlaying) {
       const interval = setInterval(() => {
         nextSlide();
-      }, 8000);
+      }, 5000);
 
       return () => clearInterval(interval);
     }

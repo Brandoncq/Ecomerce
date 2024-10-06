@@ -15,7 +15,7 @@ export default function Computadoras() {
           className="w-full h-28 md:h-44 flex justify-center items-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1582731595896-f959c4fb1509?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+              "url('https://plus.unsplash.com/premium_photo-1678565202188-f69b2e593998?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",

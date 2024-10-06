@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 function Carrito() {
   const [scrolled, setScrolled] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRefCart = useRef(null);
+  const router = useRouter();
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
@@ -68,6 +70,7 @@ function Carrito() {
       }),
     });
     getcart();
+    router.refresh();
   };
   return (
     <div className="relative w-full" ref={dropdownRefCart}>
@@ -133,7 +136,7 @@ function Carrito() {
                   </div>
                   <Link
                     href="/Carrito/Compra"
-                    className="transition-all duration-300 ease-in-out bg-blue-500 hover:bg-white border border-blue-500 hover:border-zinc-800 hover:text-zinc-600 my-2 text-white px-2 py-3 font-semibold rounded-md flex justify-center"
+                    className="transition-all duration-300 ease-in-out bg-blue-600 hover:bg-blue-200 border border-blue-500 hover:border-zinc-800 hover:text-zinc-800 my-2 text-white px-2 py-3 font-semibold rounded-md flex justify-center"
                     onClick={() => setIsOpen(false)}
                   >
                     VER Y EDITAR EL CARRITO

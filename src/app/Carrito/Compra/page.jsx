@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 function CarritoCompra() {
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState([]);
+  const router = useRouter();
   const getcart = async () => {
     const response = await fetch("/api/carrito");
     const data = await response.json();
@@ -25,6 +27,7 @@ function CarritoCompra() {
     const UpdateCarEvent = new CustomEvent("deletecart");
     window.dispatchEvent(UpdateCarEvent);
     getcart();
+    router.refresh();
   };
   const actualizarCantidad = async (id, nuevaCantidad) => {
     setCartItems((prevItems) =>
@@ -187,6 +190,7 @@ function CarritoCompra() {
                             placeholder="999"
                             required
                             value={item.cantidad}
+                            readOnly
                           />
                           <button
                             type="button"
