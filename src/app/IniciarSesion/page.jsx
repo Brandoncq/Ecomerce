@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 function IniciarSesion() {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -119,7 +120,8 @@ function IniciarSesion() {
             <div className="w-full min-h-5 flex justify-center">
               {error && <p className="text-red-500 text-sm">{error}</p>}
             </div>
-            <div className="w-full flex justify-center my-2 mt-6">
+
+            <div className="w-full flex justify-center my-2 mt-4">
               <button
                 type="submit"
                 className="transition-all duration-300 ease-in-out bg-blue-600 text-white px-5 py-2 rounded-md text-lg hover:bg-zinc-800"
@@ -127,6 +129,17 @@ function IniciarSesion() {
               >
                 Iniciar Sesión
               </button>
+            </div>
+            <div className="w-full flex justify-between text-blue-600 my-6">
+              <p className="hover:underline hover:underline-offset-8">
+                ¿Olvido su Contraseña
+              </p>
+              <Link
+                href="/CrearCuenta/Crear"
+                className="hover:underline hover:underline-offset-8"
+              >
+                Crear Cuenta
+              </Link>
             </div>
           </form>
         </div>

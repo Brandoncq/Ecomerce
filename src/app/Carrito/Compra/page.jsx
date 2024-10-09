@@ -5,13 +5,36 @@ import { useRouter } from "next/navigation";
 function CarritoCompra() {
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState([]);
+  const [login, setLogin] = useState(false);
   const router = useRouter();
   const getcart = async () => {
     const response = await fetch("/api/carrito");
     const data = await response.json();
     setCartItems(data);
   };
+  const evaluar = async () => {
+    try {
+      const response = await fetch("/api/cliente", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          setLogin(true);
+        } else {
+          setLogin(false);
+        }
+      } else {
+        setLogin(false);
+      }
+    } catch (error) {
+      console.error("Error fetching auth status:", error);
+      setLogin(false);
+    }
+  };
   useEffect(() => {
+    evaluar();
     getcart();
   }, []);
   const eliminar = async (id) => {
@@ -104,7 +127,7 @@ function CarritoCompra() {
                   return total + item.cantidad;
                 }, 0)}{" "}
                 ARTÍCULOS
-              </h3>{" "}
+              </h3>
             </div>
             <hr className="w-full bg-zinc-200 h-0.5 mt-2" />
           </div>
@@ -257,7 +280,17 @@ function CarritoCompra() {
                 </div>
                 <hr className="w-full bg-zinc-200 h-0.5 mt-2" />
               </div>
-            ))}{" "}
+            ))}
+          <div className="w-full flex justify-center py-5">
+            {!login && (
+              <Link
+                href="/IniciarSesion"
+                className="lg:w-1/2 w-full transition-all duration-300 ease-in-out bg-blue-600 hover:bg-blue-200 border border-blue-500 hover:border-zinc-800 hover:text-zinc-800 my-2 text-white px-2 py-3 font-semibold rounded-md flex justify-center"
+              >
+                Iniciar Sesión
+              </Link>
+            )}
+          </div>
         </div>
       </div>
       <div className="w-full md:w-1/3 py-5 shadow-l bg-zinc-200 p-5 sticky top-0">
@@ -293,9 +326,12 @@ function CarritoCompra() {
           </div>
         </div>
         <div className="w-full p-3 bg-white">
-          <button className="w-full p-5 bg-blue-600 border-2 transition-all duration-300 ease-in-out hover:bg-blue-200 hover:border-zinc-900 flex justify-center text-white hover:text-zinc-900">
+          <Link
+            href="/Carrito/Pasarela"
+            className="w-full p-5 bg-blue-600 border-2 transition-all duration-300 ease-in-out hover:bg-blue-200 hover:border-zinc-900 flex justify-center text-white hover:text-zinc-900"
+          >
             COMPRAR
-          </button>
+          </Link>
         </div>
         <div className="w-full py-5">
           <h3 className="text-lg">¿Necesitas ayuda?</h3>
