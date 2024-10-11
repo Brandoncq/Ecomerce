@@ -147,7 +147,7 @@ function CarritoCompra() {
                       <h2 className="text-lg md:text-xl text-black font-semibold">
                         {item.nombre}
                       </h2>
-                      <h2 className="text-lg md:text-xl text-black font-semibold">
+                      <h2 className="text-lg md:text-xl text-black font-semibold lg:px-7">
                         S/.{item.precio * item.cantidad}
                       </h2>
                     </div>
@@ -156,7 +156,7 @@ function CarritoCompra() {
                         <h3 className="text-base md:text-lg">{item.modelo}</h3>
                         <Link
                           href={"/Buscar/" + item.nombre}
-                          className="font-semibold text-blue-500 hover:underline hover:underline-offset-8"
+                          className="font-semibold text-blue-500 hover:underline hover:underline-offset-8 my-2"
                         >
                           Mostrar mas detalles
                         </Link>
@@ -284,10 +284,10 @@ function CarritoCompra() {
           <div className="w-full flex justify-center py-5">
             {!login && (
               <Link
-                href="/IniciarSesion"
+                href={"/IniciarSesion"}
                 className="lg:w-1/2 w-full transition-all duration-300 ease-in-out bg-blue-600 hover:bg-blue-200 border border-blue-500 hover:border-zinc-800 hover:text-zinc-800 my-2 text-white px-2 py-3 font-semibold rounded-md flex justify-center"
               >
-                Iniciar Sesión
+                INICIAR SESIÓN
               </Link>
             )}
           </div>
@@ -327,11 +327,26 @@ function CarritoCompra() {
         </div>
         <div className="w-full p-3 bg-white">
           <Link
-            href="/Carrito/Pasarela"
-            className="w-full p-5 bg-blue-600 border-2 transition-all duration-300 ease-in-out hover:bg-blue-200 hover:border-zinc-900 flex justify-center text-white hover:text-zinc-900"
+            href={!login ? "/Carrito/Compra" : "/Carrito/Pasarela"}
+            onClick={(e) => {
+              if (!login) {
+                e.preventDefault();
+              }
+            }}
+            className={`w-full p-5 border-2 transition-all duration-300 ease-in-out flex justify-center text-white 
+            ${
+              !login
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-200 hover:border-zinc-900 hover:text-zinc-900"
+            }`}
           >
             COMPRAR
           </Link>
+          {!login && (
+            <p className="text-gray-600 my-4 flex justify-center font-semibold">
+              Inicia Sesion para Iniciar la Compra
+            </p>
+          )}
         </div>
         <div className="w-full py-5">
           <h3 className="text-lg">¿Necesitas ayuda?</h3>
@@ -341,7 +356,7 @@ function CarritoCompra() {
           </p>
           <p>Lun - Vie 8am - 6pm</p>
           <p>Métodos de Pago Aceptado</p>
-          <div className="w-full flex justify-center">
+          <div className="w-full flex justify-center my-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100"

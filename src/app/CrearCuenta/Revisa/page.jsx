@@ -25,7 +25,8 @@ function RevisaCuenta() {
         setError(errorDetails.error);
         throw new Error(errorDetails.error || "Error en la petición");
       }
-
+      const CreateEvent = new CustomEvent("login");
+      window.dispatchEvent(CreateEvent);
       router.push("/CrearCuenta/Verifica");
     } catch (error) {
       console.error("Error al enviar los datos:", error);

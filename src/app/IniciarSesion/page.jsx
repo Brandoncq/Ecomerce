@@ -59,7 +59,7 @@ function IniciarSesion() {
         <div className="my-4 w-full flex flex-col items-center">
           <div className="w-full md:w-3/5 lg:w-2/5 max-md:mt-6 flex flex-col items-center justify-center">
             <h2 className="px-2 font-bold md:text-3xl text-xl">
-              Iniciar Sesion
+              Iniciar Sesión
             </h2>
             <p className="md:px-10 text-base text-center my-4">
               Hemos creado una nueva experiencia que te permitirá hacer un
@@ -130,15 +130,15 @@ function IniciarSesion() {
                 Iniciar Sesión
               </button>
             </div>
-            <div className="w-full flex justify-between text-blue-600 my-6">
+            <div className="w-full flex max-md:flex-col justify-between max-md:justify-center max-md:text-center text-blue-600 my-6">
               <p className="hover:underline hover:underline-offset-8">
-                ¿Olvido su Contraseña
+                ¿Olvido su Contraseña?
               </p>
               <Link
                 href="/CrearCuenta/Crear"
                 className="hover:underline hover:underline-offset-8"
               >
-                Crear Cuenta
+                Crear Tu Cuenta Ahora
               </Link>
             </div>
           </form>
