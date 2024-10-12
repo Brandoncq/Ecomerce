@@ -8,8 +8,6 @@ export function FormProvider({ children }) {
     correo: "",
     nombre: "",
     apellidos: "",
-    password: "",
-    password_validate: "",
   });
 
   return (

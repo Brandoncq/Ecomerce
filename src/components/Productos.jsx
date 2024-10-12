@@ -27,7 +27,7 @@ export default function Productos({ produtos }) {
             <div className="w-full flex bg-zinc-200 mb-2 mt-4">
               <div
                 className={`w-2 ${
-                  produto.stock > 0 ? "bg-green-500" : "bg-zinc-500"
+                  produto.stock > 0 ? "bg-green-600" : "bg-zinc-500"
                 }`}
               ></div>
               <div className="px-2 text-left text-base text-zinc-600 p-1">

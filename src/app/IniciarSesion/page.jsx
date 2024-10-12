@@ -68,7 +68,7 @@ function IniciarSesion() {
             </p>
           </div>
         </div>
-        <div className="w-full md:w-3/5 lg:w-2/5 p-5 shadow-lg md:px-5 lg:px-20">
+        <div className="w-full md:w-3/5 lg:w-2/5 p-5 shadow-lg shadow-zinc-400 md:px-5 lg:px-20 border border-zinc-200 rounded-lg">
           <form onSubmit={Enviar} className="w-full flex-col">
             <div className="relative z-0 w-full mb-5 group">
               <input

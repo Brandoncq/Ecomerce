@@ -50,7 +50,7 @@ function RevisaCuenta() {
         </div>
         <div className="w-full md:w-1/2 justify-center items-center flex text-sm md:text-base text-center">
           <div className="flex justify-center items-center w-1/3">
-            <p>Crear ID de Compu-Fenix</p>
+            <p>Crear ID de Compu Fenix</p>
           </div>
           <div className="flex justify-center items-center w-1/3">
             <p>Revisa el correo electrónico</p>
@@ -66,7 +66,7 @@ function RevisaCuenta() {
           <h2 className="px-2">Revisa el correo electrónico</h2>
         </div>
       </div>
-      <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
+      <div className="w-full md:w-1/2 p-5 shadow-lg shadow-zinc-400 md:px-5 lg:px-20 border border-zinc-200 rounded-lg">
         <h3 className="my-4">¡Gracias por crear una cuenta!</h3>
         <p>
           Hemos enviado un código de verificación a tu correo electrónico{" "}

@@ -28,7 +28,7 @@ function Header() {
           href="/"
           className={`p-2 rounded text-2xl font-bold bg-blue-700 text-white`}
         >
-          Compu-Fenix
+          Compu Fenix
         </Link>
         <Busqueda />
         <div className="flex">

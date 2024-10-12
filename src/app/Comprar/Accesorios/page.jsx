@@ -12,7 +12,7 @@ export default function Accesorios() {
     <div className="w-full flex flex-col min-h-lvh">
       <section className="w-full flex">
         <div
-          className="w-full h-28 md:h-44 flex justify-center items-center"
+          className="w-full h-24 md:h-28 flex justify-center items-center"
           style={{
             backgroundImage:
               "url('https://images.unsplash.com/photo-1645669141400-4f3f0350585a?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",

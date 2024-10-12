@@ -4,8 +4,28 @@ import AES from "mysql-aes";
 import pool from "../config/route";
 import { NextResponse } from "next/server";
 export async function POST(req, res) {
-  const { email, nombres, apellidos, password, password_validate } =
-    await req.json();
+  const {
+    email,
+    nombres,
+    apellidos,
+    nacionalidad,
+    nro_documento,
+    tipo_cliente,
+    celular,
+    password,
+    password_validate,
+  } = await req.json();
+  console.log(
+    email,
+    nombres,
+    apellidos,
+    nacionalidad,
+    nro_documento,
+    tipo_cliente,
+    celular,
+    password,
+    password_validate
+  );
   if (password !== password_validate) {
     return NextResponse.json(
       { error: "Las contraseñas no coinciden." },
@@ -51,7 +71,8 @@ export async function POST(req, res) {
   if (existingUser.length > 0) {
     await pool.query(
       `UPDATE tokens 
-       SET token = ?, expires_at = ?, name = ?, lastname = ?, password = ?, password_verificar = ? 
+       SET token = ?, expires_at = ?, name = ?, lastname = ?, password = ?, 
+           password_verificar = ?, nacionalidad = ?, nrodocumento = ?, tipocliente = ?, celular = ?
        WHERE email = ?`,
       [
         token,
@@ -60,14 +81,19 @@ export async function POST(req, res) {
         apellidos,
         AES.encrypt(password, process.env.KEY_PASSSWORDS),
         AES.encrypt(password_validate, process.env.KEY_PASSSWORDS),
+        nacionalidad,
+        nro_documento,
+        tipo_cliente,
+        celular,
         email,
       ]
     );
     console.log(`Información actualizada para el email: ${email}`);
   } else {
     await pool.query(
-      `INSERT INTO tokens (email, name, lastname, password, password_verificar, token, expires_at, is_verified)
-        VALUES (?, ?, ?, ?, ?, ?, ?, 0)`,
+      `INSERT INTO tokens (email, name, lastname, password, password_verificar, token, expires_at, is_verified, 
+                           nacionalidad, nrodocumento, tipocliente, celular)
+       VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?)`,
       [
         email,
         nombres,
@@ -76,6 +102,10 @@ export async function POST(req, res) {
         AES.encrypt(password_validate, process.env.KEY_PASSSWORDS),
         token,
         expirationTime,
+        nacionalidad,
+        nro_documento,
+        tipo_cliente,
+        celular,
       ]
     );
     console.log(`Nuevo token generado para el email: ${email}`);

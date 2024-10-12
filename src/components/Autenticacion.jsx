@@ -125,7 +125,7 @@ function Autenticacion() {
       </button>
       {showDropdown && (
         <ul
-          className={`absolute top-full right-0 bg-blue-600 mt-2 shadow-lg p-2 rounded`}
+          className={`absolute top-full right-0 bg-blue-600 mt-2 shadow-lg p-2 rounded w-32`}
         >
           {isLoggedIn ? (
             <>

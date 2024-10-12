@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormContext } from "../context";
+import CountrySearchInput from "@/components/Countries";
 function CrearCuenta() {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -18,6 +19,14 @@ function CrearCuenta() {
     correo: "",
     nombres: "",
     apellidos: "",
+    nacionalidad: {
+      nombre: "",
+      codigo: "",
+    },
+    prefijo: "",
+    celular: "",
+    tipodoc: "DNI",
+    nrodocumento: "",
     password: "",
     password_validate: "",
   });
@@ -45,10 +54,15 @@ function CrearCuenta() {
   const Enviar = async () => {
     event.preventDefault();
     setError("");
+    console.log(user);
     if (user.password !== user.password_validate) {
       return;
     }
     if (checkPasswordStrength(user.password) != "Fuerte") {
+      return;
+    }
+    if (!user.nacionalidad.codigo) {
+      setError("Por favor selecciona una nacionalidad válida.");
       return;
     }
     try {
@@ -61,6 +75,10 @@ function CrearCuenta() {
           email: user.correo,
           nombres: user.nombres,
           apellidos: user.apellidos,
+          nacionalidad: user.nacionalidad.codigo,
+          celular: user.prefijo + user.celular,
+          tipo_cliente: user.tipodoc,
+          nro_documento: user.nrodocumento,
           password: user.password,
           password_validate: user.password_validate,
         }),
@@ -75,8 +93,6 @@ function CrearCuenta() {
         nombre: user.nombres,
         correo: user.correo,
         apellidos: user.apellidos,
-        password: user.password,
-        password_validate: user.password_validate,
       }));
 
       router.push("/CrearCuenta/Revisa");
@@ -103,7 +119,7 @@ function CrearCuenta() {
         </div>
         <div className="w-full md:w-1/2 justify-center items-center flex text-sm md:text-base text-center">
           <div className="flex justify-center items-center w-1/3">
-            <p>Crear ID de Compu-Fenix</p>
+            <p>Crear ID de Compu Fenix</p>
           </div>
           <div className="flex justify-center items-center w-1/3">
             <p>Revisa el correo electrónico</p>
@@ -119,7 +135,7 @@ function CrearCuenta() {
           <h2 className="px-2">Crear el ID de Compu-Fenix</h2>
         </div>
       </div>
-      <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
+      <div className="w-full md:w-1/2 p-5 shadow-lg shadow-zinc-400 md:px-5 lg:px-20 border border-zinc-200 rounded-lg">
         <form onSubmit={Enviar} className="w-full flex-col">
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -189,6 +205,140 @@ function CrearCuenta() {
                 className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Apellidos
+              </label>
+            </div>
+          </div>
+          <div className="grid grid-cols-6 md:gap-6 my-2">
+            <div className="relative z-0 w-full mb-5 group group max-lg:col-span-2 col-span-1 flex items-center">
+              <input
+                type="text"
+                name="from_prefijo"
+                id="from_prefijo"
+                className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+                maxLength={5}
+                value={user.prefijo}
+                onChange={(e) => {
+                  let value = e.target.value;
+                  if (!value.startsWith("+")) {
+                    value = "+" + value.replace(/\D/g, "");
+                  } else {
+                    value = "+" + value.slice(1).replace(/\D/g, "");
+                  }
+                  if (value.length > 1 && value[1] === "0") {
+                    value = "+";
+                  }
+                  setUser((prevUser) => ({
+                    ...prevUser,
+                    prefijo: value,
+                  }));
+                }}
+              />
+              <label
+                htmlFor="from_prefijo"
+                className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Prefijo
+              </label>
+            </div>
+            <div className="relative z-0 w-full mb-5 group group max-lg:col-span-4 col-span-5">
+              <span className="absolute start-0 bottom-3 text-gray-500 dark:text-gray-400">
+                <svg
+                  className="w-4 h-4 rtl:rotate-[270deg]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 19 18"
+                >
+                  <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
+                </svg>
+              </span>
+              <input
+                type="text"
+                id="floating-phone-number"
+                className="block py-2.5 ps-6 pe-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder=" "
+                maxLength={9}
+                value={user.celular}
+                onChange={(e) => {
+                  let value = e.target.value;
+                  value = value.replace(/[^0-9]/g, "");
+                  if (value.length > 1 && value.startsWith("0")) {
+                    value = value.replace(/^0+/, "");
+                  }
+                  setUser((prevUser) => ({
+                    ...prevUser,
+                    celular: value,
+                  }));
+                }}
+              />
+              <label
+                htmlFor="floating-phone-number"
+                className="absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:start-6 peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              >
+                Numero de Celular
+              </label>
+            </div>
+          </div>
+          <CountrySearchInput
+            userNacionalidad={user.nacionalidad}
+            setUserNacionalidad={(nacionalidad) =>
+              setUser((prevUser) => ({
+                ...prevUser,
+                nacionalidad: {
+                  nombre: nacionalidad.nombre,
+                  codigo: nacionalidad.codigo,
+                },
+              }))
+            }
+          />
+
+          <div className="grid grid-cols-6 md:gap-6 my-2">
+            <div className="relative z-0 w-full mb-5 group group max-lg:col-span-2 col-span-1 flex items-center">
+              <select
+                id="underline_select"
+                className="block py-2.5 px-0 w-full text-lg font-semibold text-gray-800 bg-transparent border-0 border-b-2 border-gray-800 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                value={user.tipodoc}
+                onChange={(e) => {
+                  setUser((prevUser) => ({
+                    ...prevUser,
+                    tipodoc: e.target.value,
+                  }));
+                }}
+              >
+                <option value="DNI">DNI</option>
+                <option value="RUC">RUC</option>
+              </select>
+            </div>
+            <div className="relative z-0 w-full mb-5 group group max-lg:col-span-4 col-span-5">
+              <input
+                type="text"
+                name="from_doc"
+                id="from_doc"
+                className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+                maxLength={11}
+                value={user.nrodocumento}
+                onChange={(e) => {
+                  let value = e.target.value;
+                  value = value.replace(/[^0-9]/g, "");
+                  if (value.length > 1 && value.startsWith("0")) {
+                    value = value.replace(/^0+/, "");
+                  }
+                  setUser((prevUser) => ({
+                    ...prevUser,
+                    nrodocumento: value,
+                  }));
+                }}
+              />
+              <label
+                htmlFor="from_doc"
+                className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                N° Documento
               </label>
             </div>
           </div>
