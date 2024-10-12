@@ -110,7 +110,9 @@ function RevisaCuenta() {
             </label>
           </div>
           <div className="w-full min-h-8 flex justify-center">
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {error && (
+              <p className="text-red-500 text-sm font-semibold">{error}</p>
+            )}
           </div>
           <div className="w-full flex justify-center my-2 mt-6">
             <button

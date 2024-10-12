@@ -512,9 +512,10 @@ function CrearCuenta() {
                 : ". Minimo 8 Carateres"}
             </span>
           </p>
-
           <div className="w-full min-h-5 flex justify-center my-4">
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {error && (
+              <p className="text-red-500 text-sm font-semibold">{error}</p>
+            )}
           </div>
           <div className="w-full flex flex-col justify-center items-center my-2 mt-6">
             <div className="w-3/4 md:w-1/2 my-1">
