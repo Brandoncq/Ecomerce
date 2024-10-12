@@ -65,6 +65,14 @@ function CrearCuenta() {
       setError("Por favor selecciona una nacionalidad válida.");
       return;
     }
+    if (user.celular.length < 9) {
+      setError("Ingresar un valor Correcto en Celular");
+      return;
+    }
+    if (user.nrodocumento.length < 8) {
+      setError("Ingresar un valor Correcto en N° Documento");
+      return;
+    }
     try {
       const response = await fetch("/api/tokens", {
         method: "POST",
@@ -76,7 +84,8 @@ function CrearCuenta() {
           nombres: user.nombres,
           apellidos: user.apellidos,
           nacionalidad: user.nacionalidad.codigo,
-          celular: user.prefijo + user.celular,
+          prefijo: user.prefijo,
+          celular: user.celular,
           tipo_cliente: user.tipodoc,
           nro_documento: user.nrodocumento,
           password: user.password,

@@ -11,6 +11,7 @@ export async function POST(req, res) {
     nacionalidad,
     nro_documento,
     tipo_cliente,
+    prefijo,
     celular,
     password,
     password_validate,
@@ -22,6 +23,7 @@ export async function POST(req, res) {
     nacionalidad,
     nro_documento,
     tipo_cliente,
+    prefijo,
     celular,
     password,
     password_validate
@@ -32,6 +34,25 @@ export async function POST(req, res) {
       { status: 400 }
     );
   }
+  if (11 < nro_documento.length && nro_documento.length < 8) {
+    return NextResponse.json(
+      { error: "Ingrese un Valor Correcto en N° Documento" },
+      { status: 400 }
+    );
+  }
+  if (prefijo.length < 0 && prefijo.length > 4) {
+    return NextResponse.json(
+      { error: "Ingrese un Valor Correcto en Prefijo" },
+      { status: 400 }
+    );
+  }
+  if (celular.length != 9) {
+    return NextResponse.json(
+      { error: "Ingrese un Valor Correcto en Celular" },
+      { status: 400 }
+    );
+  }
+  const correcto_celular = prefijo + celular;
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
   const hasNumbers = /[0-9]/.test(password);
@@ -84,7 +105,7 @@ export async function POST(req, res) {
         nacionalidad,
         nro_documento,
         tipo_cliente,
-        celular,
+        correcto_celular,
         email,
       ]
     );
@@ -105,7 +126,7 @@ export async function POST(req, res) {
         nacionalidad,
         nro_documento,
         tipo_cliente,
-        celular,
+        correcto_celular,
       ]
     );
     console.log(`Nuevo token generado para el email: ${email}`);

@@ -37,12 +37,12 @@ function VerificaCuenta() {
           <h2 className="px-2">Verificar la cuenta creada</h2>
         </div>
       </div>
-      <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
+      <div className="w-full md:w-1/2 p-5 shadow-lg shadow-zinc-400 md:px-5 lg:px-20 border border-zinc-200 rounded-lg">
         <h4 className="my-4">
           ¡Gracias por verificar tu cuenta,{" "}
           <a className="font-bold">{formData.nombre}</a>!
         </h4>
-        <p>
+        <p className="mb-5">
           Nos complace informarte que tu cuenta ha sido verificada con éxito. A
           partir de este momento, puedes disfrutar de todos los beneficios que
           ofrecemos en nuestra tienda. Navega por nuestra selección de productos
