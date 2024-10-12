@@ -306,245 +306,248 @@ function CarritoCompra() {
                   <hr className="w-full bg-zinc-200 h-0.5 mt-2" />
                 </div>
               ))}
-
-            <div className="w-full flex-col p-5">
-              <div className="w-full flex flex-col mb-5">
-                <h2 className="text-2xl pr-5">DIRECCIÓN DE ENVÍO</h2>
-                <hr className="w-full bg-zinc-200 h-0.5 my-2" />
-              </div>
-              <div className="w-full flex-col p-5 bg-zinc-100 rounded-lg border border-zinc-400">
-                <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                  <div className="relative z-0 mb-5 group w-full">
-                    <input
-                      type="text"
-                      name="from_direccion"
-                      id="from_direccion"
-                      className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      value={compra.direccion}
-                      onChange={(e) => {
-                        setCompra((prevUser) => ({
-                          ...prevUser,
-                          direccion: e.target.value,
-                        }));
-                      }}
-                    />
-                    <label
-                      htmlFor="from_direccion"
-                      className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Dirección
-                    </label>
+            {login && (
+              <>
+                <div className="w-full flex-col p-5">
+                  <div className="w-full flex flex-col mb-5">
+                    <h2 className="text-2xl pr-5">DIRECCIÓN DE ENVÍO</h2>
+                    <hr className="w-full bg-zinc-200 h-0.5 my-2" />
                   </div>
-                  <div className="relative z-0 mb-5 group w-full">
-                    <input
-                      type="text"
-                      name="from_departamento"
-                      id="from_departamento"
-                      className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      value={compra.departamentolote}
-                      onChange={(e) => {
-                        setCompra((prevUser) => ({
-                          ...prevUser,
-                          departamentolote: e.target.value,
-                        }));
-                      }}
-                    />
-                    <label
-                      htmlFor="from_departamento"
-                      className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Dpto/Lote/INT
-                    </label>
+                  <div className="w-full flex-col p-5 bg-zinc-100 rounded-lg border border-zinc-400">
+                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
+                      <div className="relative z-0 mb-5 group w-full">
+                        <input
+                          type="text"
+                          name="from_direccion"
+                          id="from_direccion"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                          value={compra.direccion}
+                          onChange={(e) => {
+                            setCompra((prevUser) => ({
+                              ...prevUser,
+                              direccion: e.target.value,
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor="from_direccion"
+                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Dirección
+                        </label>
+                      </div>
+                      <div className="relative z-0 mb-5 group w-full">
+                        <input
+                          type="text"
+                          name="from_departamento"
+                          id="from_departamento"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                          value={compra.departamentolote}
+                          onChange={(e) => {
+                            setCompra((prevUser) => ({
+                              ...prevUser,
+                              departamentolote: e.target.value,
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor="from_departamento"
+                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Dpto/Lote/INT
+                        </label>
+                      </div>
+                    </div>
+                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
+                      <div className="relative z-0 mb-5 group w-full">
+                        <input
+                          type="text"
+                          name="from_urbanizacion"
+                          id="from_urbanizacion"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                          value={compra.urbanizacion}
+                          onChange={(e) => {
+                            setCompra((prevUser) => ({
+                              ...prevUser,
+                              urbanizacion: e.target.value,
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor="from_urbanizacion"
+                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Urbanización
+                        </label>
+                      </div>
+                      <div className="relative z-0 mb-5 group w-full">
+                        <input
+                          type="text"
+                          name="from_referencia"
+                          id="from_referencia"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                          value={compra.referencia}
+                          onChange={(e) => {
+                            setCompra((prevUser) => ({
+                              ...prevUser,
+                              referencia: e.target.value,
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor="from_referencia"
+                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Referencia
+                        </label>
+                      </div>
+                    </div>
+                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
+                      <div className="relative z-0 mb-5 group w-full">
+                        <input
+                          type="text"
+                          name="from_region"
+                          id="from_region"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                          value={compra.region}
+                          onChange={(e) => {
+                            setCompra((prevUser) => ({
+                              ...prevUser,
+                              region: e.target.value,
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor="from_region"
+                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Región
+                        </label>
+                      </div>
+                      <div className="relative z-0 mb-5 group w-full">
+                        <input
+                          type="text"
+                          name="from_ciudad"
+                          id="from_ciudad"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                          value={compra.ciudad}
+                          onChange={(e) => {
+                            setCompra((prevUser) => ({
+                              ...prevUser,
+                              ciudad: e.target.value,
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor="from_ciudad"
+                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Ciudad
+                        </label>
+                      </div>
+                    </div>
+                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
+                      <div className="relative z-0 mb-5 group w-full">
+                        <input
+                          type="text"
+                          name="from_distrito"
+                          id="from_distrito"
+                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                          placeholder=" "
+                          required
+                          value={compra.distrito}
+                          onChange={(e) => {
+                            setCompra((prevUser) => ({
+                              ...prevUser,
+                              distrito: e.target.value,
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor="from_distrito"
+                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >
+                          Distrito
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                  <div className="relative z-0 mb-5 group w-full">
-                    <input
-                      type="text"
-                      name="from_urbanizacion"
-                      id="from_urbanizacion"
-                      className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      value={compra.urbanizacion}
-                      onChange={(e) => {
-                        setCompra((prevUser) => ({
-                          ...prevUser,
-                          urbanizacion: e.target.value,
-                        }));
-                      }}
-                    />
-                    <label
-                      htmlFor="from_urbanizacion"
-                      className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Urbanización
-                    </label>
+                <div className="w-full flex-col p-5">
+                  <div className="w-full flex flex-col mb-5">
+                    <h2 className="text-2xl pr-5">FACTURA</h2>
+                    <hr className="w-full bg-zinc-200 h-0.5 my-2" />
                   </div>
-                  <div className="relative z-0 mb-5 group w-full">
-                    <input
-                      type="text"
-                      name="from_referencia"
-                      id="from_referencia"
-                      className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      value={compra.referencia}
-                      onChange={(e) => {
-                        setCompra((prevUser) => ({
-                          ...prevUser,
-                          referencia: e.target.value,
-                        }));
-                      }}
-                    />
-                    <label
-                      htmlFor="from_referencia"
-                      className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Referencia
-                    </label>
+                  <div className="w-full flex-col p-5 bg-zinc-100 rounded-lg border border-zinc-400">
+                    <div className="flex items-center">
+                      <input
+                        id="default-checkbox"
+                        type="checkbox"
+                        checked={compra.factura}
+                        onChange={(e) => {
+                          setCompra((prevUser) => ({
+                            ...prevUser,
+                            factura: e.target.checked,
+                          }));
+                        }}
+                        className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        htmlFor="default-checkbox"
+                        className="ms-2 text-lg font-medium text-gray-900"
+                      >
+                        ¿Necesita Factura?
+                      </label>
+                    </div>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                  <div className="relative z-0 mb-5 group w-full">
-                    <input
-                      type="text"
-                      name="from_region"
-                      id="from_region"
-                      className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      value={compra.region}
-                      onChange={(e) => {
-                        setCompra((prevUser) => ({
-                          ...prevUser,
-                          region: e.target.value,
-                        }));
-                      }}
-                    />
-                    <label
-                      htmlFor="from_region"
-                      className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Región
-                    </label>
-                  </div>
-                  <div className="relative z-0 mb-5 group w-full">
-                    <input
-                      type="text"
-                      name="from_ciudad"
-                      id="from_ciudad"
-                      className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      value={compra.ciudad}
-                      onChange={(e) => {
-                        setCompra((prevUser) => ({
-                          ...prevUser,
-                          ciudad: e.target.value,
-                        }));
-                      }}
-                    />
-                    <label
-                      htmlFor="from_ciudad"
-                      className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Ciudad
-                    </label>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                  <div className="relative z-0 mb-5 group w-full">
-                    <input
-                      type="text"
-                      name="from_distrito"
-                      id="from_distrito"
-                      className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      value={compra.distrito}
-                      onChange={(e) => {
-                        setCompra((prevUser) => ({
-                          ...prevUser,
-                          distrito: e.target.value,
-                        }));
-                      }}
-                    />
-                    <label
-                      htmlFor="from_distrito"
-                      className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Distrito
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full flex-col p-5">
-              <div className="w-full flex flex-col mb-5">
-                <h2 className="text-2xl pr-5">FACTURA</h2>
-                <hr className="w-full bg-zinc-200 h-0.5 my-2" />
-              </div>
-              <div className="w-full flex-col p-5 bg-zinc-100 rounded-lg border border-zinc-400">
-                <div className="flex items-center">
-                  <input
-                    id="default-checkbox"
-                    type="checkbox"
-                    checked={compra.factura}
-                    onChange={(e) => {
-                      setCompra((prevUser) => ({
-                        ...prevUser,
-                        factura: e.target.checked,
-                      }));
-                    }}
-                    className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    htmlFor="default-checkbox"
-                    className="ms-2 text-lg font-medium text-gray-900"
+                <div className="w-full flex flex-col justify-center items-center p-5">
+                  <button
+                    type="submit"
+                    onSubmit={Comprar}
+                    className={`w-full md:w-1/3 p-5 border-2 transition-all duration-300 ease-in-out flex justify-center
+                    rounded-lg ${
+                      isLoadingButton
+                        ? "bg-blue-200 text-zinc-900 border-zinc-900"
+                        : "bg-blue-600 hover:bg-blue-200 hover:border-zinc-900 hover:text-zinc-900 text-white"
+                    }`}
                   >
-                    ¿Necesita Factura?
-                  </label>
+                    {isLoadingButton ? (
+                      <svg
+                        aria-hidden="true"
+                        className="w-7 h-7 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                        viewBox="0 0 100 101"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                          fill="currentFill"
+                        />
+                      </svg>
+                    ) : (
+                      "COMPRAR"
+                    )}
+                  </button>
                 </div>
-              </div>
-            </div>
-            <div className="w-full flex flex-col justify-center items-center p-5">
-              <button
-                type="submit"
-                onSubmit={Comprar}
-                className={`w-full md:w-1/3 p-5 border-2 transition-all duration-300 ease-in-out flex justify-center
-                rounded-lg ${
-                  isLoadingButton
-                    ? "bg-blue-200 text-zinc-900 border-zinc-900"
-                    : "bg-blue-600 hover:bg-blue-200 hover:border-zinc-900 hover:text-zinc-900 text-white"
-                }`}
-              >
-                {isLoadingButton ? (
-                  <svg
-                    aria-hidden="true"
-                    className="w-7 h-7 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                    viewBox="0 0 100 101"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                      fill="currentFill"
-                    />
-                  </svg>
-                ) : (
-                  "COMPRAR"
-                )}
-              </button>
-            </div>
+              </>
+            )}
           </div>
         </div>
         <div className="w-full md:w-1/3 py-5 shadow-l bg-zinc-200 p-5 md:pr-5 md:pl-2.5">
@@ -586,7 +589,7 @@ function CarritoCompra() {
                   type="submit"
                   onSubmit={Comprar}
                   className={`w-full p-5 border-2 transition-all duration-300 ease-in-out flex justify-center text-white 
-              bg-blue-600 hover:bg-blue-200 hover:border-zinc-900 hover:text-zinc-900 rounded-lg`}
+                            bg-blue-600 hover:bg-blue-200 hover:border-zinc-900 hover:text-zinc-900 rounded-lg`}
                 >
                   COMPRAR
                 </button>
