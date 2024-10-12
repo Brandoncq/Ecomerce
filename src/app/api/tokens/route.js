@@ -16,25 +16,17 @@ export async function POST(req, res) {
     password,
     password_validate,
   } = await req.json();
-  console.log(
-    email,
-    nombres,
-    apellidos,
-    nacionalidad,
-    nro_documento,
-    tipo_cliente,
-    prefijo,
-    celular,
-    password,
-    password_validate
-  );
+
   if (password !== password_validate) {
     return NextResponse.json(
       { error: "Las contraseñas no coinciden." },
       { status: 400 }
     );
   }
-  if (11 < nro_documento.length && nro_documento.length < 8) {
+  if (
+    (11 != nro_documento.length && tipo_cliente == "RUC") ||
+    (8 != nro_documento.length && tipo_cliente == "DNI")
+  ) {
     return NextResponse.json(
       { error: "Ingrese un Valor Correcto en N° Documento" },
       { status: 400 }
@@ -75,14 +67,24 @@ export async function POST(req, res) {
     `SELECT * FROM contacto WHERE email = ?`,
     [email]
   );
-  console.log(existingCliente);
   if (existingCliente.length > 0) {
     return NextResponse.json(
       { error: "El correo electrónico ya está registrado." },
       { status: 400 }
     );
   }
-  const token = crypto.randomBytes(20).toString("hex");
+  let token;
+  let tokenExists = true;
+  while (tokenExists) {
+    token = crypto.randomBytes(20).toString("hex");
+    const existingToken = await pool.query(
+      "SELECT token FROM tokens WHERE token = ?",
+      [token]
+    );
+    if (existingToken.length > 0) {
+      tokenExists = false;
+    }
+  }
   const expirationTime = new Date(Date.now() + 10 * 60 * 1000);
 
   const [existingUser] = await pool.query(
