@@ -44,7 +44,7 @@ function AgregarCarrito({ productId, productName }) {
         Comprar
       </button>
       <div className="flex flex-col items-center justify-center w-full my-1">
-        <div className="flex max-lg:flex-col items-center justify-between w-full">
+        <div className="flex max-xl:flex-col items-center justify-between w-full">
           <div className="cursor-pointer">
             <a
               onClick={() => {
@@ -70,7 +70,7 @@ function AgregarCarrito({ productId, productName }) {
             </a>
           </div>
           <button
-            className="p-3 bg-zinc-800 text-white hover:text-zinc-200 rounded text-sm lg:text-lg font-semibold lg:ml-1 hover:bg-zinc-900 transition-all duration-300 ease-in-out"
+            className="p-3 bg-zinc-800 text-white hover:text-zinc-200 rounded text-sm lg:text-lg font-semibold lg:ml-1 hover:bg-zinc-900 transition-all duration-300 ease-in-out max-xl:w-full max-xl:mt-2"
             onClick={() => addToCart(productId)}
           >
             Agregar al Carrito

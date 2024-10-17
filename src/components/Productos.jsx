@@ -9,46 +9,49 @@ export default function Productos({ produtos }) {
   };
 
   return (
-    <div className="w-full md:p-10 flex flex-wrap items-stretch">
+    <div className="w-full md:p-10 grid grid-cols-2 md:grid-cols-4 gap-0 items-stretch">
       {produtos.map((produto, index) => (
         <div
-          className="w-1/2 md:w-1/4 hover:border-zinc-500 border-2 border-zinc-200 group md:h-full"
+          className="hover:border-zinc-500 border border-zinc-200 group"
           key={index}
         >
-          <div className="w-full p-6 flex flex-col h-full">
-            <img
-              className="w-full cursor-pointer group-hover:scale-110 transition-all duration-300 ease-in-out p-4 group"
-              src={produto.imagen}
-              alt=""
-              onClick={() => {
-                redireccion(produto.nombre_producto);
-              }}
-            />
-            <div className="w-full flex bg-zinc-200 mb-2 mt-4">
-              <div
-                className={`w-2 ${
-                  produto.stock > 0 ? "bg-green-600" : "bg-zinc-500"
-                }`}
-              ></div>
-              <div className="px-2 text-left text-base text-zinc-600 p-1">
-                <h2>{produto.stock > 0 ? "En inventario" : "Agotado"}</h2>
+          <div className="w-full p-2 flex flex-col h-full">
+            <div className="w-full p-2 flex flex-col h-full">
+              <img
+                className="w-full cursor-pointer group-hover:scale-110 transition-all duration-300 ease-in-out p-4 group"
+                src={produto.imagen}
+                alt=""
+                onClick={() => {
+                  redireccion(produto.nombre_producto);
+                }}
+              />
+              <div className="w-full flex bg-zinc-200 mb-2 mt-4">
+                <div
+                  className={`w-2 ${
+                    produto.stock > 0 ? "bg-green-600" : "bg-zinc-500"
+                  }`}
+                ></div>
+                <div className="px-2 text-left text-base text-zinc-600 p-1">
+                  <h2>{produto.stock > 0 ? "En inventario" : "Agotado"}</h2>
+                </div>
               </div>
+              <h2
+                className="text-lg text-blue-600 cursor-pointer"
+                onClick={() => {
+                  redireccion(produto.nombre_producto);
+                }}
+              >
+                {produto.nombre_producto}
+              </h2>
+              <h2 className="text-lg">A partir de:</h2>
+              <h2 className="text-2xl font-semibold">
+                S/.{produto.precio_unitario}
+              </h2>
+              <h3>{produto.modelo}</h3>
+              <p className="text-xs my-2">{produto.descripcion}</p>
             </div>
-            <h2
-              className="text-lg text-blue-600 cursor-pointer"
-              onClick={() => {
-                redireccion(produto.nombre_producto);
-              }}
-            >
-              {produto.nombre_producto}
-            </h2>
-            <h2 className="text-lg">A partir de:</h2>
-            <h2 className="text-2xl font-semibold">
-              S/.{produto.precio_unitario}
-            </h2>
-            <h3>{produto.modelo}</h3>
-            <p className="text-xs my-2">{produto.descripcion}</p>
-            <div className="mt-auto flex flex-col items-start">
+
+            <div className="mt-auto flex flex-col items-start xl:px-4">
               {/* Conditionally render the button and the Add to Cart component */}
               {produto.stock > 0 ? (
                 <>
