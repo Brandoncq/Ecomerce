@@ -1,15 +1,17 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+
 function Busqueda() {
   const [query, setQuery] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1); // Indice de la sugerencia seleccionada
   const suggestionsRef = useRef(null);
   const router = useRouter();
+
   useEffect(() => {
-    if (query.length > 0 && !isSelected) {
+    if (query.length > 0) {
       const fetchData = async () => {
         try {
           const response = await fetch(`/api/buscador?query=${query}`).then(
@@ -26,7 +28,7 @@ function Busqueda() {
       setFilteredSuggestions([]);
       setIsSuggestionsOpen(false);
     }
-  }, [query, isSelected]);
+  }, [query]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -45,21 +47,34 @@ function Busqueda() {
   }, []);
 
   const handleSelect = (suggestion) => {
-    setQuery(suggestion.nombre_producto);
+    setQuery("");
     setFilteredSuggestions([]);
     setIsSuggestionsOpen(false);
-    setIsSelected(true);
     router.push(`/Buscar/${suggestion.nombre_producto}`);
   };
 
-  const handleFocus = () => {
-    if (filteredSuggestions.length > 0) {
-      setIsSuggestionsOpen(true);
+  const handleKeyDown = (e) => {
+    if (e.key === "ArrowDown") {
+      setSelectedIndex((prevIndex) =>
+        prevIndex < filteredSuggestions.length - 1 ? prevIndex + 1 : prevIndex
+      );
+    } else if (e.key === "ArrowUp") {
+      setSelectedIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : prevIndex
+      );
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (selectedIndex >= 0) {
+        handleSelect(filteredSuggestions[selectedIndex]);
+      }
     }
   };
 
   return (
-    <form className="w-full max-w-lg mx-auto max-lg:order-last max-lg:mt-3">
+    <form
+      className="w-full max-w-lg mx-auto max-lg:order-last max-lg:mt-3"
+      onSubmit={(e) => e.preventDefault()}
+    >
       <div className="relative" ref={suggestionsRef}>
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
@@ -82,13 +97,14 @@ function Busqueda() {
           type="search"
           id="default-search"
           value={query}
-          onFocus={handleFocus}
+          onFocus={() => setIsSuggestionsOpen(filteredSuggestions.length > 0)}
           onChange={(e) => {
             setQuery(e.target.value);
-            setIsSelected(false);
+            setSelectedIndex(-1); // Reiniciar índice seleccionado al cambiar la búsqueda
           }}
+          onKeyDown={handleKeyDown} // Manejar las teclas de flecha y Enter
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
-          placeholder="¿Qué estas buscando?"
+          placeholder="¿Qué estás buscando?"
           required
         />
 
@@ -98,7 +114,9 @@ function Busqueda() {
               <li
                 key={index}
                 onClick={() => handleSelect(suggestion)}
-                className="p-2 cursor-pointer hover:bg-gray-100"
+                className={`p-2 cursor-pointer hover:bg-gray-100 ${
+                  index === selectedIndex ? "bg-gray-200" : ""
+                }`} // Resaltar la sugerencia seleccionada
               >
                 <div className="flex justify-between">
                   <div>
