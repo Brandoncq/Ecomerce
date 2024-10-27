@@ -3,13 +3,13 @@
 import Link from "next/link";
 function Sections() {
   return (
-    <nav className="w-full bg-white mb-2">
+    <nav className="w-full mb-1.5">
       <div className="w-full px-5 flex flex-wrap items-center mx-auto md:space-x-4">
         <ul className="flex flex-col font-medium rounded-lg md:space-x-4 rtl:space-x-reverse md:flex-row text-lg">
           <li className="group">
             <Link
               href="/Comprar"
-              className="block py-2 px-1 rounded hover:text-zinc-600"
+              className="block py-1 px-1 rounded hover:text-zinc-600"
               aria-current="page"
             >
               Comprar
@@ -19,7 +19,7 @@ function Sections() {
           <li className="group">
             <Link
               href="/Nosotros"
-              className="block py-2 px-1 rounded hover:text-zinc-600"
+              className="block py-1 px-1 rounded hover:text-zinc-600"
             >
               Nosotros
             </Link>
@@ -28,7 +28,7 @@ function Sections() {
           <li className="group">
             <Link
               href="/Soporte"
-              className="block py-2 px-1 rounded hover:text-zinc-600"
+              className="block py-1 px-1 rounded hover:text-zinc-600"
               aria-current="page"
             >
               Soporte

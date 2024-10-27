@@ -80,7 +80,7 @@ function Autenticacion() {
       <button className={`flex items-center px-1`} onClick={toggleDropdown}>
         {isLoggedIn && (
           <img
-            src="https://res.cloudinary.com/dmo6ofy2z/image/upload/v1707577045/dlre8qsx4xwxrwf8ns22.jpg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqGKdJdQi7JgxgiUBwoL5gqj280DtpOPvdHQ&s"
             alt=""
             className="w-10 h-10 rounded-full mx-1"
           />
