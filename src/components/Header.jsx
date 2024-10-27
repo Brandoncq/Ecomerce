@@ -26,9 +26,13 @@ function Header() {
       <div className="w-full px-5 flex flex-wrap items-center justify-between pt-3 pb-2">
         <Link
           href="/"
-          className={`p-2 rounded text-2xl font-bold bg-blue-700 text-white`}
+          className={`p-2 rounded text-2xl font-bold text-white ${
+            scrolled
+              ? "bg-black hover:bg-white hover:text-black transition-all ease-in-out duration-300"
+              : "bg-blue-700"
+          }`}
         >
-          Compu Fenix
+          Branvia Store
         </Link>
         <Busqueda />
         <div className="flex">

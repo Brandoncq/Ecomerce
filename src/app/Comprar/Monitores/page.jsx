@@ -10,18 +10,9 @@ export default function Monitores() {
   return (
     <div className="w-full flex flex-col min-h-lvh">
       <section className="w-full flex">
-        <div
-          className="w-full h-24 md:h-28 flex justify-center items-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1598986646512-9330bcc4c0dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-          }}
-        >
-          <h2 className="text-white text-xl md:text-4xl font-bold text-center">
-            Monitores para computadoras
+        <div className="w-full h-24 md:h-24 px-2 flex justify-center items-center bg-slate-100">
+          <h2 className="text-black text-xl md:text-2xl font-light text-center">
+            Monitores: Mejora tu experiencia visual con nuestra selección.
           </h2>
         </div>
       </section>

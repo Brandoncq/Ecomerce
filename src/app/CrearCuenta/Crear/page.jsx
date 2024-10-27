@@ -333,7 +333,7 @@ function CrearCuenta() {
             <div className="relative z-0 w-full mb-5 group group max-lg:col-span-2 col-span-1 flex items-center">
               <select
                 id="underline_select"
-                className="block py-2.5 px-0 w-full text-lg font-semibold text-gray-800 bg-transparent border-0 border-b-2 border-gray-800 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className="cursor-pointer block py-2.5 px-0 w-full text-lg font-semibold text-gray-800 bg-transparent border-0 border-b-2 border-gray-800 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 value={user.tipodoc}
                 onChange={(e) => {
                   setUser((prevUser) => ({

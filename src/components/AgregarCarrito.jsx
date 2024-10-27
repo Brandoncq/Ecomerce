@@ -40,7 +40,7 @@ function AgregarCarrito({ productId, productName }) {
           </p>
         )}
       </div>
-      <button className="transition-all duration-300 ease-in-out bg-blue-500 hover:bg-blue-700 text-white p-2 rounded w-full text-lg my-1">
+      <button className="transition-all duration-300 ease-in-out bg-blue-600 border-2 hover:bg-zinc-200 text-white hover:text-blue-600 hover:border-blue-600 p-2 rounded-md w-full text-lg my-1">
         Comprar
       </button>
       <div className="flex flex-col items-center justify-center w-full my-1">
@@ -50,7 +50,7 @@ function AgregarCarrito({ productId, productName }) {
               onClick={() => {
                 router.push(`/Buscar/${productName}`);
               }}
-              className="px-1 rounded hover:text-zinc-600 flex items-center hover:underline hover:underline-offset-8"
+              className="px-1 rounded hover:text-zinc-600 transition-all ease-in-out duration-300 flex items-center hover:underline hover:underline-offset-8"
             >
               Ver detalles{" "}
               <svg
@@ -70,7 +70,7 @@ function AgregarCarrito({ productId, productName }) {
             </a>
           </div>
           <button
-            className="p-3 bg-zinc-800 text-white hover:text-zinc-200 rounded text-sm lg:text-lg font-semibold lg:ml-1 hover:bg-zinc-900 transition-all duration-300 ease-in-out max-xl:w-full max-xl:mt-2"
+            className="p-3 bg-zinc-800 text-white border-2 hover:text-zinc-800 hover:border-zinc-800 rounded-md text-sm lg:text-lg font-semibold lg:ml-1 hover:bg-zinc-200 transition-all duration-300 ease-in-out max-xl:w-full max-xl:mt-2"
             onClick={() => addToCart(productId)}
           >
             Agregar al Carrito

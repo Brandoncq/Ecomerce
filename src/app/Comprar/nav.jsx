@@ -6,7 +6,7 @@ export default function Nav() {
 
   return (
     <nav className="w-full bg-zinc-200">
-      <div className="w-full px-5 flex flex-wrap items-center justify-between mx-auto pt-2 pb-4">
+      <div className="w-full px-5 flex flex-wrap items-center justify-between mx-auto pt-1 pb-2">
         <div className="block py-2 px-1 md:hidden"></div>
         <div
           className="md:hidden w-8 h-8 flex justify-center items-center"

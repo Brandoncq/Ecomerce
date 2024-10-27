@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Carousel from "@/components/Carrusel";
 import Link from "next/link";
 const slides = [
