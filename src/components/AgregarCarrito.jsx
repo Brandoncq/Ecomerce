@@ -40,7 +40,7 @@ function AgregarCarrito({ productId, productName }) {
           </p>
         )}
       </div>
-      <button className="transition-all duration-300 ease-in-out bg-blue-600 border-2 hover:bg-zinc-200 text-white hover:text-blue-600 hover:border-blue-600 p-2 rounded-md w-full text-lg my-1">
+      <button className="transition-all duration-300 ease-in-out bg-blue-600 border-2 hover:bg-zinc-200 text-white hover:text-blue-600 hover:border-blue-600 p-2 rounded-md w-full text-lg my-1 font-semibold">
         Comprar
       </button>
       <div className="flex flex-col items-center justify-center w-full my-1">
