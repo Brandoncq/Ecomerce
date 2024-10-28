@@ -2,28 +2,36 @@
 import { useRouter } from "next/navigation";
 import AgregarCarrito from "./AgregarCarrito";
 import { useEffect, useState } from "react";
-export default function Productos({ filtros, paginaActual, limite }) {
+export default function Productos({ filtros, paginaActual, limite, list }) {
   const router = useRouter();
   const [productos, setProducto] = useState([]);
-  const queryParams = new URLSearchParams(
-    Object.fromEntries(
-      Object.entries({
-        ...filtros,
-        modelos:
-          Array.isArray(filtros.modelos) && filtros.modelos.length > 0
-            ? filtros.modelos.join(",")
-            : undefined,
-        precios:
-          filtros.precios.length > 0
-            ? filtros.precios.map(({ min, max }) => `${min}-${max}`).join(",")
-            : undefined,
-        page: paginaActual,
-        limit: limite,
-      }).filter(([_, value]) => value != null && value !== "")
-    )
-  ).toString();
-  const url = `/api/producto?${queryParams}`;
-  const getProducto = async () => {
+  const cambiarPagina = async (nuevaPagina) => {
+    const queryParams = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries({
+          ...filtros,
+          list: list,
+          modelos:
+            Array.isArray(filtros.modelos) && filtros.modelos.length > 0
+              ? filtros.modelos.join(",")
+              : undefined,
+          precios:
+            filtros.precios.length > 0
+              ? filtros.precios.map(({ min, max }) => `${min}-${max}`).join(",")
+              : undefined,
+          limit: limite,
+          page: nuevaPagina,
+        }).filter(([_, value]) => value != null && value !== "")
+      )
+    ).toString();
+    const queryParamsForUrl = new URLSearchParams(queryParams);
+
+    queryParamsForUrl.delete("id_categoria_producto");
+    queryParamsForUrl.delete("list");
+
+    router.push(`?${queryParamsForUrl}`);
+    const url = `/api/producto?${queryParams}`;
+
     const productos_get = await fetch(url).then((res) => res.json());
     const refinando = [];
     productos_get.map((values) => {
@@ -39,9 +47,10 @@ export default function Productos({ filtros, paginaActual, limite }) {
     });
     setProducto(refinando);
   };
+
   useEffect(() => {
-    getProducto();
-  }, [filtros, paginaActual, limite]);
+    cambiarPagina(paginaActual);
+  }, [filtros, paginaActual, limite, list]);
 
   const redireccion = (suggestion) => {
     router.push(`/Buscar/${suggestion}`);

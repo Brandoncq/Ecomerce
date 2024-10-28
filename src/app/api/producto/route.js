@@ -6,13 +6,13 @@ export async function GET(request) {
 
   const id_categoria_producto = searchParams.get("id_categoria_producto");
   const modelosJson = searchParams.get("modelos");
+  const list = searchParams.get("list");
   const page = parseInt(searchParams.get("page")) || 1;
-  const limit = parseInt(searchParams.get("limit")) || 20;
+  const limit = parseInt(searchParams.get("limit")) || 15;
   const offset = (page - 1) * limit;
   const preciosJson = searchParams.get("precios");
   let preciosArray = [];
 
-  // Manejo de precios
   if (preciosJson && preciosJson !== "") {
     preciosArray = preciosJson
       .split(",")
@@ -58,6 +58,10 @@ export async function GET(request) {
     preciosArray.forEach(({ min, max }) => {
       queryParams.push(min, max);
     });
+  }
+  const validSortOrders = ["ASC", "DESC"];
+  if (list && validSortOrders.includes(list.toUpperCase())) {
+    query += ` ORDER BY precio_unitario ${list.toUpperCase()}`;
   }
 
   query += ` LIMIT ? OFFSET ?`;
