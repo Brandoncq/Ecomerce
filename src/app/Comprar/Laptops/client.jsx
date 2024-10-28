@@ -157,11 +157,11 @@ export default function ClientLaptops() {
           <div className="flex items-center">
             <p className="text-white">Vista</p>
             <nav aria-label="w-full">
-              <ul className="inline-flex -space-x-px text-xl p-2">
+              <ul className="inline-flex -space-x-px text-sm p-2">
                 <li>
                   <a
                     onClick={() => handleLimitChange(15)}
-                    className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
+                    className="flex items-center justify-center px-3 h-8 leading-tight text-white border-l border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
                   >
                     15
                   </a>
@@ -169,7 +169,7 @@ export default function ClientLaptops() {
                 <li>
                   <a
                     onClick={() => handleLimitChange(24)}
-                    className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
+                    className="flex items-center justify-center px-3 h-8 leading-tight text-white border-l border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
                   >
                     24
                   </a>
@@ -177,7 +177,7 @@ export default function ClientLaptops() {
                 <li>
                   <a
                     onClick={() => handleLimitChange(36)}
-                    className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
+                    className="flex items-center justify-center px-3 h-8 leading-tight text-white border-l border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
                   >
                     36
                   </a>
