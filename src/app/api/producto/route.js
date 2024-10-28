@@ -63,7 +63,6 @@ export async function GET(request) {
   if (list && validSortOrders.includes(list.toUpperCase())) {
     query += ` ORDER BY precio_unitario ${list.toUpperCase()}`;
   }
-
   query += ` LIMIT ? OFFSET ?`;
   queryParams.push(limit, offset);
   const [rows] = await pool.query(query, queryParams);

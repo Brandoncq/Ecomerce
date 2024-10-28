@@ -197,7 +197,7 @@ export default function ClientLaptops() {
                 }}
               >
                 <option value="ASC">Ordenar | Precio: Menor a Mayor</option>
-                <option value="DESc">Ordenar | Precio: Mayor a Menor</option>
+                <option value="DESC">Ordenar | Precio: Mayor a Menor</option>
               </select>
             </div>
           </div>
