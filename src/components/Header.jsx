@@ -28,11 +28,11 @@ function Header() {
           href="/"
           className={`p-2 rounded text-2xl font-bold text-white ${
             scrolled
-              ? "bg-black hover:bg-white hover:text-black transition-all ease-in-out duration-300"
+              ? "bg-zinc-900 hover:bg-white hover:text-black transition-all ease-in-out duration-300"
               : "bg-blue-700"
           }`}
         >
-          Branvia Store
+          BranviaStore
         </Link>
         <Busqueda />
         <div className="flex">

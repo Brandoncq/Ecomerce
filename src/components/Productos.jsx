@@ -99,7 +99,6 @@ export default function Productos({ filtros, paginaActual, limite, list }) {
             </div>
 
             <div className="mt-auto flex flex-col items-start xl:px-4">
-              {/* Conditionally render the button and the Add to Cart component */}
               {producto.stock > 0 ? (
                 <>
                   <AgregarCarrito

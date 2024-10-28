@@ -45,12 +45,12 @@ function AgregarCarrito({ productId, productName }) {
       </button>
       <div className="flex flex-col items-center justify-center w-full my-1">
         <div className="flex max-xl:flex-col items-center justify-between w-full">
-          <div className="cursor-pointer">
+          <div className="cursor-pointer max-xl:order-last">
             <a
               onClick={() => {
                 router.push(`/Buscar/${productName}`);
               }}
-              className="px-1 rounded hover:text-zinc-600 transition-all ease-in-out duration-300 flex items-center hover:underline hover:underline-offset-8"
+              className="px-1 rounded hover:text-zinc-600 transition-all ease-in-out duration-300 flex items-center hover:underline hover:underline-offset-8 max-md:mt-5"
             >
               Ver detalles{" "}
               <svg
