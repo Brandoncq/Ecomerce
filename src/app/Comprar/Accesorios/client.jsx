@@ -417,7 +417,8 @@ export default function ClientAccesorioss() {
                 onClick={() => handlePageChange(paginaActual - 1)}
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
               >
-                Anterior
+                <p className="flex items-center -rotate-90 lg:hidden">▲</p>
+                <p className="max-lg:hidden">Anterior</p>
               </a>
             </li>
             <li>
@@ -465,7 +466,8 @@ export default function ClientAccesorioss() {
                 onClick={() => handlePageChange(paginaActual + 1)}
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
               >
-                Siguiente
+                <p className="flex items-center rotate-90 lg:hidden">▲</p>
+                <p className="max-lg:hidden">Siguiente</p>
               </a>
             </li>
           </ul>
