@@ -73,8 +73,8 @@ function Carrito() {
     router.refresh();
   };
   return (
-    <div className="relative w-full" ref={dropdownRefCart}>
-      <div className="w-full cursor-pointer" onClick={toggleCart}>
+    <li className="relative w-full inline-block" ref={dropdownRefCart}>
+      <button className="w-full cursor-pointer" onClick={toggleCart}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="133.333"
@@ -92,7 +92,7 @@ function Carrito() {
             transform="matrix(.1 0 0 -.1 0 100)"
           ></path>
         </svg>
-      </div>
+      </button>
 
       {cartItems.length > 0 && (
         <span
@@ -232,7 +232,7 @@ function Carrito() {
           )}
         </>
       )}
-    </div>
+    </li>
   );
 }
 

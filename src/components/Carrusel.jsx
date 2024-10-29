@@ -41,7 +41,7 @@ const Carousel = ({ slides }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="relative overflow-hidden rounded-lg h-full">
+      <div className="relative overflow-hidden h-full">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
