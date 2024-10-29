@@ -29,7 +29,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <Sections />
+        <div className="max-md:hidden w-full flex flex-wrap justify-center items-center">
+          <Sections />
+        </div>
         <main>{children}</main>
         <Footer />
       </body>

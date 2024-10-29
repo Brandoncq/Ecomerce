@@ -6,7 +6,7 @@ function Busqueda() {
   const [query, setQuery] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(-1); // Indice de la sugerencia seleccionada
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const suggestionsRef = useRef(null);
   const router = useRouter();
 
@@ -100,7 +100,7 @@ function Busqueda() {
           onFocus={() => setIsSuggestionsOpen(filteredSuggestions.length > 0)}
           onChange={(e) => {
             setQuery(e.target.value);
-            setSelectedIndex(-1); // Reiniciar índice seleccionado al cambiar la búsqueda
+            setSelectedIndex(-1);
           }}
           onKeyDown={handleKeyDown} // Manejar las teclas de flecha y Enter
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
@@ -116,7 +116,7 @@ function Busqueda() {
                 onClick={() => handleSelect(suggestion)}
                 className={`p-2 cursor-pointer hover:bg-gray-100 ${
                   index === selectedIndex ? "bg-gray-200" : ""
-                }`} // Resaltar la sugerencia seleccionada
+                }`}
               >
                 <div className="flex justify-between">
                   <div>
