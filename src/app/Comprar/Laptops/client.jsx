@@ -105,49 +105,13 @@ export default function ClientLaptops() {
     window.history.pushState({}, "", newUrl);
   };
 
-  const handleCheckboxChangePrecios = (minPrecio, maxPrecio, event) => {
-    if (event.target.checked) {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        precios: [...prevFiltros.precios, { min: minPrecio, max: maxPrecio }],
-      }));
-    } else {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        precios: prevFiltros.precios.filter(
-          (rango) => !(rango.min === minPrecio && rango.max === maxPrecio)
-        ),
-      }));
-    }
-  };
-
-  const handleCheckboxChangeModelo = (modelo, event) => {
-    if (event.target.checked) {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        modelos: [...(prevFiltros.modelos || []), modelo],
-      }));
-    } else {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        modelos: (prevFiltros.modelos || []).filter((m) => m !== modelo),
-      }));
-    }
-  };
-  const isCheckedPrecios = (min, max) => {
-    return filtros.precios.some(
-      (price) => price.min === min && price.max === max
-    );
-  };
-  const isCheckedModelo = (modelo) => {
-    return filtros.modelos.includes(modelo);
-  };
   const preciosOptions = [
     { min: 1200, max: 1799 },
     { min: 1800, max: 2399 },
     { min: 2400, max: 3999 },
   ];
   const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
+
   const handleCheckboxChange = (type, option, event) => {
     setFiltros((prevFiltros) => {
       const updatedOptions = event.target.checked
