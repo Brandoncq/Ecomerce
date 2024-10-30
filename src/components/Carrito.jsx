@@ -18,18 +18,19 @@ function Carrito() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const getcart = async () => {
+  const getcart = async (addedItem = false) => {
     const response = await fetch("/api/carrito");
     const data = await response.json();
     setCartItems(data);
-    console.log(quantityChanged);
-    setQuantityChanged(true);
-    setTimeout(() => setQuantityChanged(false), 1500);
+    if (addedItem) {
+      setQuantityChanged(true);
+      setTimeout(() => setQuantityChanged(false), 2000);
+    }
   };
   useEffect(() => {
     getcart();
     const handleCart = (event) => {
-      getcart();
+      getcart(event.type === "addcart");
     };
 
     window.addEventListener("addcart", handleCart);
