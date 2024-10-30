@@ -7,6 +7,7 @@ function Carrito() {
   const [cartItems, setCartItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRefCart = useRef(null);
+  const [quantityChanged, setQuantityChanged] = useState(false);
   const router = useRouter();
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,9 @@ function Carrito() {
     const response = await fetch("/api/carrito");
     const data = await response.json();
     setCartItems(data);
+    console.log(quantityChanged);
+    setQuantityChanged(true);
+    setTimeout(() => setQuantityChanged(false), 1500);
   };
   useEffect(() => {
     getcart();
@@ -96,12 +100,15 @@ function Carrito() {
 
       {cartItems.length > 0 && (
         <span
-          className="absolute top-0 right-0 cursor-pointer bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs select-none"
+          className="absolute top-0 right-0 flex h-5 w-5 cursor-pointer select-none"
           onClick={toggleCart}
         >
-          {cartItems.reduce((total, item) => {
-            return total + item.cantidad;
-          }, 0)}
+          {quantityChanged && (
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          )}
+          <span className="relative rounded-full h-5 w-5 bg-red-500 text-white text-xs flex items-center justify-center">
+            {cartItems.reduce((total, item) => total + item.cantidad, 0)}
+          </span>
         </span>
       )}
       {isOpen && (

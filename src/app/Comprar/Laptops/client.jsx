@@ -106,9 +106,9 @@ export default function ClientLaptops() {
   };
 
   const preciosOptions = [
-    { min: 1200, max: 1799 },
-    { min: 1800, max: 2399 },
-    { min: 2400, max: 3999 },
+    { min: 1200.0, max: 1799.0 },
+    { min: 1800.0, max: 2399.0 },
+    { min: 2400.0, max: 3999.0 },
   ];
   const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
 
