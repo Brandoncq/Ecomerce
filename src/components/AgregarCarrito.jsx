@@ -99,7 +99,7 @@ function AgregarCarrito({ productId, productName }) {
               </div>
             ) : (
               <div className="w-full flex justify-center p-3 items-center fill-white stroke-white transition-all ease-in-out duration-300 hover:fill-zinc-800 hover:stroke-zinc-800 space-x-2 text-white hover:text-zinc-800">
-                <p>AGREGAR</p>
+                <p className=" text-lg">AGREGAR</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="133.333"

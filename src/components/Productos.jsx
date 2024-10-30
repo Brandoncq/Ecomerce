@@ -107,8 +107,7 @@ export default function Productos({ filtros, paginaActual, limite, list }) {
                   />
                 </>
               ) : (
-                <div className="text-gray-500 py-5 cursor-pointer">
-                  {" "}
+                <div className="w-full flex justify-center text-gray-500 py-2 lg:py-5 cursor-pointer">
                   <a
                     onClick={() => {
                       redireccion(producto.nombre_producto);

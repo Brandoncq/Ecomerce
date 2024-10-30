@@ -245,7 +245,7 @@ export default function ClientTablets() {
         </div>
       </div>
       <div
-        className={`w-full lg:w-1/4 lg:sticky lg:top-5 md:px-5 flex flex-wrap max-lg:border-b-4 max-lg:border-zinc-400 max-lg:bg-black max-lg:text-white ${
+        className={`w-full lg:w-1/4 lg:sticky lg:top-5 md:px-5 flex flex-wrap max-lg:bg-black max-lg:text-white ${
           menufiltro ? "" : "max-md:p-4"
         }`}
       >

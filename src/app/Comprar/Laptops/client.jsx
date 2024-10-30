@@ -133,12 +133,12 @@ export default function ClientLaptops() {
             <p>{"105 Resultados"}</p>
           </div>
           <div
-            className="p-2 flex justify-center items-center hover:bg-slate-600 border-2 border-white"
+            className="p-2 flex justify-center items-center transition-all ease-in-out duration-300 hover:bg-slate-300 border-2 border-white bg-white rounded-lg cursor-pointer"
             onClick={() => {
               setMenuFiltro(!menufiltro);
             }}
           >
-            <div className="text-white flex items-center justify-center space-x-2">
+            <div className="text-balck flex items-center justify-center space-x-2">
               <h3
                 className={`transition-all ease-in-out duration-500 ${
                   menufiltro ? "rotate-180" : "rotate-90"
@@ -152,7 +152,7 @@ export default function ClientLaptops() {
                 height="133.333"
                 version="1"
                 viewBox="0 0 100 100"
-                className="w-8 h-8 fill-white stroke-white"
+                className="w-8 h-8 fill-black stroke-black"
               >
                 <path
                   d="M440 840c-11-11-20-24-20-30s-70-10-190-10c-183 0-190-1-190-20s7-20 190-20c120 0 190-4 190-10 0-24 41-50 80-50s80 26 80 50c0 6 70 10 190 10 183 0 190 1 190 20s-7 20-190 20c-120 0-190 4-190 10 0 24-41 50-80 50-27 0-47-7-60-20zM720 560c-11-11-20-24-20-30s-117-10-330-10c-323 0-330 0-330-20s7-20 330-20c213 0 330-4 330-10 0-24 41-50 80-50s80 26 80 50c0 6 23 10 50 10 43 0 50 3 50 20s-7 20-50 20c-27 0-50 5-50 10 0 24-41 50-80 50-27 0-47-7-60-20zM220 280c-11-11-20-24-20-30s-33-10-80-10c-73 0-80-2-80-20s7-20 80-20c47 0 80-4 80-10 0-24 41-50 80-50s80 26 80 50c0 6 107 10 300 10 293 0 300 0 300 20s-7 20-300 20c-193 0-300 4-300 10 0 24-41 50-80 50-27 0-47-7-60-20z"
@@ -214,7 +214,7 @@ export default function ClientLaptops() {
               <div className="w-full lg:w-1/2 flex items-center text-white pl-2">
                 <select
                   id="underline_select"
-                  className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer"
+                  className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
                   value={list}
                   onChange={(e) => {
                     setList(e.target.value);
@@ -229,7 +229,7 @@ export default function ClientLaptops() {
         </div>
       </div>
       <div
-        className={`w-full lg:w-1/4 lg:sticky lg:top-16 md:px-5 flex flex-wrap max-lg:border-b-4 max-lg:border-zinc-400 max-lg:bg-black max-lg:text-white ${
+        className={`w-full lg:w-1/4 lg:sticky lg:top-16 md:px-5 flex flex-wrap max-lg:bg-black max-lg:text-white ${
           menufiltro ? "" : "max-md:p-4"
         }`}
       >
@@ -247,7 +247,7 @@ export default function ClientLaptops() {
           <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4 lg:hidden">
             <select
               id="underline_select"
-              className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer"
+              className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
               value={list}
               onChange={(e) => {
                 setList(e.target.value);
