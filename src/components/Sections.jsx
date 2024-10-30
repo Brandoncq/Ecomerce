@@ -1,40 +1,37 @@
 "use client";
-
+import { useState } from "react";
 import Link from "next/link";
-function Sections() {
+function Sections({ menuItems }) {
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
   return (
     <nav className="w-full mb-1.5">
       <div className="w-full px-5 flex flex-wrap items-center mx-auto md:space-x-4">
         <ul className="flex flex-col font-medium rounded-lg md:space-x-4 rtl:space-x-reverse md:flex-row text-lg">
-          <li className="group">
-            <Link
-              href="/Comprar"
-              className="block py-1 px-1 rounded hover:text-zinc-600"
-              aria-current="page"
+          {menuItems.map((item, index) => (
+            <li
+              key={index}
+              className="group"
+              onClick={() => setSelectedIndex(index)}
             >
-              Comprar
-            </Link>
-            <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-          </li>
-          <li className="group">
-            <Link
-              href="/Nosotros"
-              className="block py-1 px-1 rounded hover:text-zinc-600"
-            >
-              Nosotros
-            </Link>
-            <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-          </li>
-          <li className="group">
-            <Link
-              href="/Soporte"
-              className="block py-1 px-1 rounded hover:text-zinc-600"
-              aria-current="page"
-            >
-              Soporte
-            </Link>
-            <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-          </li>
+              <Link
+                href={item.href}
+                className={`block py-1 px-1 rounded ${
+                  selectedIndex === index
+                    ? "text-blue-600"
+                    : "hover:text-zinc-600"
+                }`}
+                aria-current="page"
+              >
+                {item.label}
+              </Link>
+              <div
+                className={`h-1 transition-all duration-300 ease-in-out bg-blue-600 ${
+                  selectedIndex === index ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              ></div>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

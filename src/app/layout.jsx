@@ -30,7 +30,14 @@ export default function RootLayout({ children }) {
       >
         <Header />
         <div className="max-md:hidden w-full flex flex-wrap justify-center items-center">
-          <Sections />
+          <Sections
+            menuItems={[
+              { label: "Comprar", href: "/Comprar" },
+              { label: "Nosotros", href: "/Nosotros" },
+              { label: "Soporte", href: "/Soporte" },
+              { label: "Ofertas", href: "/Comprar/Ofertas" },
+            ]}
+          />
         </div>
         <main>{children}</main>
         <Footer />
