@@ -113,11 +113,13 @@ export default function ClientLaptops() {
   const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
 
   const handleCheckboxChange = (type, option, event) => {
+    const isRange =
+      option.hasOwnProperty("min") && option.hasOwnProperty("max");
     setFiltros((prevFiltros) => {
       const updatedOptions = event.target.checked
         ? [...prevFiltros[type], option]
         : prevFiltros[type].filter((item) =>
-            type === "precios"
+            isRange
               ? !(item.min === option.min && item.max === option.max)
               : item !== option
           );

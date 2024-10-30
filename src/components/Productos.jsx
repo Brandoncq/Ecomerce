@@ -6,30 +6,41 @@ export default function Productos({ filtros, paginaActual, limite, list }) {
   const router = useRouter();
   const [productos, setProducto] = useState([]);
   const cambiarPagina = async (nuevaPagina) => {
-    const queryParams = new URLSearchParams(
-      Object.fromEntries(
-        Object.entries({
-          ...filtros,
-          list: list,
-          modelos:
-            Array.isArray(filtros.modelos) && filtros.modelos.length > 0
-              ? filtros.modelos.join(",")
-              : undefined,
-          precios:
-            filtros.precios.length > 0
-              ? filtros.precios.map(({ min, max }) => `${min}-${max}`).join(",")
-              : undefined,
-          limit: limite,
-          page: nuevaPagina,
-        }).filter(([_, value]) => value != null && value !== "")
-      )
-    ).toString();
-    const queryParamsForUrl = new URLSearchParams(queryParams);
+    const dynamicFilters = Object.fromEntries(
+      Object.entries(filtros)
+        .map(([key, value]) => {
+          if (Array.isArray(value) && value.length > 0) {
+            const isRange =
+              value[0] &&
+              typeof value[0] === "object" &&
+              "min" in value[0] &&
+              "max" in value[0];
+            if (isRange) {
+              return [
+                key,
+                value.map(({ min, max }) => `${min}-${max}`).join(","),
+              ];
+            }
+            return [key, value.join(",")];
+          } else if (
+            !Array.isArray(value) &&
+            value !== null &&
+            value !== undefined &&
+            value !== ""
+          ) {
+            return [key, value];
+          }
+          return undefined;
+        })
+        .filter(Boolean)
+    );
+    const queryParams = new URLSearchParams({
+      ...dynamicFilters,
+      list: list,
+      ...(limite ? { limit: limite } : {}),
+      ...(nuevaPagina ? { page: nuevaPagina } : {}),
+    }).toString();
 
-    queryParamsForUrl.delete("id_categoria_producto");
-    queryParamsForUrl.delete("list");
-
-    router.push(`?${queryParamsForUrl}`);
     const url = `/api/producto?${queryParams}`;
 
     const productos_get = await fetch(url).then((res) => res.json());
@@ -46,11 +57,17 @@ export default function Productos({ filtros, paginaActual, limite, list }) {
       });
     });
     setProducto(refinando);
+    const queryParamsForUrl = new URLSearchParams(queryParams);
+
+    queryParamsForUrl.delete("id_categoria_producto");
+    queryParamsForUrl.delete("list");
+
+    router.replace(`?${queryParamsForUrl}`, undefined, { shallow: true });
   };
 
   useEffect(() => {
     cambiarPagina(paginaActual);
-  }, [filtros, paginaActual, limite, list]);
+  }, [JSON.stringify(filtros), paginaActual, limite, list]);
 
   const redireccion = (suggestion) => {
     router.push(`/Buscar/${suggestion}`);

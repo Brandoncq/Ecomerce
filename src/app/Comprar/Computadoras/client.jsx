@@ -2,11 +2,11 @@
 import Productos from "@/components/Productos";
 import { useState, useEffect } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
-
+import Filtro from "@/components/Filtro";
 export default function ClientComputadoras() {
   const [menufiltro, setMenuFiltro] = useState(true);
   const [filtros, setFiltros] = useState({
-    id_categoria_producto: 1,
+    id_categoria_producto: 2,
     precios: [],
     modelos: [],
   });
@@ -104,42 +104,27 @@ export default function ClientComputadoras() {
     window.history.pushState({}, "", newUrl);
   };
 
-  const handleCheckboxChangePrecios = (minPrecio, maxPrecio, event) => {
-    if (event.target.checked) {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        precios: [...prevFiltros.precios, { min: minPrecio, max: maxPrecio }],
-      }));
-    } else {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        precios: prevFiltros.precios.filter(
-          (rango) => !(rango.min === minPrecio && rango.max === maxPrecio)
-        ),
-      }));
-    }
-  };
+  const preciosOptions = [
+    { min: 1200.0, max: 1799.0 },
+    { min: 1800.0, max: 2399.0 },
+    { min: 2400.0, max: 3999.0 },
+  ];
+  const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
 
-  const handleCheckboxChangeModelo = (modelo, event) => {
-    if (event.target.checked) {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        modelos: [...(prevFiltros.modelos || []), modelo],
-      }));
-    } else {
-      setFiltros((prevFiltros) => ({
-        ...prevFiltros,
-        modelos: (prevFiltros.modelos || []).filter((m) => m !== modelo),
-      }));
-    }
-  };
-  const isCheckedPrecios = (min, max) => {
-    return filtros.precios.some(
-      (price) => price.min === min && price.max === max
-    );
-  };
-  const isCheckedModelo = (modelo) => {
-    return filtros.modelos.includes(modelo);
+  const handleCheckboxChange = (type, option, event) => {
+    const isRange =
+      option.hasOwnProperty("min") && option.hasOwnProperty("max");
+    setFiltros((prevFiltros) => {
+      const updatedOptions = event.target.checked
+        ? [...prevFiltros[type], option]
+        : prevFiltros[type].filter((item) =>
+            isRange
+              ? !(item.min === option.min && item.max === option.max)
+              : item !== option
+          );
+
+      return { ...prevFiltros, [type]: updatedOptions };
+    });
   };
   return (
     <div className="w-full flex flex-wrap">
@@ -149,12 +134,12 @@ export default function ClientComputadoras() {
             <p>{"105 Resultados"}</p>
           </div>
           <div
-            className="p-2 flex justify-center items-center hover:bg-slate-600 border-2 border-white"
+            className="p-2 flex justify-center items-center transition-all ease-in-out duration-300 hover:bg-slate-300 border-2 border-white bg-white rounded-lg cursor-pointer"
             onClick={() => {
               setMenuFiltro(!menufiltro);
             }}
           >
-            <div className="text-white flex items-center justify-center space-x-2">
+            <div className="text-balck flex items-center justify-center space-x-2">
               <h3
                 className={`transition-all ease-in-out duration-500 ${
                   menufiltro ? "rotate-180" : "rotate-90"
@@ -168,7 +153,7 @@ export default function ClientComputadoras() {
                 height="133.333"
                 version="1"
                 viewBox="0 0 100 100"
-                className="w-8 h-8 fill-white stroke-white"
+                className="w-8 h-8 fill-black stroke-black"
               >
                 <path
                   d="M440 840c-11-11-20-24-20-30s-70-10-190-10c-183 0-190-1-190-20s7-20 190-20c120 0 190-4 190-10 0-24 41-50 80-50s80 26 80 50c0 6 70 10 190 10 183 0 190 1 190 20s-7 20-190 20c-120 0-190 4-190 10 0 24-41 50-80 50-27 0-47-7-60-20zM720 560c-11-11-20-24-20-30s-117-10-330-10c-323 0-330 0-330-20s7-20 330-20c213 0 330-4 330-10 0-24 41-50 80-50s80 26 80 50c0 6 23 10 50 10 43 0 50 3 50 20s-7 20-50 20c-27 0-50 5-50 10 0 24-41 50-80 50-27 0-47-7-60-20zM220 280c-11-11-20-24-20-30s-33-10-80-10c-73 0-80-2-80-20s7-20 80-20c47 0 80-4 80-10 0-24 41-50 80-50s80 26 80 50c0 6 107 10 300 10 293 0 300 0 300 20s-7 20-300 20c-193 0-300 4-300 10 0 24-41 50-80 50-27 0-47-7-60-20z"
@@ -185,8 +170,8 @@ export default function ClientComputadoras() {
         <div className="max-lg:hidden w-full flex flex-wrap items-center">
           <div className="w-full lg:w-1/3 flex max-lg:justify-center">
             <p className="text-white">
-              {filtros.precios.length + filtros.modelos.length} filtros
-              aplicados
+              {filtros.precios.length + filtros.modelos.length} Filtros
+              Aplicados
             </p>
           </div>
           <div className="w-full lg:w-1/3 flex justify-center">
@@ -230,7 +215,7 @@ export default function ClientComputadoras() {
               <div className="w-full lg:w-1/2 flex items-center text-white pl-2">
                 <select
                   id="underline_select"
-                  className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer"
+                  className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
                   value={list}
                   onChange={(e) => {
                     setList(e.target.value);
@@ -263,7 +248,7 @@ export default function ClientComputadoras() {
           <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4 lg:hidden">
             <select
               id="underline_select"
-              className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer"
+              className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
               value={list}
               onChange={(e) => {
                 setList(e.target.value);
@@ -273,132 +258,25 @@ export default function ClientComputadoras() {
               <option value="DESC">Ordenar | Precio: Mayor a Menor</option>
             </select>
           </div>
-          <div className="w-full flex justify-center flex-col mt-4">
-            <h3 className="text-xl lg:text-2xl">PRECIO</h3>
-            <hr className="w-full h-px mt-2 mb-4 max-lg:bg-gray-200 bg-gray-800 border-0" />
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_p1"
-                type="checkbox"
-                onChange={(e) => handleCheckboxChangePrecios(1200, 1799, e)}
-                checked={isCheckedPrecios(1200, 1799)}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_p1"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                S/ 1200 a 1799
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_p2"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangePrecios(1800, 2399, e);
-                }}
-                checked={isCheckedPrecios(1800, 2399)}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_p2"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                S/ 1800 a 2399
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_p3"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangePrecios(2400, 3999, e);
-                }}
-                checked={isCheckedPrecios(2400, 3999)}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_p3"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                S/ 2400 a 3999
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-center flex-col mt-4">
-            <h3 className="text-xl lg:text-2xl">MODELO</h3>
-            <hr className="w-full h-px mt-2 mb-4 max-lg:bg-gray-200 bg-gray-800 border-0" />
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_m1"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangeModelo("F17", e);
-                }}
-                checked={isCheckedModelo("F17")}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_m1"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                F17
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_m2"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangeModelo("G16 (2024)", e);
-                }}
-                checked={isCheckedModelo("G16 (2024)")}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_m2"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                G16 (2024)
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_m3"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangeModelo("16-r0073cl", e);
-                }}
-                checked={isCheckedModelo("16-r0073cl")}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_m3"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                16-r0073cl
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
+          <Filtro
+            label="PRECIO"
+            options={preciosOptions}
+            isRange={true}
+            selectedOptions={filtros.precios}
+            handleChange={(option, event) =>
+              handleCheckboxChange("precios", option, event)
+            }
+            formatOption={(min, max) => `S/ ${min} a S/ ${max}`}
+          />
+          <Filtro
+            label="MODELO"
+            options={modelosOptions}
+            isRange={false}
+            selectedOptions={filtros.modelos}
+            handleChange={(option, event) =>
+              handleCheckboxChange("modelos", option, event)
+            }
+          />
         </div>
       </div>
       <div className="w-full lg:w-3/4 md:px-5">

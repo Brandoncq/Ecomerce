@@ -18,9 +18,10 @@ export default function Filtro({
           key={index}
           className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4"
         >
-          <div className="flex items-center">
+          <div className="flex items-center w-full">
             <input
               type="checkbox"
+              id={`checkbox-option-${index}`}
               onChange={(e) =>
                 handleChange(
                   isRange ? { min: option.min, max: option.max } : option,
@@ -37,7 +38,10 @@ export default function Filtro({
               }
               className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
             />
-            <label className="ms-2 text-lg font-base cursor-pointer">
+            <label
+              className="ms-2 text-lg font-base cursor-pointer flex-grow"
+              htmlFor={`checkbox-option-${index}`}
+            >
               {isRange
                 ? formatOption
                   ? formatOption(option.min, option.max)
