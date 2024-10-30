@@ -75,7 +75,7 @@ function AgregarCarrito({ productId, productName }) {
             </a>
           </div>
           <button
-            className="flex flex-1 justify-center items center bg-zinc-800 text-white border-2 hover:text-zinc-800 hover:border-zinc-800 rounded-md text-sm lg:text-lg font-semibold hover:bg-zinc-200 transition-all duration-300 ease-in-out max-xl:w-full max-xl:mt-2"
+            className="flex flex-1 justify-center items center bg-zinc-800 hover:border-zinc-800 rounded-md text-sm lg:text-lg font-semibold hover:bg-zinc-200 transition-all duration-300 ease-in-out max-xl:w-full max-xl:mt-2 border-2"
             onClick={() => addToCart(productId)}
           >
             {isLoadingButton ? (
@@ -98,7 +98,7 @@ function AgregarCarrito({ productId, productName }) {
                 </svg>
               </div>
             ) : (
-              <div className="w-full flex justify-center p-3 items-center fill-white stroke-white transition-all ease-in-out duration-300 hover:fill-zinc-800 hover:stroke-zinc-800 space-x-2">
+              <div className="w-full flex justify-center p-3 items-center fill-white stroke-white transition-all ease-in-out duration-300 hover:fill-zinc-800 hover:stroke-zinc-800 space-x-2 text-white hover:text-zinc-800">
                 <p>AGREGAR</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
