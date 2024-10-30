@@ -1,5 +1,6 @@
 "use client";
 import Productos from "@/components/Productos";
+import Filtro from "@/components/Filtro";
 import { useState, useEffect } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 
@@ -141,6 +142,25 @@ export default function ClientLaptops() {
   const isCheckedModelo = (modelo) => {
     return filtros.modelos.includes(modelo);
   };
+  const preciosOptions = [
+    { min: 1200, max: 1799 },
+    { min: 1800, max: 2399 },
+    { min: 2400, max: 3999 },
+  ];
+  const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
+  const handleCheckboxChange = (type, option, event) => {
+    setFiltros((prevFiltros) => {
+      const updatedOptions = event.target.checked
+        ? [...prevFiltros[type], option]
+        : prevFiltros[type].filter((item) =>
+            type === "precios"
+              ? !(item.min === option.min && item.max === option.max)
+              : item !== option
+          );
+
+      return { ...prevFiltros, [type]: updatedOptions };
+    });
+  };
   return (
     <div className="w-full flex flex-wrap">
       <div className="w-full flex flex-wrap justify-center items-center bg-black max-lg:py-2 px-2 md:px-10">
@@ -185,8 +205,8 @@ export default function ClientLaptops() {
         <div className="max-lg:hidden w-full flex flex-wrap items-center">
           <div className="w-full lg:w-1/3 flex max-lg:justify-center">
             <p className="text-white">
-              {filtros.precios.length + filtros.modelos.length} filtros
-              aplicados
+              {filtros.precios.length + filtros.modelos.length} Filtros
+              Aplicados
             </p>
           </div>
           <div className="w-full lg:w-1/3 flex justify-center">
@@ -273,132 +293,25 @@ export default function ClientLaptops() {
               <option value="DESC">Ordenar | Precio: Mayor a Menor</option>
             </select>
           </div>
-          <div className="w-full flex justify-center flex-col mt-4">
-            <h3 className="text-xl lg:text-2xl">PRECIO</h3>
-            <hr className="w-full h-px mt-2 mb-4 max-lg:bg-gray-200 bg-gray-800 border-0" />
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_p1"
-                type="checkbox"
-                onChange={(e) => handleCheckboxChangePrecios(1200, 1799, e)}
-                checked={isCheckedPrecios(1200, 1799)}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_p1"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                S/ 1200 a 1799
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_p2"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangePrecios(1800, 2399, e);
-                }}
-                checked={isCheckedPrecios(1800, 2399)}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_p2"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                S/ 1800 a 2399
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_p3"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangePrecios(2400, 3999, e);
-                }}
-                checked={isCheckedPrecios(2400, 3999)}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_p3"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                S/ 2400 a 3999
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-center flex-col mt-4">
-            <h3 className="text-xl lg:text-2xl">MODELO</h3>
-            <hr className="w-full h-px mt-2 mb-4 max-lg:bg-gray-200 bg-gray-800 border-0" />
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_m1"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangeModelo("F17", e);
-                }}
-                checked={isCheckedModelo("F17")}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_m1"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                F17
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_m2"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangeModelo("G16 (2024)", e);
-                }}
-                checked={isCheckedModelo("G16 (2024)")}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_m2"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                G16 (2024)
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4">
-            <div className="flex items-center">
-              <input
-                id="default-checkbox_m3"
-                type="checkbox"
-                onChange={(e) => {
-                  handleCheckboxChangeModelo("16-r0073cl", e);
-                }}
-                checked={isCheckedModelo("16-r0073cl")}
-                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
-              />
-              <label
-                htmlFor="default-checkbox_m3"
-                className="ms-2 text-lg font-base cursor-pointer"
-              >
-                16-r0073cl
-              </label>
-            </div>
-            <p className="px-2">2</p>
-          </div>
+          <Filtro
+            label="PRECIO"
+            options={preciosOptions}
+            isRange={true}
+            selectedOptions={filtros.precios}
+            handleChange={(option, event) =>
+              handleCheckboxChange("precios", option, event)
+            }
+            formatOption={(min, max) => `S/ ${min} a S/ ${max}`}
+          />
+          <Filtro
+            label="MODELO"
+            options={modelosOptions}
+            isRange={false}
+            selectedOptions={filtros.modelos}
+            handleChange={(option, event) =>
+              handleCheckboxChange("modelos", option, event)
+            }
+          />
         </div>
       </div>
       <div className="w-full lg:w-3/4 md:px-5">
