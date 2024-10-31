@@ -1,5 +1,7 @@
 "use client";
-function VerificaCuenta() {
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
+function Pasarela() {
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 border-t-4 border-zinc-200">
       <div className="text-xl my-4 w-full flex flex-col items-center">
@@ -9,10 +11,10 @@ function VerificaCuenta() {
           </div>
           <hr className="flex-grow border-zinc-600 mx-2" />
           <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center bg-green-600 text-white">
-            &#10003;
+            2
           </div>
           <hr className="flex-grow border-zinc-600 mx-2" />
-          <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center bg-green-600 text-white">
+          <div className="border border-zinc-400 rounded-full w-10 h-10 flex justify-center items-center">
             3
           </div>
         </div>
@@ -35,25 +37,31 @@ function VerificaCuenta() {
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
-        <h4 className="my-4">¡Gracias por verificar tu cuenta, </h4>
-        <p>
-          Nos complace informarte que tu cuenta ha sido verificada con éxito. A
-          partir de este momento, puedes disfrutar de todos los beneficios que
-          ofrecemos en nuestra tienda. Navega por nuestra selección de productos
-          y comienza a disfrutar de una experiencia de compra única y
-          personalizada.
-          <br />
-          <br />
-          Si tienes alguna duda o necesitas asistencia, no dudes en
-          contactarnos. ¡Estamos aquí para ayudarte a encontrar exactamente lo
-          que necesitas!
-          <br />
-          <br />
-          ¡Bienvenido/a a la familia Compu-Fenix!
-        </p>
+        <PayPalScriptProvider
+          options={{
+            clientId:
+              "ASyAd9c02OdQr7Jyvh95UBztT5fswQU00tEaMSQXhlCo1m2t9nIKObfxwIJ9dXX2Z7Mk6k2XpNZSn07s",
+          }}
+        >
+          <PayPalButtons
+            style={{ color: "blue" }}
+            createOrder={async () => {
+              const order = await fetch("/api/pasarela/paypal", {
+                method: "POST",
+                body: JSON.stringify({
+                  price: 10,
+                }),
+              });
+              const res = await order.json();
+              return res.id;
+            }}
+            onCancel={() => {}}
+            onApprove={() => {}}
+          />
+        </PayPalScriptProvider>
       </div>
     </div>
   );
 }
 
-export default VerificaCuenta;
+export default Pasarela;

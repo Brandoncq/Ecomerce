@@ -1,4 +1,6 @@
 "use client";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 function VerificaCuenta() {
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 border-t-4 border-zinc-200">
