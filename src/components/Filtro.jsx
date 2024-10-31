@@ -8,6 +8,7 @@ export default function Filtro({
   handleChange,
   formatOption,
 }) {
+  console.log(options);
   return (
     <div className="w-full flex flex-col mt-4">
       <h3 className="text-xl lg:text-2xl">{label}</h3>
@@ -21,7 +22,7 @@ export default function Filtro({
           <div className="flex items-center w-full">
             <input
               type="checkbox"
-              id={`checkbox-option-${index}`}
+              id={`checkbox-${label.toLowerCase()}-${index}`}
               onChange={(e) =>
                 handleChange(
                   isRange ? { min: option.min, max: option.max } : option,
@@ -40,7 +41,7 @@ export default function Filtro({
             />
             <label
               className="ms-2 text-lg font-base cursor-pointer flex-grow"
-              htmlFor={`checkbox-option-${index}`}
+              htmlFor={`checkbox-${label.toLowerCase()}-${index}`}
             >
               {isRange
                 ? formatOption
