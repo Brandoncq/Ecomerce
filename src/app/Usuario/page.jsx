@@ -1,7 +1,7 @@
 import ClientTablets from "./client";
 export const metadata = {
-  title: "Soporte Tecnico Compu-Fenix",
-  description: "Soporte Tecnico de la Empresa Compu-Fenix",
+  title: "Soporte Tecnico BranviaTech",
+  description: "Soporte Tecnico de la Empresa BranviaTech",
   openGraph: {
     images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
   },

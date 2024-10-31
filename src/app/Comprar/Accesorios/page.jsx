@@ -1,6 +1,6 @@
 import ClientAccesorioss from "./client";
 export const metadata = {
-  title: "Accesorios Compu-Fenix",
+  title: "Accesorios BranviaTech",
   description:
     "Compra Accesorios a tu comidad desde diversos precios y marcas.",
   openGraph: {

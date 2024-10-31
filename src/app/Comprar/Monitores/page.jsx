@@ -1,6 +1,6 @@
 import ClientMonitores from "./client";
 export const metadata = {
-  title: "Monitores Compu-Fenix",
+  title: "Monitores BranviaTech",
   description: "Compra Monitores a tu comidad desde diversos precios y marcas.",
   openGraph: {
     images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",

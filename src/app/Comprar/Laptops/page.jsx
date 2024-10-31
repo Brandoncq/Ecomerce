@@ -1,6 +1,6 @@
 import ClientLaptops from "./client";
 export const metadata = {
-  title: "Laptops Compu-Fenix",
+  title: "Laptops BranviaTech",
   description: "Compra laptos a tu comidad desde diversos precios y marcas.",
   openGraph: {
     images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",

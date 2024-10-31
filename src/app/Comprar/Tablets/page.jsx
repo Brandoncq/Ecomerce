@@ -1,6 +1,6 @@
 import ClientTablets from "./client";
 export const metadata = {
-  title: "Tablets Compu-Fenix",
+  title: "Tablets BranviaTech",
   description: "Compra Tablets a tu comidad desde diversos precios y marcas.",
   openGraph: {
     images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",

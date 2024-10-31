@@ -149,7 +149,7 @@ function CrearCuenta() {
         </div>
         <div className="w-full md:w-1/2 justify-center items-center flex text-sm md:text-base text-center">
           <div className="flex justify-center items-center w-1/3">
-            <p>Crear ID de Compu Fenix</p>
+            <p>Crear ID de BranviaTech</p>
           </div>
           <div className="flex justify-center items-center w-1/3">
             <p>Revisa el correo electrónico</p>
@@ -162,7 +162,7 @@ function CrearCuenta() {
           <div className="border-2 border-green-600 rounded-full w-10 h-10 flex justify-center items-center">
             1
           </div>
-          <h2 className="px-2">Crear el ID de Compu-Fenix</h2>
+          <h2 className="px-2">Crear el ID de BranviaTech</h2>
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg shadow-zinc-400 md:px-5 lg:px-20 border border-zinc-200 rounded-lg">

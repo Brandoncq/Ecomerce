@@ -1,6 +1,6 @@
 import ClientCelulares from "./client";
 export const metadata = {
-  title: "Celulares Compu-Fenix",
+  title: "Celulares BranviaTech",
   description: "Compra Celulares a tu comidad desde diversos precios y marcas.",
   openGraph: {
     images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",

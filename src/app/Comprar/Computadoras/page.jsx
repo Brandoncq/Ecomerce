@@ -1,6 +1,6 @@
 import ClientComputadoras from "./client";
 export const metadata = {
-  title: "Computadoras Compu-Fenix",
+  title: "Computadoras BranviaTech",
   description:
     "Compra Computadoras a tu comidad desde diversos precios y marcas.",
   openGraph: {

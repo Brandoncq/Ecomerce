@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Compu-Fenix Ecomerce",
+  title: "BranviaTech Ecomerce",
   description: "Tienda Online de Equipos de Computo",
   openGraph: {
     images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",

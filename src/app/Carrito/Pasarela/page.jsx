@@ -1,7 +1,8 @@
 "use client";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-
+import { useRouter } from "next/navigation";
 function Pasarela() {
+  const router = useRouter();
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 border-t-4 border-zinc-200">
       <div className="text-xl my-4 w-full flex flex-col items-center">
@@ -31,32 +32,34 @@ function Pasarela() {
         </div>
         <div className="text-left w-full mt-3 max-lg:mt-6 flex items-center">
           <div className="border-2 border-green-600 rounded-full w-10 h-10 flex justify-center items-center">
-            3
+            2
           </div>
-          <h2 className="px-2">Verificar la cuenta creada</h2>
+          <h2 className="px-2">Pasarela de Pagos</h2>
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
         <PayPalScriptProvider
           options={{
-            clientId:
-              "ASyAd9c02OdQr7Jyvh95UBztT5fswQU00tEaMSQXhlCo1m2t9nIKObfxwIJ9dXX2Z7Mk6k2XpNZSn07s",
+            clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
           }}
         >
           <PayPalButtons
-            style={{ color: "blue" }}
+            style={{ color: "blue", label: "buynow" }}
             createOrder={async () => {
               const order = await fetch("/api/pasarela/paypal", {
                 method: "POST",
-                body: JSON.stringify({
-                  price: 10,
-                }),
               });
               const res = await order.json();
               return res.id;
             }}
-            onCancel={() => {}}
-            onApprove={() => {}}
+            onCancel={(data) => {
+              console.log(data);
+            }}
+            onApprove={(data, actions) => {
+              console.log(data);
+              actions.order.capture();
+              router.push("/Carrito/Confirmacion");
+            }}
           />
         </PayPalScriptProvider>
       </div>

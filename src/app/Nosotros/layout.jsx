@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Nosotros Compu-Fenix",
+  title: "Nosotros BranviaTech",
   description:
     "Nuestra Tienda Online tiene el objetivo de satisfacer las necesidades del cliente",
   openGraph: {
