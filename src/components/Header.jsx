@@ -22,7 +22,7 @@ function Header() {
     <header
       className={`w-full sticky top-0 z-40 transition-all duration-300 ease-in-out flex flex-col ${
         scrolled
-          ? "bg-zinc-900 text-zinc-200 p-1 md:p-1 lg:p-px xl:px-2"
+          ? "bg-zinc-900 bg-opacity-80 text-zinc-200 p-1 md:p-1 lg:p-px xl:px-2 backdrop-blur"
           : "bg-white text-zinc-800 px-0"
       } ${menuopen ? "" : "h-lvh"}`}
     >
@@ -59,7 +59,7 @@ function Header() {
           href="/"
           className={`p-2 rounded text-2xl font-bold text-white ${
             scrolled
-              ? "bg-zinc-900 hover:bg-white hover:text-black transition-all ease-in-out duration-300"
+              ? "hover:bg-white hover:text-black transition-all ease-in-out duration-300"
               : "bg-blue-700"
           }`}
         >
@@ -120,7 +120,7 @@ function Header() {
             </li>
             <li className="group max-md:border-b-[1px] border-blue-400">
               <Link
-                href="/Comprar/Ofertas"
+                href="/Ofertas"
                 className="block py-2 px-1 rounded hover:text-zinc-400"
                 aria-current="page"
                 onClick={() => setmenu(!menuopen)}

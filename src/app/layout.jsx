@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
               { label: "Comprar", href: "/Comprar" },
               { label: "Nosotros", href: "/Nosotros" },
               { label: "Soporte", href: "/Soporte" },
-              { label: "Ofertas", href: "/Comprar/Ofertas" },
+              { label: "Ofertas", href: "/Ofertas" },
             ]}
           />
         </div>

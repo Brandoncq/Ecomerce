@@ -11,6 +11,7 @@ export async function GET(request) {
   const limit = parseInt(searchParams.get("limit")) || 15;
   const offset = (page - 1) * limit;
   const preciosJson = searchParams.get("precios");
+
   let preciosArray = [];
 
   if (preciosJson && preciosJson !== "") {

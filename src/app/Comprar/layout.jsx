@@ -9,7 +9,7 @@ export const metadata = {
 export default function RootLayout_comprar({ children }) {
   return (
     <>
-      <Nav></Nav>
+      <Nav />
       {children}
     </>
   );

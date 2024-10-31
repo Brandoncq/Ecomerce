@@ -2,7 +2,13 @@
 import { useRouter } from "next/navigation";
 import AgregarCarrito from "./AgregarCarrito";
 import { useEffect, useState } from "react";
-export default function Productos({ filtros, paginaActual, limite, list }) {
+export default function Productos({
+  filtros,
+  paginaActual,
+  setResultados,
+  limite,
+  list,
+}) {
   const router = useRouter();
   const [productos, setProducto] = useState([]);
   const cambiarPagina = async (nuevaPagina) => {
@@ -41,6 +47,12 @@ export default function Productos({ filtros, paginaActual, limite, list }) {
       ...(nuevaPagina ? { page: nuevaPagina } : {}),
     }).toString();
 
+    const queryParamsForUrl = new URLSearchParams(queryParams);
+    queryParamsForUrl.delete("id_categoria_producto");
+    queryParamsForUrl.delete("list");
+    const queryString = queryParamsForUrl.toString();
+    router.push(`?${queryString}`, undefined, { shallow: true });
+
     const url = `/api/producto?${queryParams}`;
 
     const productos_get = await fetch(url).then((res) => res.json());
@@ -57,12 +69,7 @@ export default function Productos({ filtros, paginaActual, limite, list }) {
       });
     });
     setProducto(refinando);
-    const queryParamsForUrl = new URLSearchParams(queryParams);
-
-    queryParamsForUrl.delete("id_categoria_producto");
-    queryParamsForUrl.delete("list");
-
-    router.replace(`?${queryParamsForUrl}`, undefined, { shallow: true });
+    setResultados(refinando.length);
   };
 
   useEffect(() => {

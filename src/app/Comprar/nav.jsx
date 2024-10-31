@@ -6,7 +6,6 @@ export default function Nav() {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
   const menuItems = [
-    { label: "Ofertas", href: "/Comprar/Ofertas" },
     { label: "Laptops", href: "/Comprar/Laptops" },
     { label: "Computadoras", href: "/Comprar/Computadoras" },
     { label: "Tablets", href: "/Comprar/Tablets" },

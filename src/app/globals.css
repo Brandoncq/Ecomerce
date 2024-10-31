@@ -77,3 +77,8 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] { 
   -moz-appearance:textfield; 
 }
+.disabled-checkbox {
+  background-color: #d1d5db; /* Color de fondo más oscuro */
+  border-color: #9ca3af; /* Color de borde más oscuro */
+  cursor: not-allowed;
+}

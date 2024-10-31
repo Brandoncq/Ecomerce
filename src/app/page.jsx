@@ -4,7 +4,7 @@ const slides = [
   {
     id: 1,
     image:
-      "https://images.unsplash.com/photo-1603481546238-487240415921?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     titulo: "BranviaTech",
     frase: "Nuestra Historia",
     text: "Innovando en tecnología, brindando soluciones tecnológicas para mejorar tu experiencia digital.",
@@ -14,22 +14,32 @@ const slides = [
   {
     id: 2,
     image:
-      "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    titulo: "Registrate",
-    frase: "Únete a nuestra comunidad",
-    text: "Accede a ofertas exclusivas y la mejor tecnología al registrarte hoy.",
-    url: "/CrearCuenta/Crear",
-    button: "Crear Cuenta",
-  },
-  {
-    id: 3,
-    image:
       "https://plus.unsplash.com/premium_photo-1661774910035-05257f7d73a6?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     titulo: "Comprar",
     frase: "Encuentra lo que necesitas",
     text: "Explora una amplia gama de productos tecnológicos al mejor precio.",
     url: "/Comprar",
     button: "Comprar ahora",
+  },
+  {
+    id: 3,
+    image:
+      "https://images.unsplash.com/photo-1598870783724-2ecf2e0653b2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    titulo: "Ofertas Especiales",
+    frase: "Aprovecha los mejores descuentos",
+    text: "Descubre una selección de productos tecnológicos con precios reducidos.",
+    url: "/OfertasEspeciales",
+    button: "Ver Ofertas",
+  },
+  {
+    id: 4,
+    image:
+      "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    titulo: "Registrate",
+    frase: "Únete a nuestra comunidad",
+    text: "Accede a ofertas exclusivas y la mejor tecnología al registrarte hoy.",
+    url: "/CrearCuenta/Crear",
+    button: "Crear Cuenta",
   },
 ];
 export default function Home() {

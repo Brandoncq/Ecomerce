@@ -1,15 +1,49 @@
 "use client";
 import Productos from "@/components/Productos";
+import Filtro from "@/components/Filtro";
 import { useState, useEffect } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
-import Filtro from "@/components/Filtro";
-export default function ClientComputadoras() {
+const categoriaMapping = {
+  Laptops: 1,
+  Computadoras: 2,
+  Tablets: 3,
+  Accesorios: 4,
+  Monitores: 5,
+  Celulares: 6,
+};
+
+function buildDynamicFilters(filtros) {
+  return Object.entries(filtros)
+    .map(([key, value]) => {
+      if (Array.isArray(value) && value.length > 0) {
+        const isRange =
+          value[0] &&
+          typeof value[0] === "object" &&
+          "min" in value[0] &&
+          "max" in value[0];
+        if (isRange) {
+          return `${key}=${value
+            .map(({ min, max }) => `${min}-${max}`)
+            .join(",")}`;
+        }
+        return `${key}=${value.join(",")}`;
+      } else if (!Array.isArray(value) && value) {
+        return `${key}=${value}`;
+      }
+      return null;
+    })
+    .filter(Boolean)
+    .join("&");
+}
+
+export default function ClientLaptops({ params }) {
   const [menufiltro, setMenuFiltro] = useState(true);
   const [filtros, setFiltros] = useState({
-    id_categoria_producto: 2,
+    id_categoria_producto: categoriaMapping[params],
     precios: [],
     modelos: [],
   });
+  const [count, setCount] = useState({});
   const [list, setList] = useState("ASC");
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -22,23 +56,43 @@ export default function ClientComputadoras() {
     const initialLimit = searchParams.get("limit");
     return initialLimit ? parseInt(initialLimit) : "";
   });
+  const [resultados, setResultados] = useState(0);
+  const [totalPaginas, setTotalPaginas] = useState(1);
+  const preciosOptions = [
+    { min: 1200.0, max: 1799.0 },
+    { min: 1800.0, max: 2399.0 },
+    { min: 2400.0, max: 3999.0 },
+  ];
+  const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
   useEffect(() => {
-    const preciosJson = searchParams.get("precios");
-    const modelosJson = searchParams.get("modelos");
+    setTotalPaginas(Math.ceil(resultados / (limite || 15)));
+  }, [resultados, limite]);
+  useEffect(() => {
+    const updatedFiltros = { ...filtros };
 
-    if (preciosJson) {
-      const preciosArray = preciosJson.split(",").map((priceRange) => {
-        const [min, max] = priceRange.split("-").map(Number);
-        return { min, max };
+    searchParams.forEach((value, key) => {
+      if (key === "id_categoria_producto") return;
+
+      // Check if the value follows the numeric range pattern
+      const isIntervalFormat = value.split(",").every((item) => {
+        const parts = item.split("-");
+        return parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1]);
       });
-      setFiltros((prevFiltros) => ({ ...prevFiltros, precios: preciosArray }));
-    }
 
-    if (modelosJson) {
-      const modelosArray = modelosJson
-        .split(",")
-        .map((modelo) => decodeURIComponent(modelo).trim());
-      setFiltros((prevFiltros) => ({ ...prevFiltros, modelos: modelosArray }));
+      if (isIntervalFormat) {
+        updatedFiltros[key] = value.split(",").map((range) => {
+          const [min, max] = range.split("-").map(Number);
+          return { min, max };
+        });
+      } else {
+        updatedFiltros[key] = value
+          .split(",")
+          .map((item) => decodeURIComponent(item).trim());
+      }
+    });
+
+    if (JSON.stringify(filtros) !== JSON.stringify(updatedFiltros)) {
+      setFiltros(updatedFiltros);
     }
   }, [searchParams]);
 
@@ -86,6 +140,7 @@ export default function ClientComputadoras() {
     const newUrl = `${pathname}?${newQuery.toString()}`;
     window.history.pushState({}, "", newUrl);
   };
+
   const handleLimitChange = (newLimit) => {
     const parsedNewLimit =
       parseInt(newLimit, 10) == "" ? 15 : parseInt(newLimit, 10);
@@ -104,13 +159,6 @@ export default function ClientComputadoras() {
     window.history.pushState({}, "", newUrl);
   };
 
-  const preciosOptions = [
-    { min: 1200.0, max: 1799.0 },
-    { min: 1800.0, max: 2399.0 },
-    { min: 2400.0, max: 3999.0 },
-  ];
-  const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
-
   const handleCheckboxChange = (type, option, event) => {
     const isRange =
       option.hasOwnProperty("min") && option.hasOwnProperty("max");
@@ -126,12 +174,33 @@ export default function ClientComputadoras() {
       return { ...prevFiltros, [type]: updatedOptions };
     });
   };
+
+  const conteofiltros = async () => {
+    try {
+      const filtros = {
+        precios: preciosOptions,
+        modelos: modelosOptions,
+        id_categoria_producto: categoriaMapping[params],
+      };
+
+      const queryParams = buildDynamicFilters(filtros);
+      const url = `/api/filtros?${queryParams}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setCount(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    conteofiltros();
+  }, []);
   return (
     <div className="w-full flex flex-wrap">
       <div className="w-full flex flex-wrap justify-center items-center bg-black max-lg:py-2 px-2 md:px-10">
         <div className="lg:hidden w-full flex justify-between items-center max-md:px-2">
           <div className="text-white flex items-center justify-center">
-            <p>{"105 Resultados"}</p>
+            <p>{resultados} Resultados</p>
           </div>
           <div
             className="p-2 flex justify-center items-center transition-all ease-in-out duration-300 hover:bg-slate-300 border-2 border-white bg-white rounded-lg cursor-pointer"
@@ -162,7 +231,9 @@ export default function ClientComputadoras() {
               </svg>
               <p>
                 Odenar y Filtros{" "}
-                {filtros.precios.length + filtros.modelos.length}
+                {Object.keys(filtros)
+                  .filter((key) => key !== "id_categoria_producto")
+                  .reduce((total, key) => total + filtros[key].length, 0)}
               </p>
             </div>
           </div>
@@ -170,13 +241,16 @@ export default function ClientComputadoras() {
         <div className="max-lg:hidden w-full flex flex-wrap items-center">
           <div className="w-full lg:w-1/3 flex max-lg:justify-center">
             <p className="text-white">
-              {filtros.precios.length + filtros.modelos.length} Filtros
-              Aplicados
+              {Object.keys(filtros)
+                .filter((key) => key !== "id_categoria_producto")
+                .reduce((total, key) => total + filtros[key].length, 0)}{" "}
+              Filtros Aplicados
             </p>
           </div>
           <div className="w-full lg:w-1/3 flex justify-center">
             <p className="text-white">
-              {limite == "" ? 15 : limite} de 34 Resultados
+              {resultados < (limite || 15) ? resultados : limite || 15} de{" "}
+              {resultados} Resultados
             </p>{" "}
           </div>
           <div className="w-full lg:w-1/3 flex flex-wrap items-center justify-end max-lg:justify-center">
@@ -262,16 +336,20 @@ export default function ClientComputadoras() {
             label="PRECIO"
             options={preciosOptions}
             isRange={true}
+            count={count.precios}
             selectedOptions={filtros.precios}
             handleChange={(option, event) =>
               handleCheckboxChange("precios", option, event)
             }
-            formatOption={(min, max) => `S/ ${min} a S/ ${max}`}
+            formatOption={(min, max) =>
+              `S/.${min.toFixed(2)} a S/.${max.toFixed(2)}`
+            }
           />
           <Filtro
             label="MODELO"
             options={modelosOptions}
             isRange={false}
+            count={count.modelos}
             selectedOptions={filtros.modelos}
             handleChange={(option, event) =>
               handleCheckboxChange("modelos", option, event)
@@ -285,6 +363,7 @@ export default function ClientComputadoras() {
           paginaActual={paginaActual}
           limite={limite}
           list={list}
+          setResultados={setResultados}
         />
       </div>
       <div className="w-full flex justify-center mb-10">
@@ -292,56 +371,33 @@ export default function ClientComputadoras() {
           <ul className="inline-flex -space-x-px text-xl p-2">
             <li>
               <a
-                onClick={() => handlePageChange(paginaActual - 1)}
+                onClick={() => handlePageChange(Math.max(1, paginaActual - 1))}
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
               >
                 <p className="flex items-center -rotate-90 lg:hidden">▲</p>
                 <p className="max-lg:hidden">Anterior</p>
               </a>
             </li>
+
+            {Array.from({ length: totalPaginas }, (_, index) => (
+              <li key={index + 1}>
+                <a
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer ${
+                    paginaActual === index + 1
+                      ? "bg-gray-300 text-gray-700"
+                      : ""
+                  }`}
+                >
+                  {index + 1}
+                </a>
+              </li>
+            ))}
             <li>
               <a
-                onClick={() => handlePageChange(1)}
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-              >
-                1
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => handlePageChange(2)}
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-              >
-                2
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => handlePageChange(3)}
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-              >
-                3
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => handlePageChange(4)}
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-              >
-                4
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => handlePageChange(5)}
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-              >
-                5
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => handlePageChange(paginaActual + 1)}
+                onClick={() =>
+                  handlePageChange(Math.min(totalPaginas, paginaActual + 1))
+                }
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
               >
                 <p className="flex items-center rotate-90 lg:hidden">▲</p>
