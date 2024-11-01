@@ -88,7 +88,7 @@ function Carrito() {
           viewBox="0 0 100 100"
           className={`w-10 h-10 p-1 ${
             scrolled
-              ? "fill-zinc-200 hover:fill-blue-400"
+              ? "fill-zinc-900 md:fill-zinc-200 hover:fill-blue-400"
               : "fill-zinc-900 hover:fill-blue-600"
           }`}
         >

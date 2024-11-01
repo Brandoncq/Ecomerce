@@ -207,7 +207,7 @@ export default function ClientLaptops({ params }) {
             </p>
           </div>
           <div
-            className="p-2 flex justify-center items-center transition-all ease-in-out duration-300 hover:bg-slate-300 border-2 border-white bg-white rounded-lg cursor-pointer"
+            className="p-2 flex justify-center items-center transition-all ease-in-out duration-300 hover:bg-slate-300 border-2 border-white hover:border-slate-300  bg-white rounded-lg cursor-pointer"
             onClick={() => {
               setMenuFiltro(!menufiltro);
             }}

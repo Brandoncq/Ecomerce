@@ -56,7 +56,7 @@ export default function Comprar() {
   return (
     <>
       <div className="w-full flex flex-col h-lvh">
-        <div className="w-full h-full md:h-[90%]">
+        <div className="w-full h-[90%]">
           <Carousel slides={slides} />
         </div>
         <div className="w-full md:h-[10%] mt-8">

@@ -107,7 +107,7 @@ function Autenticacion() {
               height="128"
               version="1"
               viewBox="0 0 96 96"
-              className={`w-10 h-10 p-1`}
+              className={`w-10 h-10 p-1 max-md:fill-black`}
             >
               <g>
                 <path
@@ -125,7 +125,7 @@ function Autenticacion() {
       </button>
       {showDropdown && (
         <ul
-          className={`absolute top-full right-0 bg-blue-600 mt-2 shadow-lg p-2 rounded w-32`}
+          className={`absolute top-full right-0 bg-blue-600 mt-2 shadow-lg p-2 rounded w-32 z-50`}
         >
           {isLoggedIn ? (
             <>
