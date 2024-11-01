@@ -91,7 +91,6 @@ export default function ClientLaptops({ params }) {
           .map((item) => decodeURIComponent(item).trim());
       }
     });
-    console.log(updatedFiltros);
     if (JSON.stringify(filtros) !== JSON.stringify(updatedFiltros)) {
       setFiltros(updatedFiltros);
     }

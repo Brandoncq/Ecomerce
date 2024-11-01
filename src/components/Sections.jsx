@@ -8,7 +8,6 @@ function Sections({ menuItems }) {
 
   useEffect(() => {
     const currentPath = pathname;
-    console.log(currentPath);
     const newIndex = menuItems.findIndex((item) =>
       currentPath.startsWith(item.href)
     );
@@ -16,9 +15,6 @@ function Sections({ menuItems }) {
     setSelectedIndex(newIndex !== -1 ? newIndex : null);
   }, [pathname, menuItems]);
 
-  const handleClick = (index) => {
-    setSelectedIndex(index);
-  };
   return (
     <nav className="w-full mb-1.5">
       <div className="w-full px-5 flex flex-wrap items-center mx-auto md:space-x-4">

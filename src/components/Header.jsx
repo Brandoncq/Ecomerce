@@ -33,7 +33,7 @@ function Header() {
             onClick={() => setmenu(!menuopen)}
           >
             <h3
-              className={`text-black text-3xl hover:bg-zinc-600 hover:text-zinc-200 rounded-lg w-full text-center transition-all duration-300 transform ${
+              className={`text-black text-3xl rounded-lg w-full text-center transition-all duration-300 transform ${
                 !menuopen ? "scale-0 opacity-0" : "scale-100 opacity-100"
               }`}
             >
@@ -133,7 +133,7 @@ function Header() {
               <div className="w-ful flex justify-between">
                 <Link
                   href="/Comprar"
-                  className="block py-2 px-1 rounded hover:text-zinc-800"
+                  className="block py-2 px-1 rounded hover:text-zinc-800 flex-grow"
                   aria-current="page"
                   onClick={() => setmenu(!menuopen)}
                 >
