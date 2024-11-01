@@ -73,7 +73,6 @@ export default function ClientLaptops({ params }) {
     searchParams.forEach((value, key) => {
       if (key === "id_categoria_producto") return;
 
-      // Check if the value follows the numeric range pattern
       const isIntervalFormat = value.split(",").every((item) => {
         const parts = item.split("-");
         return parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1]);

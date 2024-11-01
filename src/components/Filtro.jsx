@@ -4,7 +4,7 @@ export default function Filtro({
   label,
   options,
   isRange,
-  count = [], // Valor predeterminado como array vacío
+  count = [],
   selectedOptions,
   handleChange,
   formatOption,
@@ -42,7 +42,7 @@ export default function Filtro({
                       )
                     : selectedOptions.includes(option)
                 }
-                className={`w-6 h-6 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 ${
+                className={`w-6 h-6 text-blue-600 border-gray-300 rounded focus:ring-blue-600 ${
                   isDisabled ? "bg-black" : "bg-gray-100 cursor-pointer"
                 }`}
               />
@@ -59,7 +59,6 @@ export default function Filtro({
                   : option}
               </label>
               <p>{count[index]?.total ?? 0}</p>{" "}
-              {/* Muestra 0 si count[index] es undefined */}
             </div>
           </div>
         );
