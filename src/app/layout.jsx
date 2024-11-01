@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Sections from "@/components/Sections";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -39,7 +40,10 @@ export default function RootLayout({ children }) {
             ]}
           />
         </div>
-        <main>{children}</main>
+        <main>
+          {children}
+          <ScrollToTopButton />
+        </main>
         <Footer />
       </body>
     </html>

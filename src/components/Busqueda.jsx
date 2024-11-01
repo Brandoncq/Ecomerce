@@ -72,7 +72,7 @@ function Busqueda() {
 
   return (
     <form
-      className="w-full max-w-lg mx-auto max-lg:order-last max-lg:mt-3"
+      className="w-full max-w-lg mx-auto max-lg:order-last max-md:mt-3"
       onSubmit={(e) => e.preventDefault()}
     >
       <div className="relative" ref={suggestionsRef}>
@@ -102,7 +102,7 @@ function Busqueda() {
             setQuery(e.target.value);
             setSelectedIndex(-1);
           }}
-          onKeyDown={handleKeyDown} // Manejar las teclas de flecha y Enter
+          onKeyDown={handleKeyDown}
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
           placeholder="¿Qué estás buscando?"
           required

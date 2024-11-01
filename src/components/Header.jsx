@@ -20,14 +20,14 @@ function Header() {
 
   return (
     <header
-      className={`w-full sticky top-0 z-40 transition-all duration-300 ease-in-out flex flex-col ${
+      className={`w-full md:sticky top-0 z-40 transition-all duration-300 ease-in-out flex flex-col ${
         scrolled
-          ? "bg-zinc-900 lg:bg-opacity-80 text-zinc-200 p-px lg:p-px xl:px-2 lg:backdrop-blur"
-          : "bg-white text-zinc-800 px-0"
+          ? "bg-zinc-900 lg:bg-opacity-80 text-zinc-200 p-px lg:p-px xl:px-2 lg:backdrop-blur lg:py-1.5 py-2"
+          : "bg-white text-zinc-800 px-0 py-2"
       } ${menuopen ? "" : "h-lvh"}`}
     >
-      <div className="w-full px-3 lg:px-5 flex flex-wrap items-center justify-between pt-2 pb-2">
-        <div className="flex flex-row items-center">
+      <div className="w-full px-3 lg:px-5 flex flex-wrap items-center justify-between">
+        <div className="flex flex-row items-center max-md:space-x-10">
           <div
             className="w-8 h-8 flex justify-center items-center cursor-pointer md:hidden"
             onClick={() => setmenu(!menuopen)}
@@ -58,7 +58,7 @@ function Header() {
           </div>
           <Link
             href="/"
-            className={`p-2 rounded text-2xl font-bold text-white ${
+            className={`p-2 rounded text-gl lg:text-2xl font-bold text-white ${
               scrolled
                 ? "hover:bg-white hover:text-black transition-all ease-in-out duration-300"
                 : "bg-blue-700"
@@ -68,7 +68,7 @@ function Header() {
           </Link>
         </div>
         <div
-          className={`flex-grow max-w-full lg:mx-3 max-lg:order-last flex transition-all ease-in-out duration-300 ${
+          className={`flex-grow max-w-full lg:mx-3 max-md:order-last flex transition-all ease-in-out duration-300 ${
             !menuopen
               ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
               : "translate-x-0"

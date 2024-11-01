@@ -1,6 +1,8 @@
 "use client";
 import Productos from "@/components/Productos";
 import Filtro from "@/components/Filtro";
+import LimitSelector from "@/components/LimitSelector";
+import Pagination from "@/components/Pagination";
 import { useState, useEffect } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 const categoriaMapping = {
@@ -69,10 +71,10 @@ export default function ClientLaptops({ params }) {
   }, [resultados, limite]);
   useEffect(() => {
     const updatedFiltros = { ...filtros };
-
+    const excludedParams = ["page", "limit"];
     searchParams.forEach((value, key) => {
       if (key === "id_categoria_producto") return;
-
+      if (excludedParams.includes(key)) return;
       const isIntervalFormat = value.split(",").every((item) => {
         const parts = item.split("-");
         return parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1]);
@@ -89,7 +91,7 @@ export default function ClientLaptops({ params }) {
           .map((item) => decodeURIComponent(item).trim());
       }
     });
-
+    console.log(updatedFiltros);
     if (JSON.stringify(filtros) !== JSON.stringify(updatedFiltros)) {
       setFiltros(updatedFiltros);
     }
@@ -196,7 +198,7 @@ export default function ClientLaptops({ params }) {
   }, []);
   return (
     <div className="w-full flex flex-wrap">
-      <div className="w-full flex flex-wrap justify-center items-center bg-black max-lg:py-2 px-2 md:px-10">
+      <div className="w-full flex flex-wrap justify-center items-center bg-black max-lg:py-2 px-2 md:px-5">
         <div className="lg:hidden w-full flex justify-between items-center max-md:px-2">
           <div className="text-white flex items-center justify-center">
             <p>
@@ -257,41 +259,17 @@ export default function ClientLaptops({ params }) {
           </div>
           <div className="w-full lg:w-1/3 flex flex-wrap items-center justify-end max-lg:justify-center">
             <div className="w-full flex flex-wrap items-center">
-              <div className="w-full lg:w-1/2 flex justify-center items-center">
+              <div className="w-full lg:w-2/5 flex justify-center items-center">
                 <p className="text-white">Vista</p>
-                <nav aria-label="w-full">
-                  <ul className="inline-flex -space-x-px text-sm p-2">
-                    <li>
-                      <a
-                        onClick={() => handleLimitChange(15)}
-                        className="flex items-center justify-center px-3 h-8 leading-tight text-white border-l border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-                      >
-                        15
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => handleLimitChange(24)}
-                        className="flex items-center justify-center px-3 h-8 leading-tight text-white border-l border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-                      >
-                        24
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => handleLimitChange(36)}
-                        className="flex items-center justify-center px-3 h-8 leading-tight text-white border-l border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-                      >
-                        36
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+                <LimitSelector
+                  options={[15, 24, 36]}
+                  onLimitChange={handleLimitChange}
+                />
               </div>
-              <div className="w-full lg:w-1/2 flex items-center text-white pl-2">
+              <div className="w-full lg:w-3/5 flex items-center text-white pl-2">
                 <select
                   id="underline_select"
-                  className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
+                  className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-sm font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
                   value={list}
                   onChange={(e) => {
                     setList(e.target.value);
@@ -324,14 +302,14 @@ export default function ClientLaptops({ params }) {
           <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4 lg:hidden">
             <select
               id="underline_select"
-              className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-md font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
+              className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-sm font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
               value={list}
               onChange={(e) => {
                 setList(e.target.value);
               }}
             >
-              <option value="ASC">Ordenar | Precio: Menor a Mayor</option>
-              <option value="DESC">Ordenar | Precio: Mayor a Menor</option>
+              <option value="ASC">Ordenar Precio | Menor a Mayor</option>
+              <option value="DESC">Ordenar Precio | Mayor a Menor</option>
             </select>
           </div>
           <Filtro
@@ -359,7 +337,7 @@ export default function ClientLaptops({ params }) {
           />
         </div>
       </div>
-      <div className="w-full lg:w-3/4 md:px-5">
+      <div className="w-full lg:w-3/4 md:px-2">
         <Productos
           filtros={filtros}
           paginaActual={paginaActual}
@@ -369,45 +347,11 @@ export default function ClientLaptops({ params }) {
         />
       </div>
       <div className="w-full flex justify-center mb-10">
-        <nav aria-label="w-full">
-          <ul className="inline-flex -space-x-px text-xl p-2">
-            <li>
-              <a
-                onClick={() => handlePageChange(Math.max(1, paginaActual - 1))}
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-              >
-                <p className="flex items-center -rotate-90 lg:hidden">▲</p>
-                <p className="max-lg:hidden">Anterior</p>
-              </a>
-            </li>
-
-            {Array.from({ length: totalPaginas }, (_, index) => (
-              <li key={index + 1}>
-                <a
-                  onClick={() => handlePageChange(index + 1)}
-                  className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer ${
-                    paginaActual === index + 1
-                      ? "bg-gray-300 text-gray-700"
-                      : ""
-                  }`}
-                >
-                  {index + 1}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a
-                onClick={() =>
-                  handlePageChange(Math.min(totalPaginas, paginaActual + 1))
-                }
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
-              >
-                <p className="flex items-center rotate-90 lg:hidden">▲</p>
-                <p className="max-lg:hidden">Siguiente</p>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Pagination
+          totalPaginas={totalPaginas}
+          paginaActual={paginaActual}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </div>
   );
