@@ -22,49 +22,51 @@ function Header() {
     <header
       className={`w-full sticky top-0 z-40 transition-all duration-300 ease-in-out flex flex-col ${
         scrolled
-          ? "bg-zinc-900 bg-opacity-80 text-zinc-200 p-1 md:p-1 lg:p-px xl:px-2 backdrop-blur"
+          ? "bg-zinc-900 lg:bg-opacity-80 text-zinc-200 p-px lg:p-px xl:px-2 lg:backdrop-blur"
           : "bg-white text-zinc-800 px-0"
       } ${menuopen ? "" : "h-lvh"}`}
     >
-      <div className="w-full px-5 flex flex-wrap items-center justify-between pt-2 pb-2">
-        <div
-          className="w-8 h-8 flex justify-center items-center cursor-pointer md:hidden"
-          onClick={() => setmenu(!menuopen)}
-        >
-          <h3
-            className={`text-3xl hover:bg-zinc-600 hover:text-zinc-200 rounded-lg w-full text-center transition-all duration-300 transform ${
-              !menuopen ? "scale-0 opacity-0" : "scale-100 opacity-100"
-            } ${scrolled ? "text-white" : "text-black"}`}
+      <div className="w-full px-3 lg:px-5 flex flex-wrap items-center justify-between pt-2 pb-2">
+        <div className="flex flex-row items-center">
+          <div
+            className="w-8 h-8 flex justify-center items-center cursor-pointer md:hidden"
+            onClick={() => setmenu(!menuopen)}
           >
-            &equiv;
-          </h3>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="128"
-            height="128"
-            viewBox="0 0 96 96"
-            className={`w-8 h-8 absolute transition-all duration-300 transform ${
-              !menuopen ? "scale-100 opacity-100" : "scale-0 opacity-0"
-            } ${
-              scrolled ? "fill-white stroke-white" : "fill-black stroke-black"
+            <h3
+              className={`text-3xl hover:bg-zinc-600 hover:text-zinc-200 rounded-lg w-full text-center transition-all duration-300 transform ${
+                !menuopen ? "scale-0 opacity-0" : "scale-100 opacity-100"
+              } ${scrolled ? "text-white" : "text-black"}`}
+            >
+              &equiv;
+            </h3>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="128"
+              height="128"
+              viewBox="0 0 96 96"
+              className={`w-8 h-8 absolute transition-all duration-300 transform ${
+                !menuopen ? "scale-100 opacity-100" : "scale-0 opacity-0"
+              } ${
+                scrolled ? "fill-white stroke-white" : "fill-black stroke-black"
+              }`}
+            >
+              <path
+                d="M273 764c-31-13-12-65 62-168 41-57 75-108 75-113s-36-60-80-122c-80-114-90-137-68-159 35-35 69-8 168 136 23 34 44 62 46 62s35-45 74-101c40-55 78-103 86-106s25-2 39 1c46 12 33 52-55 174l-80 111 85 117c47 64 85 124 85 133 0 25-20 41-50 41-22 0-38-17-99-105-39-58-75-105-79-104-4 0-38 46-77 102-70 102-91 118-132 101z"
+                transform="matrix(.1 0 0 -.1 0 96)"
+              ></path>
+            </svg>
+          </div>
+          <Link
+            href="/"
+            className={`p-2 rounded text-2xl font-bold text-white ${
+              scrolled
+                ? "hover:bg-white hover:text-black transition-all ease-in-out duration-300"
+                : "bg-blue-700"
             }`}
           >
-            <path
-              d="M273 764c-31-13-12-65 62-168 41-57 75-108 75-113s-36-60-80-122c-80-114-90-137-68-159 35-35 69-8 168 136 23 34 44 62 46 62s35-45 74-101c40-55 78-103 86-106s25-2 39 1c46 12 33 52-55 174l-80 111 85 117c47 64 85 124 85 133 0 25-20 41-50 41-22 0-38-17-99-105-39-58-75-105-79-104-4 0-38 46-77 102-70 102-91 118-132 101z"
-              transform="matrix(.1 0 0 -.1 0 96)"
-            ></path>
-          </svg>
+            BranviaTech
+          </Link>
         </div>
-        <Link
-          href="/"
-          className={`p-2 rounded text-2xl font-bold text-white ${
-            scrolled
-              ? "hover:bg-white hover:text-black transition-all ease-in-out duration-300"
-              : "bg-blue-700"
-          }`}
-        >
-          BranviaTech
-        </Link>
         <div
           className={`flex-grow max-w-full lg:mx-3 max-lg:order-last flex transition-all ease-in-out duration-300 ${
             !menuopen

@@ -200,7 +200,10 @@ export default function ClientLaptops({ params }) {
       <div className="w-full flex flex-wrap justify-center items-center bg-black max-lg:py-2 px-2 md:px-10">
         <div className="lg:hidden w-full flex justify-between items-center max-md:px-2">
           <div className="text-white flex items-center justify-center">
-            <p>{resultados} Resultados</p>
+            <p>
+              {resultados < (limite || 15) ? resultados : limite || 15} de{" "}
+              {resultados} Resultados
+            </p>
           </div>
           <div
             className="p-2 flex justify-center items-center transition-all ease-in-out duration-300 hover:bg-slate-300 border-2 border-white bg-white rounded-lg cursor-pointer"
