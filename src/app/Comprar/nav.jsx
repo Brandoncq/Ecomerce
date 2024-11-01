@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 export default function Nav() {
   const [selectedIndex, setSelectedIndex] = useState(null);
-
+  const pathname = usePathname();
   const menuItems = [
     { label: "Laptops", href: "/Comprar/Laptops" },
     { label: "Computadoras", href: "/Comprar/Computadoras" },
@@ -13,7 +13,12 @@ export default function Nav() {
     { label: "Monitores", href: "/Comprar/Monitores" },
     { label: "Celulares", href: "/Comprar/Celulares" },
   ];
-
+  const getIndexByPathname = () => {
+    return menuItems.findIndex((item) => item.href === pathname);
+  };
+  useEffect(() => {
+    setSelectedIndex(getIndexByPathname);
+  }, [pathname]);
   return (
     <nav className="w-full bg-zinc-200 max-md:hidden">
       <div className="w-full px-5 flex flex-wrap items-center mx-auto pt-1 lg:pb-2">
@@ -26,7 +31,7 @@ export default function Nav() {
               <li
                 key={index}
                 className="group max-md:border-b-2 border-zinc-400"
-                onClick={() => setSelectedIndex(index)} // Cambia el índice seleccionado al hacer clic
+                onClick={() => setSelectedIndex(index)}
               >
                 <Link
                   href={item.href}
