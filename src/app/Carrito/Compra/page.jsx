@@ -21,6 +21,7 @@ function CarritoCompra() {
   const getcart = async () => {
     const response = await fetch("/api/carrito");
     const data = await response.json();
+    console.log(data);
     setCartItems(data);
   };
   const evaluar = async () => {

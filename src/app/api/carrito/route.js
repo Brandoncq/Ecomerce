@@ -43,7 +43,7 @@ export async function GET(request) {
           return {
             id_producto: item.id_producto,
             cantidad: item.cantidad,
-            precio: producto ? producto.precio_unitario * item.cantidad : null,
+            precio: producto ? producto.precio_unitario : null,
             nombre: producto ? producto.nombre_producto : null,
             modelo: producto ? producto.modelo : null,
             stock: producto ? producto.stock : null,
@@ -334,7 +334,6 @@ export async function PUT(request) {
         );
       }
     } else {
-      // Manejo de carrito sin sesión (cookies)
       const CarritoCookie = request.cookies.get("Carrito");
       let carrito = [];
       if (CarritoCookie) {

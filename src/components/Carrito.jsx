@@ -187,7 +187,9 @@ function Carrito() {
                             className="w-full"
                             href={"/Buscar/" + item.nombre}
                           >
-                            <h3 className="font-semibold">S/.{item.precio}</h3>{" "}
+                            <h3 className="font-semibold">
+                              S/.{item.precio * item.cantidad}
+                            </h3>{" "}
                           </Link>
                           <div className="flex items-center">
                             <h3 className="border border-zinc-400 px-2 py-1 rounded">
