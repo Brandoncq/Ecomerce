@@ -28,7 +28,7 @@ const slides = [
     titulo: "Ofertas Especiales",
     frase: "Aprovecha los mejores descuentos",
     text: "Descubre una selección de productos tecnológicos con precios reducidos.",
-    url: "/OfertasEspeciales",
+    url: "/Ofertas",
     button: "Ver Ofertas",
   },
   {
