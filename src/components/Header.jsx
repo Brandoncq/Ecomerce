@@ -170,41 +170,21 @@ function Header() {
               <ul className="flex flex-col pl-4">
                 <li className="group max-md:border-b-[1px] border-zinc-600">
                   <Link
-                    href="/Comprar/Laptops"
+                    href="/Comprar/LaptopsGamer"
                     className="block py-2 px-1 rounded hover:text-zinc-800"
                     onClick={() => setmenu(!menuopen)}
                   >
-                    Laptops
+                    Laptops Gamer
                   </Link>
                   <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
                 </li>
                 <li className="group max-md:border-b-[1px] border-zinc-600">
                   <Link
-                    href="/Comprar/Computadoras"
+                    href="/Comprar/LaptopsOficina"
                     className="block py-2 px-1 rounded hover:text-zinc-800"
                     onClick={() => setmenu(!menuopen)}
                   >
-                    Computadoras
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/Tablets"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Tablets
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/Accesorios"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Accesorios de Software
+                    Laptops de Oficina
                   </Link>
                   <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
                 </li>
@@ -215,6 +195,26 @@ function Header() {
                     onClick={() => setmenu(!menuopen)}
                   >
                     Monitores
+                  </Link>
+                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
+                </li>
+                <li className="group max-md:border-b-[1px] border-zinc-600">
+                  <Link
+                    href="/Comprar/Impresoras"
+                    className="block py-2 px-1 rounded hover:text-zinc-800"
+                    onClick={() => setmenu(!menuopen)}
+                  >
+                    Impresoras
+                  </Link>
+                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
+                </li>
+                <li className="group max-md:border-b-[1px] border-zinc-600">
+                  <Link
+                    href="/Comprar/Perifericos"
+                    className="block py-2 px-1 rounded hover:text-zinc-800"
+                    onClick={() => setmenu(!menuopen)}
+                  >
+                    Perifericos
                   </Link>
                   <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
                 </li>

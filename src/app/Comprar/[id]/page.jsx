@@ -7,11 +7,11 @@ export const metadata = {
   },
 };
 const categoriaBanner = {
-  Laptops: "Laptops BranviaTech: Tu compañera para todos los días",
-  Computadoras: "Computadoras de Escritorio y All in One",
-  Tablets: "Tablets: Potencia y versatilidad en un solo dispositivo",
-  Accesorios: "Accesorios para computadoras, laptops y Software",
-  Monitores: "Monitores: Mejora tu experiencia visual con nuestra selección.",
+  LaptopsGamer: "Laptops BranviaTech: Tu compañera para todos los días",
+  LaptopsOficina: "Computadoras de Escritorio y All in One",
+  Monitores: "Tablets: Potencia y versatilidad en un solo dispositivo",
+  Impresoras: "Accesorios para computadoras, laptops y Software",
+  Perifericos: "Monitores: Mejora tu experiencia visual con nuestra selección.",
   Celulares: "Celulares: La tecnología que necesitas, siempre a tu alcance.",
 };
 export const Laptops = async ({ params }) => {

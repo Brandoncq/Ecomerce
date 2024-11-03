@@ -6,11 +6,11 @@ export default function Nav() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const pathname = usePathname();
   const menuItems = [
-    { label: "Laptops", href: "/Comprar/Laptops" },
-    { label: "Computadoras", href: "/Comprar/Computadoras" },
-    { label: "Tablets", href: "/Comprar/Tablets" },
-    { label: "Accesorios de Software", href: "/Comprar/Accesorios" },
+    { label: "Laptops Gamer", href: "/Comprar/LaptopsGamer" },
+    { label: "Laptops de Oficina", href: "/Comprar/LaptopsOficina" },
     { label: "Monitores", href: "/Comprar/Monitores" },
+    { label: "Impresoras", href: "/Comprar/Impresoras" },
+    { label: "Perifericos", href: "/Comprar/Perifericos" },
     { label: "Celulares", href: "/Comprar/Celulares" },
   ];
   const getIndexByPathname = () => {
