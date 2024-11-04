@@ -151,7 +151,7 @@ export default function SoporteClient() {
               </div>{" "}
               <div className="w-full flex">
                 <Link
-                  href="/Comprar/Perifericos"
+                  href="/Comprar/Monitores"
                   className="text-blue-500 hover:text-blue-700 underline underline-offset-2 my-3"
                 >
                   SVG Monitores
