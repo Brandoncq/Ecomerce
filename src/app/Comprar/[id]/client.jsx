@@ -61,16 +61,15 @@ export default function ClientLaptops({ params }) {
   const [resultados, setResultados] = useState(0);
   const [totalPaginas, setTotalPaginas] = useState(1);
   const preciosOptions = [
-    { min: 10.0, max: 99.9 },
-    { min: 100.0, max: 599.9 },
+    { min: 1.0, max: 599.9 },
     { min: 600.0, max: 1199.9 },
     { min: 1200.0, max: 1799.9 },
     { min: 1800.0, max: 2399.9 },
     { min: 2400.0, max: 3999.9 },
-    { min: 4000.0, max: 5390.9 },
-    { min: 5400.0, max: 6399.9 },
-    { min: 6400.0, max: 8999.9 },
-    { min: 9000.0, max: 12000.9 },
+    { min: 4000.0, max: 4999.9 },
+    { min: 5000.0, max: 9999.9 },
+    { min: 10000.0, max: 14999.9 },
+    { min: 15000.0, max: 19999.9 },
   ];
   const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
   useEffect(() => {

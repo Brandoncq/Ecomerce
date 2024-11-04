@@ -65,7 +65,7 @@ export default function Comprar() {
           </h2>
         </div>
       </div>
-      <div className="w-full flex flex-wrap justify-center px-4 md:px-5 lg;px-10 mb-5 md:mb-10">
+      {/*<div className="w-full flex flex-wrap justify-center px-4 md:px-5 lg;px-10 mb-5 md:mb-10">
         <div className="w-1/3 md:w-1/5 xl:w-[14.25%] p-2 lg:px-10 flex flex-col justify-center items-center">
           <Link
             href="/Comprar/Computadoras"
@@ -271,7 +271,7 @@ export default function Comprar() {
             </h3>
           </Link>
         </div>
-      </div>
+      </div>*/}
     </>
   );
 }
