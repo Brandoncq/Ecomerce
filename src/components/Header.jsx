@@ -68,7 +68,7 @@ function Header() {
         <div
           className={`m-0 md:mx-2 lg:m-0 flex-grow max-w-full lg:mx-3 max-md:order-last flex transition-all ease-in-out duration-300 z-30 ${
             !menuopen
-              ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0"
+              ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
               : "translate-x-0"
           }`}
         >
