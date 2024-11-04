@@ -96,7 +96,7 @@ export default function SoporteClient() {
             <div className="relative z-0 w-full mt-6 mb-4 group">
               <input
                 type="search"
-                id="default-search"
+                id="default-serie"
                 className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
                 placeholder="Ejepmlos: HUdawkjhop986V"
                 required

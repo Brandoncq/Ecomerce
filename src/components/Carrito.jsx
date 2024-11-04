@@ -101,7 +101,7 @@ function Carrito() {
 
       {cartItems.length > 0 && (
         <span
-          className="absolute top-0 right-0 flex h-5 w-5 cursor-pointer select-none"
+          className="absolute top-0 right-0 flex h-5 w-5 cursor-pointer select-none z-30"
           onClick={toggleCart}
         >
           {quantityChanged && (
@@ -115,7 +115,7 @@ function Carrito() {
       {isOpen && (
         <>
           {cartItems.length > 0 ? (
-            <div className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 p-1 rounded-md w-64 md:w-96 z-10">
+            <div className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 p-1 rounded-md w-64 md:w-96 z-30">
               <div className="w-full flex flex-col p-2 md:p-4 text-black">
                 <div className="flex flex-col">
                   <div className="w-full flex justify-between items-center">
@@ -224,7 +224,7 @@ function Carrito() {
             </div>
           ) : (
             <div
-              className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 rounded-md w-60 md:w-96 z-10 p-4 text-center"
+              className="absolute right-0 bg-white border border-gray-300 shadow-lg mt-2 rounded-md w-60 md:w-96 z-30 p-4 text-center"
               ref={dropdownRefCart}
             >
               <div className="flex w-full justify-end">

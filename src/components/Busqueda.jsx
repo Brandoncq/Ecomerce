@@ -109,7 +109,7 @@ function Busqueda() {
         />
 
         {isSuggestionsOpen && filteredSuggestions.length > 0 && (
-          <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg mt-1 z-10">
+          <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg mt-1 z-30">
             {filteredSuggestions.map((suggestion, index) => (
               <li
                 key={index}
@@ -119,7 +119,7 @@ function Busqueda() {
                 }`}
               >
                 <div className="flex justify-between">
-                  <div>
+                  <div className="w-4/5 md:3/4">
                     <h2 className="text-base text-blue-600 cursor-pointer">
                       {suggestion.nombre_producto}
                     </h2>
@@ -128,7 +128,7 @@ function Busqueda() {
                     </h2>
                     <h3 className="text-black">{suggestion.modelo}</h3>
                   </div>
-                  <div className="w-1/4 md:w-1/3 h-auto md:p-2 text-black">
+                  <div className="w-1/5 md:w-1/4 h-auto text-black">
                     <img
                       className="w-full h-auto object-cover"
                       src={suggestion.imagen}
