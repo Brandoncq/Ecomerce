@@ -67,7 +67,7 @@ export default function Monitores() {
               className="w-auto md:w-full h-auto md:h-full object-cover"
             />
           </div>
-          <div className="w-full md:w-1/2 md:pl-10 flex flex-col justify-center">
+          <div className="w-full md:w-1/2 md:pl-10 flex flex-col justify-center items-center text-center text-sm md:text-base lg:text-sm">
             <h2 className="text-black text-4xl font-bold my-2">
               Nuestro Equipo y Propósito
             </h2>
