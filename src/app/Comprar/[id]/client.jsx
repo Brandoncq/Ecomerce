@@ -267,7 +267,7 @@ export default function ClientLaptops({ params }) {
               <div className="w-full lg:w-2/5 flex justify-center items-center">
                 <p className="text-white">Vista</p>
                 <LimitSelector
-                  options={[15, 24, 36]}
+                  options={[15, 21, 27]}
                   onLimitChange={handleLimitChange}
                 />
               </div>
