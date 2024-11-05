@@ -218,16 +218,6 @@ function Header() {
                   </Link>
                   <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
                 </li>
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/Celulares"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Celulares
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
               </ul>
             </div>
           </ul>

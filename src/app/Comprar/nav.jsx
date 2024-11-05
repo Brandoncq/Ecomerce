@@ -11,7 +11,6 @@ export default function Nav() {
     { label: "Monitores", href: "/Comprar/Monitores" },
     { label: "Impresoras", href: "/Comprar/Impresoras" },
     { label: "Perifericos", href: "/Comprar/Perifericos" },
-    { label: "Celulares", href: "/Comprar/Celulares" },
   ];
   const getIndexByPathname = () => {
     return menuItems.findIndex((item) => item.href === pathname);

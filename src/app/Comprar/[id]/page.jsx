@@ -16,7 +16,6 @@ const categoriaBanner = {
     "Impresoras: Calidad y velocidad para todas tus necesidades de impresión.",
   Perifericos:
     "Periféricos: Completa tu equipo con nuestros accesorios esenciales.",
-  Celulares: "Celulares: La tecnología que necesitas, siempre a tu alcance.",
 };
 export const Laptops = async ({ params }) => {
   return (
