@@ -17,7 +17,7 @@ export default function Monitores() {
           </div>
         </div>
         <div className="w-full h-3/4 md:h-2/3 flex flex-wrap justify-center items-center bg-zinc-200">
-          <div className="w-full md:w-1/2 px-5 md:px-10 lg:px-20 md:py-5 text-center text-sm md:text-base lg:text-sm max-md:order-last">
+          <div className="w-full md:w-1/2 px-5 md:px-5 md:py-5 text-center text-sm md:text-base lg:text-sm max-md:order-last">
             <h2 className="my-2 text-4xl text-black font-bold">
               Acerca de Nosotros
             </h2>
@@ -64,7 +64,7 @@ export default function Monitores() {
             <img
               src="https://images.unsplash.com/photo-1499789236202-ee68fec859fb?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt=""
-              className="w-auto md:w-full h-auto md:h-full object-cover"
+              className="w-auto md:w-full h-auto md:h-full object-cover rounded-lg"
             />
           </div>
           <div className="w-full md:w-1/2 md:pl-10 flex flex-col justify-center items-center text-center text-sm md:text-base lg:text-sm">
