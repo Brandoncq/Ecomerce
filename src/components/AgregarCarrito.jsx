@@ -20,7 +20,8 @@ function AgregarCarrito({ productId, productName }) {
 
       if (!response.ok) {
         const data = await response.json();
-        setError(data.message);
+        console.log(data);
+        setError(data.error);
         throw new Error("Error al agregar el producto al carrito.");
       }
 

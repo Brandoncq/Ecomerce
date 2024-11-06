@@ -214,7 +214,7 @@ export async function POST(request) {
           } else {
             return NextResponse.json(
               {
-                message: "No hay suficiente stock disponible",
+                error: "No hay suficiente stock disponible",
               },
               { status: 400 }
             );
