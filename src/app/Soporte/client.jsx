@@ -167,7 +167,7 @@ export default function SoporteClient() {
               <div className="w-full flex">
                 <Link
                   href="/Comprar/Impresoras"
-                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-3 group"
+                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -206,7 +206,7 @@ export default function SoporteClient() {
               <div className="w-full flex">
                 <Link
                   href="/Comprar/LaptopsOficina"
-                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-3 group"
+                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +250,7 @@ export default function SoporteClient() {
               <div className="w-full flex">
                 <Link
                   href="/Comprar/LaptopsGamer"
-                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-3 group"
+                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +270,7 @@ export default function SoporteClient() {
               <div className="w-full flex">
                 <Link
                   href="/Comprar/Perifericos"
-                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-3 group"
+                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +293,7 @@ export default function SoporteClient() {
               <div className="w-full flex">
                 <Link
                   href="/Comprar/Monitores"
-                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-3 group"
+                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
