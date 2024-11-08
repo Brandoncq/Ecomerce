@@ -106,7 +106,7 @@ export async function POST(request) {
   try {
     const { id } = await request.json();
     const [producto] = await pool.query(
-      `SELECT stock FROM producto WHERE id_producto = ?`,
+      `SELECT stock, status FROM producto WHERE id_producto = ?`,
       [id]
     );
     if (producto.length === 0) {
@@ -118,6 +118,13 @@ export async function POST(request) {
     if (producto[0].stock == 0) {
       return NextResponse.json({ error: "Agotado" }, { status: 400 });
     }
+    if (producto[0].status !== 1) {
+      return NextResponse.json(
+        { error: "Producto no disponible" },
+        { status: 400 }
+      );
+    }
+
     const MytokenName = request.cookies.get("Sesion");
 
     let payload;
@@ -271,7 +278,7 @@ export async function PUT(request) {
     }
 
     const [producto] = await pool.query(
-      `SELECT stock FROM producto WHERE id_producto = ?`,
+      `SELECT stock, status FROM producto WHERE id_producto = ?`,
       [id]
     );
     if (producto.length === 0) {
@@ -284,6 +291,12 @@ export async function PUT(request) {
     if (producto[0].stock < nuevaCantidad) {
       return NextResponse.json(
         { error: "No hay suficiente stock disponible" },
+        { status: 400 }
+      );
+    }
+    if (producto[0].status !== 1) {
+      return NextResponse.json(
+        { error: "Producto no disponible" },
         { status: 400 }
       );
     }

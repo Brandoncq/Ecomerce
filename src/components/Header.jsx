@@ -56,7 +56,7 @@ function Header() {
           </div>
           <Link
             href="/"
-            className={`transition-all ease-in-out duration-300 p-2 rounded text-2xl font-bold text-white ${
+            className={`select-none transition-all ease-in-out duration-300 p-2 rounded text-2xl font-bold text-white ${
               scrolled
                 ? "bg-blue-700 md:bg-transparent md:hover:bg-white md:hover:text-black"
                 : "bg-blue-700"

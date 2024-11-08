@@ -14,7 +14,7 @@ const slides = [
   {
     id: 2,
     image:
-      "https://plus.unsplash.com/premium_photo-1661774910035-05257f7d73a6?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     titulo: "Comprar",
     frase: "Encuentra lo que necesitas",
     text: "Explora una amplia gama de productos tecnológicos al mejor precio.",

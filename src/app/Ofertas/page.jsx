@@ -1,77 +1,49 @@
-"use client";
-import { useState, useEffect } from "react";
-
-export default function Computadoras() {
-  const [Computadoras, setComputadoras] = useState([]);
-  const getProducto = async () => {
-    const productos = await fetch("/api/producto").then((res) => res.json());
-    const refinando = [];
-    productos.map((values) => {
-      refinando.push({
-        id: values.id_producto,
-        nombre_producto: values.nombre_producto,
-        precio_unitario: values.precio_unitario,
-        modelo: values.modelo,
-        imagen: values.imagen,
-        descripcion: values.descripcion,
-      });
-    });
-    setComputadoras(refinando);
-  };
-  useEffect(() => {
-    getProducto();
-  }, []);
+export const metadata = {
+  title: "Ofertas BranviaTech",
+  description: "Compra laptos a tu comidad desde diversos precios y marcas.",
+  openGraph: {
+    images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
+  },
+};
+import ClientOfertas from "./clientOfertas";
+export const Ofertas = async ({ params }) => {
   return (
-    <div className="w-full flex flex-col min-h-lvh">
+    <div className="w-full flex flex-col">
       <section className="w-full flex">
-        <div
-          className="w-full h-auto md:h-20 flex flex-wrap justify-start items-center px-5 max-md:py-4"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, #6a11cb 0%, #2575fc 100%)",
-          }}
-        >
-          <div className="w-full md:w-auto">
-            <h2 className="text-white text-3xl md:text-6xl font-bold text-center">
-              Ofertas
+        <div className="w-full flex flex-wrap">
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-blue-200 p-4 py-6 md:px-20">
+            <div className="w-full flex items-start my-2 md:my-4">
+              <div className="bg-black text-white text-xl font-bold p-2">
+                <p>TIEMPO ILIMITADO</p>
+              </div>
+            </div>
+            <h2 className="text-black text-xl md:text-4xl font-light my-2 md:my-6">
+              ¡<span className="font-bold">APROVECHA</span> los{" "}
+              <span className="font-bold">DESCUENTOS IMPERDIBLES</span> en
+              nuestros productos!
             </h2>
-          </div>
-          <div className="flex flex-col px-6 text-white items-start w-full md:w-auto">
-            <h3 className="text-xl md:text-3xl font-bold text-center">
-              ¡Aprovecha las mejores ofertas y envío gratis!
-            </h3>
-            <p className="text-base">
-              Comprar un equipo Compu-Fenix tiene sus beneficios, conoce
-              nuestras Promociones vigentes Descuentos para Pymes | Descuentos
-              para estudiantes
+            <p className="max-md:text-sm">
+              Encuentra ofertas exclusivas y{" "}
+              <span className="font-bold">ahorra</span> en una amplia variedad
+              de artículos. No dejes pasar esta{" "}
+              <span className="font-bold">oportunidad única</span> para
+              conseguir lo mejor a precios{" "}
+              <span className="font-bold">irresistibles</span>. ¡Compra ahora y{" "}
+              <span className="font-bold">disfruta del ahorro</span>!
             </p>
+          </div>
+          <div className="w-full md:w-1/2 flex justify-center items-center">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1729036341117-5324b3caab25?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt=""
+            />
           </div>
         </div>
       </section>
       <section className="w-full flex">
-        <div className="w-full px-2 md:px-20 flex flex-wrap">
-          {Computadoras.map((Computadora, index) => (
-            <div className="w-1/2 md:w-1/5 p-2" key={index}>
-              <div className="w-full p-2 flex flex-col shadow-md shadow-zinc-400">
-                <img
-                  className="w-full cursor-pointer"
-                  src={Computadora.imagen}
-                  alt=""
-                />
-                <h2 className="text-lg text-blue-600 cursor-pointer">
-                  {Computadora.nombre_producto}
-                </h2>
-                <h2 className="text-lg">A partir de:</h2>
-                <h2 className="text-2xl font-semibold">
-                  S/.{Computadora.precio_unitario}
-                </h2>
-                <h3>{Computadora.modelo}</h3>
-                <p className="text-xs my-2">{Computadora.descripcion}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ClientOfertas />
       </section>
     </div>
   );
-}
+};
+export default Ofertas;

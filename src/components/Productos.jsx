@@ -8,6 +8,7 @@ export default function Productos({
   setResultados,
   limite,
   list,
+  centrar,
 }) {
   const router = useRouter();
   const [productos, setProducto] = useState([]);
@@ -66,6 +67,7 @@ export default function Productos({
         modelo: values.modelo,
         imagen: values.imagen,
         descripcion: values.descripcion,
+        descuento: values.descuento_fijo,
       });
     });
     setProducto(refinando);
@@ -80,10 +82,14 @@ export default function Productos({
     router.push(`/Buscar/${suggestion}`);
   };
   return (
-    <div className="w-full md:py-5 md:px-2 grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
+    <div
+      className={`w-full max-w-full md:py-5 md:px-2 flex flex-wrap items-stretch ${
+        centrar ? "justify-center" : ""
+      }`}
+    >
       {productos.map((producto, index) => (
         <div
-          className="hover:border-zinc-500 border border-zinc-200 group"
+          className="hover:border-zinc-500 border border-zinc-200 group w-full md:w-1/3"
           key={index}
         >
           <div className="w-full p-2 flex flex-col h-full">
@@ -115,8 +121,39 @@ export default function Productos({
                 {producto.nombre_producto}
               </h2>
               <h2 className="text-lg">A partir de:</h2>
-              <h2 className="text-2xl font-semibold">
-                S/.{producto.precio_unitario}
+              <h2 className="text-2xl font-semibold flex max-xl:flex-col">
+                {producto.stock > 0 ? (
+                  producto.descuento > 0 ? (
+                    <>
+                      <span className="line-through text-gray-500 font-light">
+                        S/.{producto.precio_unitario}
+                      </span>
+                      <span className="text-blue-700 xl:ml-2">
+                        S/.
+                        {(
+                          producto.precio_unitario * producto.descuento
+                        ).toFixed(2)}
+                      </span>
+                    </>
+                  ) : producto.descuento < 0 ? (
+                    <>
+                      <span className="line-through text-gray-500 font-light">
+                        S/.{producto.precio_unitario}
+                      </span>
+                      <span className="text-blue-700 xl:ml-2">
+                        S/.
+                        {(
+                          parseFloat(producto.precio_unitario) +
+                          parseFloat(producto.descuento)
+                        ).toFixed(2)}
+                      </span>
+                    </>
+                  ) : (
+                    <>S/.{producto.precio_unitario}</>
+                  )
+                ) : (
+                  <>S/.{producto.precio_unitario}</>
+                )}
               </h2>
               <h3>{producto.modelo}</h3>
               <p className="text-xs my-2">{producto.descripcion}</p>

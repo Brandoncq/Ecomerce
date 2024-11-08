@@ -1,4 +1,4 @@
-import ClientLaptops from "./client";
+import ClientProducto from "./client";
 export const metadata = {
   title: "Laptops BranviaTech",
   description: "Compra laptos a tu comidad desde diversos precios y marcas.",
@@ -17,7 +17,7 @@ const categoriaBanner = {
   Perifericos:
     "Periféricos: Completa tu equipo con nuestros accesorios esenciales.",
 };
-export const Laptops = async ({ params }) => {
+export const Productos = async ({ params }) => {
   return (
     <div className="w-full flex flex-col">
       <section className="w-full flex">
@@ -28,9 +28,9 @@ export const Laptops = async ({ params }) => {
         </div>
       </section>
       <section className="w-full flex">
-        <ClientLaptops params={params.id} />
+        <ClientProducto params={params.id} />
       </section>
     </div>
   );
 };
-export default Laptops;
+export default Productos;

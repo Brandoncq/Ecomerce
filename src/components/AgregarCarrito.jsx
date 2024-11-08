@@ -44,7 +44,7 @@ function AgregarCarrito({ productId, productName }) {
           </p>
         )}
       </div>
-      <button className="transition-all duration-300 ease-in-out bg-blue-600 border-2 hover:bg-zinc-200 text-white hover:text-blue-600 hover:border-blue-600 py-3 px-2 rounded-md w-full text-lg my-1 font-semibold">
+      <button className="select-none transition-all duration-300 ease-in-out bg-blue-600 border-2 hover:bg-zinc-200 text-white hover:text-blue-600 hover:border-blue-600 py-3 px-2 rounded-md w-full text-lg my-1 font-semibold">
         COMPRAR
       </button>
       <div className="flex flex-col items-center justify-center w-full my-1">
@@ -98,7 +98,7 @@ function AgregarCarrito({ productId, productName }) {
               </div>
             ) : (
               <div className="w-full flex justify-center p-3 items-center fill-white stroke-white transition-all ease-in-out duration-300 hover:fill-zinc-800 hover:stroke-zinc-800 space-x-2 text-white hover:text-zinc-800">
-                <p className=" text-lg">AGREGAR</p>
+                <p className="select-none text-lg">AGREGAR</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="133.333"

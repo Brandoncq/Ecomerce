@@ -19,7 +19,7 @@ function ScrollToTopButton() {
     showButton && (
       <button
         onClick={scrollToTop}
-        className="fixed flex bottom-3 right-3 rounded-full hover:bg-zinc-200 transition duration-300 max-md:font-bold space-x-2 max-md:aspect-square shadow-black"
+        className="fixed flex bottom-3 right-3 rounded-full hover:bg-zinc-200 transition duration-300 max-md:font-bold space-x-2 max-md:aspect-square shadow-black group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,12 @@ function ScrollToTopButton() {
         >
           <g clipPath="url(#clip0_0_1)">
             <circle cx="325" cy="325" r="325" fill="#000"></circle>
-            <circle cx="325" cy="325" r="300" fill="#fff"></circle>
+            <circle
+              cx="325"
+              cy="325"
+              r="300"
+              className="fill-white transition-all ease-in-out duration-300 group-hover:fill-zinc-200"
+            ></circle>
             <path
               fill="#000"
               stroke="#000"

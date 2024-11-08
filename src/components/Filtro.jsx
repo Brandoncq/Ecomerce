@@ -16,6 +16,10 @@ export default function Filtro({
       {options.map((option, index) => {
         const isDisabled = !count[index]?.total || count[index].total < 1;
 
+        if (count[index]?.total === 0) {
+          return null;
+        }
+
         return (
           <div
             key={index}
@@ -47,7 +51,7 @@ export default function Filtro({
                 }`}
               />
               <label
-                className={`ms-2 text-lg font-base flex-grow ${
+                className={`select-none ms-2 text-lg font-base flex-grow ${
                   isDisabled ? "" : "cursor-pointer"
                 }`}
                 htmlFor={`checkbox-${label.toLowerCase()}-${index}`}
@@ -58,7 +62,7 @@ export default function Filtro({
                     : `${option.min} - ${option.max}`
                   : option}
               </label>
-              <p>{count[index]?.total ?? 0}</p>{" "}
+              <p>{count[index]?.total ?? 0}</p>
             </div>
           </div>
         );

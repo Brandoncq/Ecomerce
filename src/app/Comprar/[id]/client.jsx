@@ -42,8 +42,10 @@ export default function ClientLaptops({ params }) {
   const [menufiltro, setMenuFiltro] = useState(true);
   const [filtros, setFiltros] = useState({
     id_categoria_producto: categoriaMapping[params],
+    ofertas: [],
     precios: [],
-    modelos: [],
+    marcas: [],
+    colores: [],
   });
   const [count, setCount] = useState({});
   const [list, setList] = useState("ASC");
@@ -60,8 +62,11 @@ export default function ClientLaptops({ params }) {
   });
   const [resultados, setResultados] = useState(0);
   const [totalPaginas, setTotalPaginas] = useState(1);
+  const ofertasOptions = ["Si"];
   const preciosOptions = [
-    { min: 1.0, max: 599.9 },
+    { min: 1.0, max: 99.9 },
+    { min: 100.0, max: 299.9 },
+    { min: 300.0, max: 599.9 },
     { min: 600.0, max: 1199.9 },
     { min: 1200.0, max: 1799.9 },
     { min: 1800.0, max: 2399.9 },
@@ -71,7 +76,16 @@ export default function ClientLaptops({ params }) {
     { min: 10000.0, max: 14999.9 },
     { min: 15000.0, max: 19999.9 },
   ];
-  const modelosOptions = ["F17", "G16 (2024)", "16-r0073cl"];
+  const marcasOptions = ["Hp", "Asus", "Lenovo", "Acer", "Dell"];
+  const coloresOptions = [
+    "Plateado",
+    "Azul",
+    "Aluminio Plata",
+    "Dorado",
+    "Plata Mica",
+    "Aluminio Negro",
+    "Blanco",
+  ];
   useEffect(() => {
     setTotalPaginas(Math.ceil(resultados / (limite || 15)));
   }, [resultados, limite]);
@@ -184,8 +198,10 @@ export default function ClientLaptops({ params }) {
   const conteofiltros = async () => {
     try {
       const filtros = {
+        ofertas: ofertasOptions,
         precios: preciosOptions,
-        modelos: modelosOptions,
+        marcas: marcasOptions,
+        colores: coloresOptions,
         id_categoria_producto: categoriaMapping[params],
       };
 
@@ -260,7 +276,7 @@ export default function ClientLaptops({ params }) {
             <p className="text-white">
               {resultados < (limite || 15) ? resultados : limite || 15} de{" "}
               {resultados} Resultados
-            </p>{" "}
+            </p>
           </div>
           <div className="w-full lg:w-1/3 flex flex-wrap items-center justify-end max-lg:justify-center">
             <div className="w-full flex flex-wrap items-center">
@@ -318,7 +334,17 @@ export default function ClientLaptops({ params }) {
             </select>
           </div>
           <Filtro
-            label="PRECIO"
+            label="OFERTAS"
+            options={ofertasOptions}
+            isRange={false}
+            count={count.ofertas}
+            selectedOptions={filtros.ofertas}
+            handleChange={(option, event) =>
+              handleCheckboxChange("ofertas", option, event)
+            }
+          />
+          <Filtro
+            label="PRECIOS"
             options={preciosOptions}
             isRange={true}
             count={count.precios}
@@ -331,13 +357,23 @@ export default function ClientLaptops({ params }) {
             }
           />
           <Filtro
-            label="MODELO"
-            options={modelosOptions}
+            label="MARCAS"
+            options={marcasOptions}
             isRange={false}
-            count={count.modelos}
-            selectedOptions={filtros.modelos}
+            count={count.marcas}
+            selectedOptions={filtros.marcas}
             handleChange={(option, event) =>
-              handleCheckboxChange("modelos", option, event)
+              handleCheckboxChange("marcas", option, event)
+            }
+          />
+          <Filtro
+            label="COLORES"
+            options={coloresOptions}
+            isRange={false}
+            count={count.colores}
+            selectedOptions={filtros.colores}
+            handleChange={(option, event) =>
+              handleCheckboxChange("colores", option, event)
             }
           />
         </div>
