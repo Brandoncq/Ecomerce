@@ -24,11 +24,11 @@ const slides = [
   {
     id: 3,
     image:
-      "https://www.notebookcheck.org/fileadmin/Notebooks/Asus/ROG_Strix_G16_G614JZ/Asus_ROG_Strix_14.jpg",
-    titulo: "ASUS ROG Strix G16",
+      "https://blog.oficinadosbits.com.br/wp-content/uploads/2023/06/acer-nitro-5-2.jpg",
+    titulo: "Acer Nitro 5",
     frase: "La gama de computadoras mas alta",
     text: "Tecnología de última generación al alcance de tus manos.",
-    url: "/Buscar/ASUS%20ROG%20Strix%20G16%20(2024)",
+    url: "/Buscar/Acer%20Nitro%205",
     button: "Comprar",
   },
   {
@@ -44,11 +44,11 @@ const slides = [
   {
     id: 5,
     image:
-      "https://images.unsplash.com/photo-1533310266094-8898a03807dd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    titulo: "Lenovo IdeaPad",
+      "https://dlcdnwebimgs.asus.com/files/media/A8364F73-9A31-4507-BE78-B84D3FCE5A2C/v1/img/kv/kv_cover.jpg",
+    titulo: "Monitor Gaming ROG Swift",
     frase: "A tu comidad y donde estes dispuesto",
-    text: "Perfectos para el trabajo y el entretenimiento.",
-    url: "/Buscar/Lenovo%20IdeaPad%201",
+    text: "Perfectos para el diversion y el entretenimiento.",
+    url: "/Buscar/Monitor%20Gaming%20ROG%20Swift",
     button: "Comprar",
   },
 ];

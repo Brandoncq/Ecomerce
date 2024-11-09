@@ -8,7 +8,7 @@ export const metadata = {
 import ClientOfertas from "./clientOfertas";
 export const Ofertas = async ({ params }) => {
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col border-t-4 boerder-zinc-200">
       <section className="w-full flex flex-col">
         <div className="w-full flex flex-wrap">
           <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-blue-200 p-4 py-6 md:py-20 md:px-20">

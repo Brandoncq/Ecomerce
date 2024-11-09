@@ -35,8 +35,8 @@ export default function RootLayout({ children }) {
             menuItems={[
               { label: "Comprar", href: "/Comprar" },
               { label: "Nosotros", href: "/Nosotros" },
-              { label: "Soporte", href: "/Soporte" },
               { label: "Ofertas", href: "/Ofertas" },
+              { label: "Soporte", href: "/Soporte" },
             ]}
           />
         </div>
