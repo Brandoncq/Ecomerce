@@ -9,6 +9,10 @@ export default function Filtro({
   handleChange,
   formatOption,
 }) {
+  const hasOptionsToDisplay = count.some((item) => item?.total > 0);
+
+  if (!hasOptionsToDisplay) return null;
+
   return (
     <div className="w-full flex flex-col mt-4">
       <h3 className="text-xl lg:text-2xl">{label}</h3>
