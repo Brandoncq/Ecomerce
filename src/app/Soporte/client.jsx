@@ -32,17 +32,12 @@ export default function SoporteClient() {
     }
   };
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col border-t-4 boerder-zinc-200">
       <section className="w-full flex">
-        <div className="w-full h-40 flex justify-center items-center relative">
-          <h2 className="text-white text-4xl font-bold text-center absolute">
+        <div className="w-full flex justify-center items-center mt-10">
+          <h2 className="text-black text-4xl font-bold text-center">
             Centro de Soporte al Cliente
           </h2>
-          <img
-            src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-            className="w-full h-full object-cover"
-          />
         </div>
       </section>
       <section className="w-full flex border-b-2 border-zinc-300">
