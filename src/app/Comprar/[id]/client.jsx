@@ -334,16 +334,6 @@ export default function ClientLaptops({ params }) {
             </select>
           </div>
           <Filtro
-            label="OFERTAS"
-            options={ofertasOptions}
-            isRange={false}
-            count={count.ofertas}
-            selectedOptions={filtros.ofertas}
-            handleChange={(option, event) =>
-              handleCheckboxChange("ofertas", option, event)
-            }
-          />
-          <Filtro
             label="PRECIOS"
             options={preciosOptions}
             isRange={true}
@@ -354,6 +344,16 @@ export default function ClientLaptops({ params }) {
             }
             formatOption={(min, max) =>
               `S/.${min.toFixed(2)} a S/.${max.toFixed(2)}`
+            }
+          />
+          <Filtro
+            label="OFERTAS"
+            options={ofertasOptions}
+            isRange={false}
+            count={count.ofertas}
+            selectedOptions={filtros.ofertas}
+            handleChange={(option, event) =>
+              handleCheckboxChange("ofertas", option, event)
             }
           />
           <Filtro

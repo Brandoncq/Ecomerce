@@ -1,6 +1,36 @@
-"use lcient";
+"use client";
 import Link from "next/link";
+import { useState } from "react";
+function formatearFecha(fechaISO) {
+  const fecha = new Date(fechaISO); // Convertir a objeto Date
+  return fecha.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }); // Formato DD/MM/YYYY
+}
 export default function SoporteClient() {
+  const [serie, setSerie] = useState("");
+  const [producto, setProducto] = useState(null);
+  const [error, setError] = useState(null);
+  const buscar = async (event) => {
+    event.preventDefault();
+    setError(null);
+    setProducto(null);
+
+    try {
+      const response = await fetch(`/api/buscador/serie?query=${serie}`);
+      if (!response.ok) {
+        throw new Error(
+          "No se encontró el producto o hubo un error en la búsqueda."
+        );
+      }
+      const data = await response.json();
+      setProducto(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
   return (
     <div className="w-full flex flex-col">
       <section className="w-full flex">
@@ -115,8 +145,8 @@ export default function SoporteClient() {
       <section className="w-ful flex flex-col my-10">
         <div className="w-full flex justify-center px-2 md:px-10">
           <h2 className="text-black text-4xl font-light my-6 lg:px-20 p-4">
-            Identifique su producto para obtener manuales y información
-            específica del producto
+            Identifique su producto para obtener detalles e información
+            relevante
           </h2>
         </div>
         <div className="w-full flex flex-wrap justify-center px-2 md:px-10 mb-5">
@@ -124,36 +154,118 @@ export default function SoporteClient() {
             <h3>
               Introduzca su número de serie, número de producto o nombre del
               producto
-            </h3>{" "}
-            <div className="relative z-0 w-full mt-6 mb-4 group">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlSpace="preserve"
-                  id="KEY"
-                  width="40"
-                  height="40"
-                  version="1.1"
-                  viewBox="0 0 1800 1800"
-                  className="w-5 h-5"
+            </h3>
+            <div className="w-full mt-6 mb-4">
+              <form className="flex items-center w-full" onSubmit={buscar}>
+                <label htmlFor="simple-search" className="sr-only">
+                  Search
+                </label>
+                <div className="relative w-full">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlSpace="preserve"
+                      id="KEY"
+                      width="40"
+                      height="40"
+                      version="1.1"
+                      viewBox="0 0 1800 1800"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        fill="#333"
+                        d="M246.051 1796.104c-2.663 0-5.348-.336-7.992-1.025l-166.817-43.505a31.68 31.68 0 0 1-22.656-22.654L5.044 1562.08a31.67 31.67 0 0 1 8.251-30.397l101.307-101.312c.476-.544.968-1.069 1.481-1.587l668.3-668.298c-43.625-93.255-59.486-199.569-44.681-301.964 16.48-114 68.356-217.425 150.023-299.096C990.027 59.131 1123.381 3.896 1265.223 3.896c141.839 0 275.184 55.23 375.479 155.521 207.043 207.047 207.043 543.934 0 750.977-100.277 100.277-233.622 155.512-375.456 155.517-77.911.005-155.419-17.284-225.608-50.161l-198.6 198.589a31.67 31.67 0 0 1-19.45 9.14l-96.017 8.972-8.967 96.021a31.7 31.7 0 0 1-9.14 19.454l-.805.805a31.7 31.7 0 0 1-19.454 9.14l-96.02 8.967-8.965 96.018a31.7 31.7 0 0 1-9.184 19.498l-1.237 1.233a31.68 31.68 0 0 1-19.413 9.1l-95.584 8.927-8.925 95.58a31.7 31.7 0 0 1-9.144 19.459l-67.392 67.384a32 32 0 0 1-1.604 1.498l-101.283 101.289a31.68 31.68 0 0 1-22.403 9.28m-140.853-101.153 131.287 34.242 90.004-90.012a32 32 0 0 1 1.598-1.494l57.77-57.762 10.304-110.354c1.417-15.167 13.429-27.18 28.596-28.598l96.718-9.034 9.069-97.144c1.416-15.168 13.429-27.18 28.596-28.599l96.753-9.038 9.038-96.755c1.419-15.163 13.427-27.176 28.594-28.594l110.792-10.351 206.612-206.602c9.797-9.802 24.846-12.091 37.114-5.652 66.53 34.905 141.635 53.353 217.198 53.348 124.917-.005 242.346-48.646 330.656-136.959 182.347-182.343 182.347-479.03 0-661.377-88.318-88.323-205.758-136.964-330.674-136.964-124.92 0-242.363 48.645-330.699 136.977-145.557 145.561-179.159 365.73-83.606 547.861 6.444 12.277 4.154 27.312-5.648 37.119l-682.855 682.847a32 32 0 0 1-1.479 1.586l-90.005 90.003z"
+                      ></path>
+                      <path
+                        fill="#333"
+                        d="M1273.541 713.839c-48.809 0-94.691-19.008-129.203-53.524-71.242-71.242-71.246-187.168-.01-258.411 34.512-34.512 80.395-53.52 129.203-53.52s94.701 19.008 129.217 53.52c34.516 34.516 53.523 80.403 53.523 129.208 0 48.809-19.008 94.696-53.523 129.208-34.512 34.511-80.398 53.519-129.207 53.519m-.01-302.097c-31.881 0-61.854 12.414-84.398 34.958-46.541 46.541-46.537 122.273.01 168.814 22.543 22.548 52.516 34.967 84.398 34.967 31.887 0 61.863-12.418 84.407-34.967 22.548-22.543 34.966-52.517 34.966-84.403 0-31.882-12.418-61.859-34.966-84.403-22.548-22.547-52.53-34.966-84.417-34.966"
+                      ></path>
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    id="simple-search"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 outline-none"
+                    placeholder="Search branch name..."
+                    required
+                    value={serie}
+                    onChange={(e) => {
+                      setSerie(e.target.value);
+                    }}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
                 >
-                  <path
-                    fill="#333"
-                    d="M246.051 1796.104c-2.663 0-5.348-.336-7.992-1.025l-166.817-43.505a31.68 31.68 0 0 1-22.656-22.654L5.044 1562.08a31.67 31.67 0 0 1 8.251-30.397l101.307-101.312c.476-.544.968-1.069 1.481-1.587l668.3-668.298c-43.625-93.255-59.486-199.569-44.681-301.964 16.48-114 68.356-217.425 150.023-299.096C990.027 59.131 1123.381 3.896 1265.223 3.896c141.839 0 275.184 55.23 375.479 155.521 207.043 207.047 207.043 543.934 0 750.977-100.277 100.277-233.622 155.512-375.456 155.517-77.911.005-155.419-17.284-225.608-50.161l-198.6 198.589a31.67 31.67 0 0 1-19.45 9.14l-96.017 8.972-8.967 96.021a31.7 31.7 0 0 1-9.14 19.454l-.805.805a31.7 31.7 0 0 1-19.454 9.14l-96.02 8.967-8.965 96.018a31.7 31.7 0 0 1-9.184 19.498l-1.237 1.233a31.68 31.68 0 0 1-19.413 9.1l-95.584 8.927-8.925 95.58a31.7 31.7 0 0 1-9.144 19.459l-67.392 67.384a32 32 0 0 1-1.604 1.498l-101.283 101.289a31.68 31.68 0 0 1-22.403 9.28m-140.853-101.153 131.287 34.242 90.004-90.012a32 32 0 0 1 1.598-1.494l57.77-57.762 10.304-110.354c1.417-15.167 13.429-27.18 28.596-28.598l96.718-9.034 9.069-97.144c1.416-15.168 13.429-27.18 28.596-28.599l96.753-9.038 9.038-96.755c1.419-15.163 13.427-27.176 28.594-28.594l110.792-10.351 206.612-206.602c9.797-9.802 24.846-12.091 37.114-5.652 66.53 34.905 141.635 53.353 217.198 53.348 124.917-.005 242.346-48.646 330.656-136.959 182.347-182.343 182.347-479.03 0-661.377-88.318-88.323-205.758-136.964-330.674-136.964-124.92 0-242.363 48.645-330.699 136.977-145.557 145.561-179.159 365.73-83.606 547.861 6.444 12.277 4.154 27.312-5.648 37.119l-682.855 682.847a32 32 0 0 1-1.479 1.586l-90.005 90.003z"
-                  ></path>
-                  <path
-                    fill="#333"
-                    d="M1273.541 713.839c-48.809 0-94.691-19.008-129.203-53.524-71.242-71.242-71.246-187.168-.01-258.411 34.512-34.512 80.395-53.52 129.203-53.52s94.701 19.008 129.217 53.52c34.516 34.516 53.523 80.403 53.523 129.208 0 48.809-19.008 94.696-53.523 129.208-34.512 34.511-80.398 53.519-129.207 53.519m-.01-302.097c-31.881 0-61.854 12.414-84.398 34.958-46.541 46.541-46.537 122.273.01 168.814 22.543 22.548 52.516 34.967 84.398 34.967 31.887 0 61.863-12.418 84.407-34.967 22.548-22.543 34.966-52.517 34.966-84.403 0-31.882-12.418-61.859-34.966-84.403-22.548-22.547-52.53-34.966-84.417-34.966"
-                  ></path>
-                </svg>
-              </div>
-              <input
-                type="search"
-                id="default-serie"
-                className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-500 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                placeholder="Ejepmlos: HUdawkjhop986V"
-                required
-              />
+                  <svg
+                    className="w-4 h-4"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                  <span className="sr-only">Search</span>
+                </button>
+              </form>
+              {error && <p className="text-red-500 mt-4">{error}</p>}
+              {producto && (
+                <div className="w-full flex flex-col mt-4 p-4 border">
+                  <h3 className="text-lg font-bold mb-2">
+                    Información del Producto
+                  </h3>
+                  <p>
+                    <strong>Serie:</strong> {producto.serie}
+                  </p>
+                  <p>
+                    <strong>Fecha de Registro:</strong>{" "}
+                    {formatearFecha(producto.fecha_registro)}
+                  </p>
+                  <p>
+                    <strong>Nombre:</strong> {producto.nombre}
+                  </p>
+                  <p>
+                    <strong>Modelo:</strong> {producto.modelo}
+                  </p>
+                  <p>
+                    <strong>Marca:</strong> {producto.marca}
+                  </p>
+                  <p>
+                    <strong>Color:</strong> {producto.color}
+                  </p>
+                  <p>
+                    <strong>Precio:</strong> ${producto.precio}
+                  </p>
+                  {producto.fecha_garantia && (
+                    <p>
+                      <strong>Fecha Garantía:</strong>{" "}
+                      {formatearFecha(producto.fecha_garantia)}
+                    </p>
+                  )}
+                  <p>
+                    <strong>Descripción:</strong> {producto.descripcion}
+                  </p>
+                  {producto.imagen ? (
+                    <div className="w-full flex justify-center mt-2">
+                      <img
+                        src={producto.imagen}
+                        alt={`Imagen de ${producto.nombre}`}
+                        className="w-full md:w-2/3 lg:w-1/2 object-cover h-auto"
+                      />
+                    </div>
+                  ) : (
+                    <p>No hay imagen disponible.</p>
+                  )}
+                </div>
+              )}
             </div>
             <div className="w-full flex flex-col">
               <Link
