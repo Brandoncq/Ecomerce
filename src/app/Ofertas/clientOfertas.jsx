@@ -173,7 +173,7 @@ function ClientOfertas() {
   };
   return (
     <div className="w-full flex flex-col">
-      <div className="w-full flex flex-wrap md:px-20 md:py-4 bg-zinc-200 justify-center">
+      <div className="w-full flex flex-wrap md:px-20 py-2 md:py-4 bg-zinc-200 justify-center">
         {categories.map((category, index) =>
           resultados[index] !== 0 ? (
             <button
@@ -182,7 +182,7 @@ function ClientOfertas() {
               onClick={() => scrollToSection(index)}
             >
               {category.icon}
-              <p className="text-zinc-800 group-hover:text-blue-700">
+              <p className="max-md:text-sm text-zinc-800 group-hover:text-blue-700">
                 {category.name}
               </p>
             </button>

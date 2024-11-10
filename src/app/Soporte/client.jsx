@@ -90,7 +90,7 @@ export default function SoporteClient() {
               onClick={scrollToIdentificacion}
             >
               <div className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col">
-                <div className="w-full h-full transition-all ease-in-out duration-300 group-hover:bg-blue-100 flex items-center p-4 border-b border-zinc-400">
+                <div className="w-full h-full transition-all ease-in-out duration-300 group-hover:bg-zinc-100 flex items-center p-4 border-b border-zinc-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlSpace="preserve"
@@ -107,7 +107,7 @@ export default function SoporteClient() {
                   </svg>
                 </div>
                 <div></div>
-                <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-blue-200 p-4 transition-all ease-in-out duration-300">
+                <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
                   Use Herramientas de diágnostico para encontrar y soucionar
                   problemas
                 </div>
@@ -118,7 +118,7 @@ export default function SoporteClient() {
               onClick={scrollToIdentificacion}
             >
               <div className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col">
-                <div className="w-full h-full group-hover:bg-blue-100 flex items-center p-4 border-b border-zinc-400">
+                <div className="w-full h-full group-hover:bg-zinc-100 flex items-center p-4 border-b border-zinc-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="133.333"
@@ -132,7 +132,7 @@ export default function SoporteClient() {
                   </svg>
                 </div>
                 <div></div>
-                <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-blue-200 p-4 transition-all ease-in-out duration-300">
+                <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
                   Comprueba el Estado de la Garantía
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function SoporteClient() {
               }}
             >
               <div className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col">
-                <div className="w-full h-full group-hover:bg-blue-100 flex items-center p-4 border-b border-zinc-400">
+                <div className="w-full h-full group-hover:bg-zinc-100 flex items-center p-4 border-b border-zinc-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="133.333"
@@ -157,7 +157,7 @@ export default function SoporteClient() {
                   </svg>
                 </div>
                 <div></div>
-                <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-blue-200 p-4 transition-all ease-in-out duration-300">
+                <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
                   Contacte un agente de BranviaTech soporte
                 </div>
               </div>
@@ -165,23 +165,22 @@ export default function SoporteClient() {
             <div className="w-full md:w-1/4 p-4 text-base flex flex-col px-6">
               <h3 className="font-semibold">Más recursos de soporte</h3>
               <Link
-                href=""
+                href="/TerminosCondiciones"
                 className="text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1"
               >
-                Información de compatibilidad con Windows 11
+                Ver términos y condiciones
               </Link>
               <Link
-                href=""
+                href="/Usuario"
                 className="text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1"
               >
-                Registre su producto
+                Rastrear mis envíos
               </Link>
               <Link
-                href=""
+                href="PoliticasPrivacidad"
                 className="text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1"
               >
-                Visitar el Centro de reparación Dispositivos de colaboración de
-                Poly
+                Políticas de privacidad
               </Link>
             </div>
           </div>

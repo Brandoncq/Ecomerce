@@ -11,7 +11,7 @@ export const Ofertas = async ({ params }) => {
     <div className="w-full flex flex-col border-t-4 boerder-zinc-200">
       <section className="w-full flex flex-col">
         <div className="w-full flex flex-wrap">
-          <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-blue-300 p-6 xl:p-20">
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-blue-300 p-6 md:p-10 xl:p-20">
             <div className="w-full flex items-start my-2 md:my-4">
               <div className="bg-black text-white text-xl font-bold p-2">
                 <p>TIEMPO ILIMITADO</p>
