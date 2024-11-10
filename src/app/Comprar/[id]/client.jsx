@@ -310,7 +310,7 @@ export default function ClientLaptops({ params }) {
         }`}
       >
         <div
-          className={`w-full lg:sticky top-16 overflow-y-auto max-h-lvh px-4 transition-all ease-in-out duration-500 max-lg:bg-black ${
+          className={`w-full lg:sticky top-20 overflow-y-auto lg:max-h-[calc(100vh-5.5rem)] px-4 transition-all ease-in-out duration-500 max-lg:bg-black ${
             menufiltro
               ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
               : "translate-x-0"

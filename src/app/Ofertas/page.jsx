@@ -11,13 +11,13 @@ export const Ofertas = async ({ params }) => {
     <div className="w-full flex flex-col border-t-4 boerder-zinc-200">
       <section className="w-full flex flex-col">
         <div className="w-full flex flex-wrap">
-          <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-blue-200 p-4 py-6 md:py-20 md:px-20">
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-blue-300 p-6 xl:p-20">
             <div className="w-full flex items-start my-2 md:my-4">
               <div className="bg-black text-white text-xl font-bold p-2">
                 <p>TIEMPO ILIMITADO</p>
               </div>
             </div>
-            <h2 className="text-black text-xl md:text-4xl font-light my-2 md:mb-6">
+            <h2 className="text-black text-xl md:text-4xl font-light my-1 md:mb-5">
               ¡<span className="font-bold">APROVECHA</span> los{" "}
               <span className="font-bold">DESCUENTOS IMPERDIBLES</span> en
               nuestros productos!
@@ -32,11 +32,19 @@ export const Ofertas = async ({ params }) => {
               <span className="font-bold">disfruta del ahorro</span>!
             </p>
           </div>
-          <div className="w-full md:w-1/2 flex justify-center items-center">
+          <div className="w-full md:w-1/2 flex justify-center items-center bg-blue-300">
             <img
               src="https://plus.unsplash.com/premium_photo-1729036341117-5324b3caab25?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt=""
-              className="bg-blue-200"
+              className="bg-blue-200 max-lg:hidden"
+              style={{
+                clipPath: "polygon(22% 0, 100% 0, 100% 100%, 0% 100%)",
+              }}
+            />
+            <img
+              src="https://plus.unsplash.com/premium_photo-1729036341117-5324b3caab25?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt=""
+              className="bg-blue-200 lg:hidden"
             />
           </div>
         </div>

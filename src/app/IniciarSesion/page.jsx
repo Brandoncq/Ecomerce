@@ -10,6 +10,27 @@ function IniciarSesion() {
     correo: "",
     password: "",
   });
+  const evaluar = async () => {
+    try {
+      const response = await fetch("/api/cliente", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          router.replace("/");
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching auth status:", error);
+    }
+  };
+
+  useEffect(() => {
+    evaluar();
+  }, []);
+
   const Enviar = async () => {
     event.preventDefault();
     setError("");
@@ -50,7 +71,7 @@ function IniciarSesion() {
         },
       });
       window.dispatchEvent(loginEvent);
-      router.push("/");
+      router.replace("/");
       setIsLoadingButton(false);
     } catch (error) {
       console.error("Error al enviar datos:", error);

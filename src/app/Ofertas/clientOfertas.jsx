@@ -156,17 +156,27 @@ function ClientOfertas() {
     });
   };
   const scrollToSection = (index) => {
-    sectionRefs.current[index]?.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    const isDesktop = window.innerWidth >= 768; // Cambia este valor según el breakpoint de escritorio
+    const offset = isDesktop ? -70 : 0; // Aplica desplazamiento solo en escritorio
+
+    if (sectionRefs.current[index]?.current) {
+      const sectionTop =
+        sectionRefs.current[index].current.getBoundingClientRect().top +
+        window.pageYOffset +
+        offset;
+
+      window.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
+    }
   };
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-wrap md:px-20 md:py-4 bg-zinc-200 justify-center">
         {categories.map((category, index) =>
           resultados[index] !== 0 ? (
-            <div
+            <button
               key={category.id}
               className="w-1/5 group flex flex-col justify-center items-center cursor-pointer"
               onClick={() => scrollToSection(index)}
@@ -175,7 +185,7 @@ function ClientOfertas() {
               <p className="text-zinc-800 group-hover:text-blue-700">
                 {category.name}
               </p>
-            </div>
+            </button>
           ) : null
         )}
       </div>

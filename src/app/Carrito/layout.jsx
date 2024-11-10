@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { CompraProvider } from "./CompraContext";
 export default function LayoutCarrito({ children }) {
   const [productos, setProductos] = useState([]);
   useEffect(() => {
@@ -309,5 +310,9 @@ export default function LayoutCarrito({ children }) {
       </div>
     );
   }
-  return <div className="border-t boerder-zinc-200">{children}</div>;
+  return (
+    <CompraProvider>
+      <div className="border-t boerder-zinc-200">{children}</div>
+    </CompraProvider>
+  );
 }

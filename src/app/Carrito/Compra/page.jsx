@@ -2,21 +2,15 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useCompra } from "../CompraContext";
 import DirectionSearchInputs from "@/components/Direccion";
 function CarritoCompra() {
+  const { compra, setCompra } = useCompra();
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState([]);
   const [isLoadingButton, setIsLoadingButton] = useState(false);
   const [login, setLogin] = useState(false);
-  const [compra, setCompra] = useState({
-    pais: "",
-    cpostal: "",
-    direccion: "",
-    referencia: "",
-    region: "",
-    ciudad: "",
-    factura: "",
-  });
+
   const router = useRouter();
   const getcart = async () => {
     const response = await fetch("/api/carrito");
@@ -120,8 +114,7 @@ function CarritoCompra() {
     event.preventDefault();
     setIsLoadingButton(true);
     setIsLoadingButton(false);
-    console.log(compra);
-    //outer.push("/Carrito/Pasarela");
+    router.push("/Carrito/Pasarela");
   };
   return (
     <div className="w-full flex flex-wrap justify-center border-t-4 border-zinc-200">

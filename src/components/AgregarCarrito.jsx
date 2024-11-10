@@ -1,10 +1,9 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import Link from "next/link";
 function AgregarCarrito({ productId, productName }) {
   const [isLoadingButton, setIsLoadingButton] = useState(false);
   const [error, setError] = useState("");
-  const router = useRouter();
   const addToCart = async (id) => {
     setIsLoadingButton(true);
     try {
@@ -50,10 +49,8 @@ function AgregarCarrito({ productId, productName }) {
       <div className="flex flex-col items-center justify-center w-full my-1">
         <div className="flex max-xl:flex-col items-center justify-between w-full">
           <div className="cursor-pointer max-xl:order-last">
-            <a
-              onClick={() => {
-                router.push(`/Buscar/${productName}`);
-              }}
+            <Link
+              href={`/Buscar/${productName}`}
               className="px-1 rounded hover:text-zinc-600 transition-all ease-in-out duration-300 flex items-center hover:underline hover:underline-offset-8 max-md:mt-5"
             >
               Ver detalles{" "}
@@ -71,7 +68,7 @@ function AgregarCarrito({ productId, productName }) {
                   d="M11 31l28 25-28 25"
                 ></path>
               </svg>
-            </a>
+            </Link>
           </div>
           <button
             className="flex flex-1 justify-center items center bg-zinc-800 hover:border-zinc-800 rounded-md text-sm lg:text-lg font-semibold hover:bg-zinc-200 transition-all duration-300 ease-in-out max-xl:w-full max-xl:mt-2 border-2"

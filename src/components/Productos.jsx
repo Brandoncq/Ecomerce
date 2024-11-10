@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import AgregarCarrito from "./AgregarCarrito";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 export default function Productos({
   filtros,
   paginaActual,
@@ -77,10 +78,6 @@ export default function Productos({
   useEffect(() => {
     cambiarPagina(paginaActual);
   }, [JSON.stringify(filtros), paginaActual, limite, list]);
-
-  const redireccion = (suggestion) => {
-    router.push(`/Buscar/${suggestion}`);
-  };
   return (
     <div
       className={`w-full max-w-full md:py-5 md:px-2 flex flex-wrap items-stretch ${
@@ -169,10 +166,8 @@ export default function Productos({
                 </>
               ) : (
                 <div className="w-full flex justify-center text-gray-500 py-2 xl:py-5 cursor-pointer">
-                  <a
-                    onClick={() => {
-                      redireccion(producto.nombre_producto);
-                    }}
+                  <Link
+                    href={`/Buscar/${producto.nombre_producto}`}
                     className="px-1 rounded hover:text-zinc-600 flex items-center hover:underline hover:underline-offset-8"
                   >
                     Ver detalles{" "}
@@ -190,7 +185,7 @@ export default function Productos({
                         d="M11 31l28 25-28 25"
                       ></path>
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
