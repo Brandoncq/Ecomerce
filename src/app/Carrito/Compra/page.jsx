@@ -2,19 +2,19 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import DirectionSearchInputs from "@/components/Direccion";
 function CarritoCompra() {
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState([]);
   const [isLoadingButton, setIsLoadingButton] = useState(false);
   const [login, setLogin] = useState(false);
   const [compra, setCompra] = useState({
+    pais: "",
+    cpostal: "",
     direccion: "",
-    departamentolote: "",
-    urbanizacion: "",
     referencia: "",
     region: "",
     ciudad: "",
-    distrito: "",
     factura: "",
   });
   const router = useRouter();
@@ -44,10 +44,32 @@ function CarritoCompra() {
       setLogin(false);
     }
   };
+
+  useEffect(() => {
+    if (!compra.pais) {
+      setCompra((prev) => ({
+        ...prev,
+        ciudad: "",
+        region: "",
+      }));
+    } else if (!compra.region) {
+      setCompra((prev) => ({
+        ...prev,
+        ciudad: "",
+      }));
+    }
+  }, [compra.pais, compra.region]);
   useEffect(() => {
     evaluar();
     getcart();
   }, []);
+  const updateLocation = (key, value) => {
+    setCompra((prevLocations) => ({
+      ...prevLocations,
+      [key]: value,
+    }));
+  };
+
   const eliminar = async (id) => {
     await fetch("/api/carrito", {
       method: "DELETE",
@@ -98,7 +120,8 @@ function CarritoCompra() {
     event.preventDefault();
     setIsLoadingButton(true);
     setIsLoadingButton(false);
-    router.push("/Carrito/Pasarela");
+    console.log(compra);
+    //outer.push("/Carrito/Pasarela");
   };
   return (
     <div className="w-full flex flex-wrap justify-center border-t-4 border-zinc-200">
@@ -314,173 +337,130 @@ function CarritoCompra() {
                     <hr className="w-full bg-zinc-200 h-0.5 my-2" />
                   </div>
                   <div className="w-full flex-col p-5 bg-zinc-100 rounded-lg border border-zinc-400">
-                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                      <div className="relative z-0 mb-5 group w-full">
-                        <input
-                          type="text"
-                          name="from_direccion"
-                          id="from_direccion"
-                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
-                          required
-                          value={compra.direccion}
-                          onChange={(e) => {
-                            setCompra((prevUser) => ({
-                              ...prevUser,
-                              direccion: e.target.value,
-                            }));
-                          }}
-                        />
-                        <label
-                          htmlFor="from_direccion"
-                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                          Dirección
-                        </label>
+                    <div className="flex flex-wrap w-full">
+                      <div className="w-full flex mt-2 mb-4">
+                        <p className="text-base text-gray-700 font-semibold mb-2">
+                          <span className="text-blue-600 font-semibold">
+                            Complete País
+                          </span>{" "}
+                          para poder llenar{" "}
+                          <span className="text-blue-600 font-semibold">
+                            Región
+                          </span>{" "}
+                          y lo mismo procedimeinto para{" "}
+                          <span className="text-blue-600 font-semibold">
+                            Ciudad
+                          </span>
+                        </p>
                       </div>
-                      <div className="relative z-0 mb-5 group w-full">
-                        <input
-                          type="text"
-                          name="from_departamento"
-                          id="from_departamento"
-                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
-                          required
-                          value={compra.departamentolote}
-                          onChange={(e) => {
-                            setCompra((prevUser) => ({
-                              ...prevUser,
-                              departamentolote: e.target.value,
-                            }));
-                          }}
+                      <div className="flex flex-col w-1/3 px-2 relative">
+                        <DirectionSearchInputs
+                          setLocation={(value) => updateLocation("pais", value)}
+                          type="countries"
+                          name="country_name"
+                          label="País"
+                          conditional=""
                         />
-                        <label
-                          htmlFor="from_departamento"
-                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                          Dpto/Lote/INT
-                        </label>
                       </div>
-                    </div>
-                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                      <div className="relative z-0 mb-5 group w-full">
-                        <input
-                          type="text"
-                          name="from_urbanizacion"
-                          id="from_urbanizacion"
-                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
-                          required
-                          value={compra.urbanizacion}
-                          onChange={(e) => {
-                            setCompra((prevUser) => ({
-                              ...prevUser,
-                              urbanizacion: e.target.value,
-                            }));
-                          }}
+                      <div className="flex flex-col w-1/3 px-2 relative">
+                        <DirectionSearchInputs
+                          setLocation={(value) =>
+                            updateLocation("region", value)
+                          }
+                          type="states"
+                          name="state_name"
+                          label="Región"
+                          conditional={compra.pais}
                         />
-                        <label
-                          htmlFor="from_urbanizacion"
-                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                          Urbanización
-                        </label>
                       </div>
-                      <div className="relative z-0 mb-5 group w-full">
-                        <input
-                          type="text"
-                          name="from_referencia"
-                          id="from_referencia"
-                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
-                          required
-                          value={compra.referencia}
-                          onChange={(e) => {
-                            setCompra((prevUser) => ({
-                              ...prevUser,
-                              referencia: e.target.value,
-                            }));
-                          }}
+                      <div className="flex flex-col w-1/3 px-2 relative">
+                        <DirectionSearchInputs
+                          setLocation={(value) =>
+                            updateLocation("ciudad", value)
+                          }
+                          type="cities"
+                          name="city_name"
+                          label="Ciudad"
+                          conditional={compra.region}
                         />
-                        <label
-                          htmlFor="from_referencia"
-                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                          Referencia
-                        </label>
                       </div>
                     </div>
-                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                      <div className="relative z-0 mb-5 group w-full">
-                        <input
-                          type="text"
-                          name="from_region"
-                          id="from_region"
-                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
-                          required
-                          value={compra.region}
-                          onChange={(e) => {
-                            setCompra((prevUser) => ({
-                              ...prevUser,
-                              region: e.target.value,
-                            }));
-                          }}
-                        />
-                        <label
-                          htmlFor="from_region"
-                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                          Región
-                        </label>
+                    <div className="flex flex-wrap w-full my-2">
+                      <div className="flex w-full md:w-1/3 px-2">
+                        <div className="relative z-0 mb-5 group w-full">
+                          <input
+                            type="number"
+                            max={4}
+                            name="from_cpostal"
+                            id="from_cpostal"
+                            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            required
+                            value={compra.cpostal}
+                            onChange={(e) => {
+                              setCompra((prevUser) => ({
+                                ...prevUser,
+                                cpostal: e.target.value,
+                              }));
+                            }}
+                          />
+                          <label
+                            htmlFor="from_cpostal"
+                            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                          >
+                            Código Postal
+                          </label>
+                        </div>
                       </div>
-                      <div className="relative z-0 mb-5 group w-full">
-                        <input
-                          type="text"
-                          name="from_ciudad"
-                          id="from_ciudad"
-                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
-                          required
-                          value={compra.ciudad}
-                          onChange={(e) => {
-                            setCompra((prevUser) => ({
-                              ...prevUser,
-                              ciudad: e.target.value,
-                            }));
-                          }}
-                        />
-                        <label
-                          htmlFor="from_ciudad"
-                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                          Ciudad
-                        </label>
+                      <div className="flex w-full md:w-2/3 px-2">
+                        <div className="relative z-0 mb-5 group w-full">
+                          <input
+                            type="text"
+                            name="from_referencia"
+                            id="from_referencia"
+                            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            required
+                            value={compra.referencia}
+                            onChange={(e) => {
+                              setCompra((prevUser) => ({
+                                ...prevUser,
+                                referencia: e.target.value,
+                              }));
+                            }}
+                          />
+                          <label
+                            htmlFor="from_referencia"
+                            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                          >
+                            Referencia
+                          </label>
+                        </div>
                       </div>
-                    </div>
-                    <div className="grid md:grid-cols-2 md:gap-6 my-2">
-                      <div className="relative z-0 mb-5 group w-full">
-                        <input
-                          type="text"
-                          name="from_distrito"
-                          id="from_distrito"
-                          className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                          placeholder=" "
-                          required
-                          value={compra.distrito}
-                          onChange={(e) => {
-                            setCompra((prevUser) => ({
-                              ...prevUser,
-                              distrito: e.target.value,
-                            }));
-                          }}
-                        />
-                        <label
-                          htmlFor="from_distrito"
-                          className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                          Distrito
-                        </label>
+                      <div className="flex w-full px-2">
+                        <div className="relative z-0 mb-5 group w-full">
+                          <input
+                            type="text"
+                            name="from_direccion"
+                            id="from_direccion"
+                            className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            required
+                            value={compra.direccion}
+                            onChange={(e) => {
+                              setCompra((prevUser) => ({
+                                ...prevUser,
+                                direccion: e.target.value,
+                              }));
+                            }}
+                          />
+                          <label
+                            htmlFor="from_direccion"
+                            className="peer-focus:font-medium absolute text-lg text-gray-800 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                          >
+                            Dirección Completa
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>

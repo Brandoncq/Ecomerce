@@ -305,12 +305,12 @@ export default function ClientLaptops({ params }) {
         </div>
       </div>
       <div
-        className={`w-full lg:w-1/4 lg:sticky lg:top-16 md:px-5 flex flex-wrap max-lg:bg-black max-lg:text-white ${
+        className={`w-full lg:w-1/4 md:px-2 py-2 flex flex-wrap max-lg:bg-black max-lg:text-white ${
           menufiltro ? "" : "max-md:p-4"
         }`}
       >
         <div
-          className={`w-full transition-all ease-in-out duration-500 max-lg:bg-black ${
+          className={`w-full lg:sticky top-16 overflow-y-auto max-h-lvh px-4 transition-all ease-in-out duration-500 max-lg:bg-black ${
             menufiltro
               ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
               : "translate-x-0"

@@ -7,7 +7,7 @@ const CountrySearchInput = ({ userNacionalidad, setUserNacionalidad }) => {
   useEffect(() => {
     const paises = async () => {
       try {
-        const response = await fetch("/api/paises");
+        const response = await fetch("/api/paises/countries");
         const data = await response.json();
         setCountries(data);
       } catch (error) {
