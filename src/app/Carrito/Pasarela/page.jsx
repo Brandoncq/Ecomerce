@@ -4,8 +4,35 @@ import { useRouter } from "next/navigation";
 import { useCompra } from "../CompraContext";
 function Pasarela() {
   const router = useRouter();
-  const { compra, setCompra } = useCompra();
-  console.log(compra);
+  const { compra } = useCompra();
+  const venta = async () => {
+    try {
+      const url = "/api/venta";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          pais: compra.pais,
+          cpostal: compra.cpostal,
+          direccion: compra.direccion,
+          referencia: compra.referencia,
+          region: compra.region,
+          ciudad: compra.ciudad,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Venta realizada con éxito:", data.message);
+      } else {
+        console.error("Error al realizar la venta:", data.message);
+      }
+    } catch (error) {
+      console.error("Error durante el proceso de venta:", error);
+    }
+  };
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 border-t-4 border-zinc-200">
       <div className="text-xl my-4 w-full flex flex-col items-center">
@@ -58,10 +85,17 @@ function Pasarela() {
             onCancel={(data) => {
               console.log(data);
             }}
-            onApprove={(data, actions) => {
-              console.log(data);
-              actions.order.capture();
-              router.push("/Carrito/Confirmacion");
+            onApprove={async (data, actions) => {
+              try {
+                console.log("Pago aprobado:", data);
+                const capture = await actions.order.capture();
+                console.log("Captura exitosa:", capture);
+                await venta();
+                const UpdateCarEvent = new CustomEvent("deletecart");
+                window.dispatchEvent(UpdateCarEvent);
+              } catch (error) {
+                console.error("Error al capturar el pago:", error);
+              }
             }}
           />
         </PayPalScriptProvider>

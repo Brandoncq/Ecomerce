@@ -83,7 +83,7 @@ export default function Monitores() {
             <li
               className="w-1/2 xl:w-1/5 flex flex-col justify-center items-center md:px-5 transition-all ease-in-out duration-300 hover:underline hover:underline-offset-8  cursor-pointer group"
               onClick={() => {
-                window.location.href = "mailto:cfchavezc@unjbg.edu.pe";
+                window.location.href = "mailto:dcoaquirar@unjbg.edu.pe";
               }}
             >
               <button className="bg-zinc-200 w-full flex flex-col justify-center items-center rounded-lg shadow-lg shadow-zinc-500 p-2">

@@ -1,8 +1,32 @@
 "use client";
 import Link from "next/link";
+import CarouselModal from "@/components/Modal";
+const monitorSlides = [
+  "https://kaas.hpcloud.hp.com/PROD/v2/renderbinary/11159209/7534719/comcon-nonos-poly-p-find-serial-numbers/realpresence-centro-monitor-serial-number-rear-unit",
+  "https://uk.answers.acer.com/rnt/rnw/img/enduser/snid_monitor.jpg",
+  "https://image.benq.com/is/image/benqco/2.lcd-800?$ResponsivePreset$",
+];
+
+const laptopSlides = [
+  "https://cdn.windowsreport.com/wp-content/uploads/sites/5/2024/01/Diseno-sin-titulo-8.jpg",
+  "https://i.redd.it/kwli8vuusumb1.jpeg",
+  "https://cdn.wallapop.com/images/10420/hn/5c/__/c10420p1066806072/i5224915984.jpg?pictureSize=W320",
+];
+
+const perifericoSlides = [
+  "https://pbs.twimg.com/media/FX3OPfjWYAAfRij.jpg:large",
+  "https://http2.mlstatic.com/D_NQ_NP_636572-MLA43825396455_102020-O.webp",
+  "https://m.media-amazon.com/images/I/71pFHsjiJ-L._AC_UF350,350_QL80_.jpg",
+];
+const impresoraSlides = [
+  "https://cdn.wallapop.com/images/10420/hm/k7/__/c10420p1065819850/i5217767858.jpg?pictureSize=W640",
+  "https://s7d1.scene7.com/is/image/canon/13744_image_1?scl=1",
+  "https://www.123tinta.es/images/HP304(1).jpg",
+];
+
 import { useState, useEffect, useRef } from "react";
 function formatearFecha(fechaISO) {
-  const fecha = new Date(fechaISO); // Convertir a objeto Date
+  const fecha = new Date(fechaISO);
   return fecha.toLocaleDateString("es-ES", {
     year: "numeric",
     month: "2-digit",
@@ -15,6 +39,16 @@ export default function SoporteClient() {
   const [producto, setProducto] = useState(null);
   const [error, setError] = useState(null);
   const identificacionProductoRef = useRef(null);
+  const [currentSlides, setCurrentSlides] = useState([]);
+  const [isCarouselOpen, setIsCarouselOpen] = useState(false);
+  const openCarousel = (slides) => {
+    setCurrentSlides(slides); // Establece las imágenes actuales
+    setIsCarouselOpen(true); // Abre el modal
+  };
+
+  const closeCarousel = () => {
+    setIsCarouselOpen(false);
+  };
   const evaluar = async () => {
     try {
       const response = await fetch("/api/cliente", {
@@ -347,9 +381,9 @@ export default function SoporteClient() {
             </p>
             <div className="w-full flex flex-col my-5">
               <div className="w-full flex">
-                <Link
-                  href="/Comprar/Impresoras"
+                <button
                   className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
+                  onClick={() => openCarousel(impresoraSlides)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -383,56 +417,12 @@ export default function SoporteClient() {
                     ></circle>
                   </svg>
                   <p>Impresoras</p>
-                </Link>
+                </button>
               </div>
               <div className="w-full flex">
-                <Link
-                  href="/Comprar/LaptopsOficina"
+                <button
                   className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="800"
-                    height="800"
-                    viewBox="0 -33.67 260.8 260.8"
-                    className="w-10 h-10 p-1 fill-blue-500 group-hover:fill-blue-700"
-                  >
-                    <path
-                      d="M31.035 47.389c0-13.644-.01-26.287-.013-35.923a9 9 0 0 1 9-9.01c38.517-.011 148.451-.045 180.707-.056a8.99 8.99 0 0 1 9.01 9c.011 31.428.034 87.489.045 122.7q13.587 20.912 27.164 41.828a9 9 0 0 1 1.453 4.911v3.457a6.75 6.75 0 0 1-6.757 6.745H9.173a6.756 6.756 0 0 1-6.757-6.741c0-1.422-.011-2.711-.016-4.279a9 9 0 0 1 1.5-5.016q13.591-20.493 27.164-40.98c-.004-17.161-.018-54.65-.029-86.636"
-                      className="fill-none"
-                    ></path>
-                    <path
-                      d="M201.2 14.9c-42.537.014-129.908.047-156.393.053.012 30.259.033 66.229.046 98.757v8.179c30.339-.012 141.7-.054 171.144-.062-.013-32.725-.035-79.452-.046-106.932Z"
-                      className="fill-none"
-                    ></path>
-                    <path
-                      d="M221.46 146.673c-2.579-4.72-5.134-9.4-6.87-12.58H50.607c-3.322 6.284-10.271 19.472-14.01 26.455h192.442c-1.839-3.362-4.722-8.648-7.579-13.875"
-                      className="fill-blue-500 group-hover:fill-blue-700"
-                    ></path>
-                    <path
-                      d="M95.925 167.362c-.994 4.52-2.233 10.221-2.914 13.6h75.2c-1.1-5.406-3.616-16.793-4.269-19.71 0 0-.058-.26-.15-.7H97.436l-.157.7c-.245 1.091-.755 3.386-1.354 6.11"
-                      className="fill-none"
-                    ></path>
-                    <path
-                      d="m33.435 47.389-.012-34.081c0-2.025-.022-3.859 1.161-5.6a6.62 6.62 0 0 1 4.343-2.772 24 24 0 0 1 3.9-.081h3.652q19.931 0 39.861-.012l49.258-.015 47.771-.015L218.27 4.8a23 23 0 0 1 3.509.057 6.7 6.7 0 0 1 4.3 2.646 7.98 7.98 0 0 1 1.258 5.052v5.78q0 13.155.01 26.311l.023 59.746.009 27.1a13 13 0 0 0 .087 3.242 8.2 8.2 0 0 0 1.212 2.067l1.525 2.347q2.5 3.841 4.991 7.682l10.4 16 5.126 7.9q1.248 1.92 2.494 3.842a21.6 21.6 0 0 1 2.371 3.928 10.5 10.5 0 0 1 .416 3.825 9.7 9.7 0 0 1-.3 3.557 4.4 4.4 0 0 1-3.7 2.743c-.738.061-1.5.01-2.237.01H17.2c-2.669 0-5.345.059-8.013 0a4.4 4.4 0 0 1-3.084-1.27c-1.541-1.529-1.288-3.569-1.3-5.569a12.7 12.7 0 0 1 .288-3.755 15.7 15.7 0 0 1 2.282-3.936q2.592-3.907 5.187-7.813 5.256-7.916 10.51-15.833 2.522-3.8 5.038-7.606 1.258-1.9 2.515-3.807l1.4-2.115a8.9 8.9 0 0 0 1.359-2.267 10.2 10.2 0 0 0 .085-2.59v-7.993q0-6.55-.005-13.1l-.012-31.326-.011-32.267c0-3.088-4.8-3.093-4.8 0l.026 72.6.006 14.038.329-1.211Q17.139 150.8 5.194 168.727c-1.832 2.759-4.266 5.575-4.94 8.9a22.4 22.4 0 0 0-.246 4.595 17.3 17.3 0 0 0 .325 4.459 9.306 9.306 0 0 0 8.892 6.76c3.579.071 7.168 0 10.748 0H250.6c.33 0 .661.006.991 0a9.32 9.32 0 0 0 8.8-6.438 13.5 13.5 0 0 0 .411-4.175 18 18 0 0 0-.454-5.188 17 17 0 0 0-2.294-4.418l-3.048-4.7-11.779-18.14-11.368-17.5.328 1.211q-.006-20.806-.015-41.613-.007-22.569-.017-45.138 0-10.293-.008-20.586v-9.365c0-2.927.373-6.182-.41-9.028a11.48 11.48 0 0 0-6.7-7.512c-2.211-.909-4.5-.853-6.841-.852h-10.957L177.47.014l-35.986.011-37.8.012L69.1.048 42.148.056c-2.826 0-5.531.119-8.025 1.644a11.5 11.5 0 0 0-5.4 8.4 43 43 0 0 0-.1 5.316v18.347q0 6.817.005 13.634c.008 3.081 4.808 3.086 4.807-.008"
-                      className="fill-blue-500 group-hover:fill-blue-700"
-                    ></path>
-                    <path
-                      d="M242.7 178.558H27.213c-2.91 0-5.828-.063-8.737 0h-.374c-3.089 0-3.094 4.8 0 4.8h215.49c2.91 0 5.828.064 8.737 0h.374c3.088 0 3.093-4.8 0-4.8ZM223.532 145.462q-3.436-6.289-6.87-12.581a2.4 2.4 0 0 0-2.072-1.188H70.843c-6.64 0-13.309-.18-19.948 0h-.288a2.39 2.39 0 0 0-2.072 1.188c-4.664 8.822-9.3 17.658-14.01 26.456a2.425 2.425 0 0 0 2.072 3.611h184.592c2.507 0 5.022.062 7.528 0h.322a2.425 2.425 0 0 0 2.073-3.611q-3.787-6.939-7.58-13.875c-1.482-2.712-5.628-.292-4.145 2.422l7.58 13.876 2.072-3.612H44.447c-2.493 0-5.037-.146-7.528 0-.107.006-.215 0-.322 0l2.072 3.612c4.71-8.8 9.347-17.634 14.011-26.456l-2.073 1.189h157.261c2.13 0 4.307.131 6.434 0 .095-.006.192 0 .288 0l-2.073-1.189q3.432 6.292 6.87 12.58c1.482 2.716 5.628.292 4.145-2.422"
-                      className="fill-blue-500 group-hover:fill-blue-700"
-                    ></path>
-                    <path
-                      d="M95.325 181.594c1.334-6.588 2.8-13.151 4.269-19.71a2.454 2.454 0 0 0-1.677-2.952 2.426 2.426 0 0 0-2.952 1.676c-1.468 6.559-2.934 13.122-4.269 19.71a2.46 2.46 0 0 0 1.677 2.952 2.423 2.423 0 0 0 2.952-1.676M161.628 161.884c1.468 6.56 2.921 13.125 4.268 19.71a2.4 2.4 0 0 0 4.629-1.276c-1.347-6.585-2.8-13.15-4.269-19.71a2.4 2.4 0 1 0-4.628 1.276M201.2 12.5l-29.255.01-34.788.012-35.6.013-31.693.01-22.979.007h-2.078a2.434 2.434 0 0 0-2.4 2.4q.009 23.213.021 46.424.014 24.238.024 48.478v12.034a2.436 2.436 0 0 0 2.4 2.4l25.919-.01 36.911-.014 41.175-.015 37.593-.014 27.3-.009H216a2.436 2.436 0 0 0 2.4-2.4l-.018-42.668-.019-43.62-.009-20.644a2.435 2.435 0 0 0-2.4-2.4zc-3.088 0-3.093 4.8 0 4.8h14.751l-2.4-2.4.017 38.926.019 44.657q0 11.675.01 23.349l2.4-2.4-25.5.008-36.694.013-41.163.015-37.784.014-27.693.011h-2.31l2.4 2.4q-.017-16.422-.011-32.844l-.024-48.432-.011-25.66-2.4 2.4 21.693-.014 30.893-.011 35.377-.012 35.14-.013 30.055-.01h3.24c3.084.003 3.089-4.797-.005-4.797"
-                      className="fill-blue-500 group-hover:fill-blue-700"
-                    ></path>
-                  </svg>
-                  <p>Laptops de Oficina</p>
-                </Link>
-              </div>{" "}
-              <div className="w-full flex">
-                <Link
-                  href="/Comprar/LaptopsGamer"
-                  className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
+                  onClick={() => openCarousel(laptopSlides)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -446,13 +436,13 @@ export default function SoporteClient() {
                     <path d="M89.5 56.9c-7.2 1.8-13.2 6.8-15.9 13.3-1.4 3.3-1.6 15.7-1.6 105 0 96.5.1 101.5 1.9 105.3 1 2.2 3.1 5.2 4.7 6.7 5.4 5 8.9 5.8 26.3 5.8 15.4 0 16-.1 17.5-2.2 2.2-3.2 2-5.5-.9-8.3-2.3-2.4-2.9-2.5-16.5-2.5H90.8l-2.9-2.9-2.9-2.9V76l2.9-3.2 2.9-3.3h330.4l2.9 3.3L427 76v198.2l-2.9 2.9-2.9 2.9H288.1c-131.8 0-133.1 0-135.1 2-2.4 2.4-2.6 7.2-.4 9.4 1.4 1.4 15.1 1.6 136 1.6 119.3 0 134.9-.2 138.2-1.6 4.9-2 9-6 11.3-10.9 1.8-3.8 1.9-8.8 1.9-105.3 0-82.7-.2-101.9-1.3-104.5-2-4.7-6.4-9.5-11.1-12l-4.1-2.2-165.5-.2c-91 0-166.8.2-168.5.6"></path>
                     <path d="M152.7 145.8c-2.6 2.8-2.2 7.8.7 9.7 2 1.4 6.7 1.5 34.6 1.3 30.5-.3 32.2-.4 33.6-2.2 1.9-2.7 1.8-7-.4-8.9-1.7-1.5-5.5-1.7-34.4-1.7-30.2 0-32.6.1-34.1 1.8M153.2 184.6c-2.8 1.9-3 7.4-.4 9.7 1.7 1.6 10.3 1.7 103.4 1.7 97.1 0 101.6-.1 103.1-1.8 2.5-2.7 2.2-7.8-.5-9.6-2-1.4-13.4-1.6-102.8-1.6s-100.8.2-102.8 1.6M152.7 224.8c-2.5 2.7-2.2 7.8.5 9.6 2 1.4 13.4 1.6 102.8 1.6 111.6 0 105 .4 105-6.4 0-7.1 7.7-6.6-105.2-6.6-97.1 0-101.6.1-103.1 1.8M77.7 328.8C76 330.6 62 389 62 394.2c0 6.2-11 5.8 161.1 5.8 150.4 0 156.7-.1 158.2-1.8 2.2-2.5 2.1-7.5-.1-9.5-1.7-1.6-13.8-1.7-153-1.7-83.2 0-151.2-.3-151.2-.8 0-.4 2.3-10.9 5.1-23.5l5.2-22.7h337.4l5.2 22.7c2.8 12.6 5.1 23.1 5.1 23.5 0 .5-4.7.8-10.3.8-11.6 0-13.7 1-13.7 6.7s1.9 6.3 19.1 6.3 19.9-.8 19.9-5.8c0-5.2-14-63.6-15.7-65.4-1.5-1.7-9.1-1.8-178.3-1.8s-176.8.1-178.3 1.8"></path>
                   </svg>
-                  <p>Laptops Gamer</p>
-                </Link>
+                  <p>Laptops</p>
+                </button>
               </div>
               <div className="w-full flex">
-                <Link
-                  href="/Comprar/Perifericos"
+                <button
                   className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
+                  onClick={() => openCarousel(perifericoSlides)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -470,12 +460,12 @@ export default function SoporteClient() {
                     </g>
                   </svg>{" "}
                   <p>Perifericos</p>
-                </Link>
+                </button>
               </div>{" "}
               <div className="w-full flex">
-                <Link
-                  href="/Comprar/Monitores"
+                <button
                   className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1 group"
+                  onClick={() => openCarousel(monitorSlides)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -488,7 +478,13 @@ export default function SoporteClient() {
                     <path d="M449.055 64.176H21.946C9.845 64.176 0 74.021 0 86.121v264.602c0 12.101 9.845 21.945 21.946 21.945h148.343l-7.91 19.156h-31.772a7.5 7.5 0 0 0 0 15h209.79c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-31.772l-7.911-19.156h148.343c12.101 0 21.945-9.845 21.945-21.945V86.121c-.002-12.1-9.846-21.945-21.947-21.945M292.394 391.825H178.606l7.911-19.156h97.967zM456 350.724a6.95 6.95 0 0 1-6.945 6.945H21.946c-3.83 0-6.946-3.116-6.946-6.945V86.121a6.954 6.954 0 0 1 6.946-6.946h427.109A6.953 6.953 0 0 1 456 86.121z"></path>
                   </svg>
                   <p>Monitores</p>
-                </Link>
+                </button>{" "}
+                {isCarouselOpen && (
+                  <CarouselModal
+                    slides={currentSlides}
+                    onClose={closeCarousel}
+                  />
+                )}
               </div>
             </div>
           </div>

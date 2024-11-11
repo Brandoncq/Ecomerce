@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormContext } from "../context";
 import CountrySearchInput from "@/components/Countries";
+import Link from "next/link";
 function CrearCuenta() {
   const router = useRouter();
   const [isLoadingButton, setIsLoadingButton] = useState(false);
@@ -512,6 +513,25 @@ function CrearCuenta() {
                 : ". Minimo 8 Carateres"}
             </span>
           </p>
+          <div className="w-full flex-col p-3 bg-zinc-100 rounded-lg border border-zinc-400 mt-4">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                required
+                className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
+              />
+              <label className="ms-2 text-xs font-medium text-gray-900">
+                He leído y acepto las{" "}
+                <Link
+                  href="/PoliticasPrivacidad"
+                  className="text-blue-500 hover:text-blue-700 hover:underline hover:underline-offset-4"
+                >
+                  políticas de privacidad
+                </Link>{" "}
+                y términos de uso.
+              </label>
+            </div>
+          </div>
           <div className="w-full min-h-5 flex justify-center my-4">
             {error && (
               <p className="text-red-500 text-sm font-semibold">{error}</p>
