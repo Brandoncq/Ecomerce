@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import CarouselModal from "@/components/Modal";
 const monitorSlides = [
   "https://kaas.hpcloud.hp.com/PROD/v2/renderbinary/11159209/7534719/comcon-nonos-poly-p-find-serial-numbers/realpresence-centro-monitor-serial-number-rear-unit",
   "https://uk.answers.acer.com/rnt/rnw/img/enduser/snid_monitor.jpg",
@@ -30,7 +31,7 @@ function formatearFecha(fechaISO) {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-  });
+  }); // Formato DD/MM/YYYY
 }
 export default function SoporteClient() {
   const [serie, setSerie] = useState("");
@@ -41,8 +42,8 @@ export default function SoporteClient() {
   const [currentSlides, setCurrentSlides] = useState([]);
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const openCarousel = (slides) => {
-    setCurrentSlides(slides);
-    setIsCarouselOpen(true);
+    setCurrentSlides(slides); // Establece las imágenes actuales
+    setIsCarouselOpen(true); // Abre el modal
   };
 
   const closeCarousel = () => {
@@ -478,6 +479,12 @@ export default function SoporteClient() {
                   </svg>
                   <p>Monitores</p>
                 </button>{" "}
+                {isCarouselOpen && (
+                  <CarouselModal
+                    slides={currentSlides}
+                    onClose={closeCarousel}
+                  />
+                )}
               </div>
             </div>
           </div>
