@@ -521,14 +521,14 @@ function CrearCuenta() {
                 className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
               />
               <label className="ms-2 text-xs font-medium text-gray-900">
-                He leído y acepto las{" "}
+                He leído y acepto las&nbsp;
                 <Link
                   href="/PoliticasPrivacidad"
                   className="text-blue-500 hover:text-blue-700 hover:underline hover:underline-offset-4"
                 >
                   políticas de privacidad
-                </Link>{" "}
-                y términos de uso.
+                </Link>
+                &nbsp;y términos de uso.
               </label>
             </div>
           </div>
