@@ -93,6 +93,7 @@ function Pasarela() {
                 await venta();
                 const UpdateCarEvent = new CustomEvent("deletecart");
                 window.dispatchEvent(UpdateCarEvent);
+                router.push("/Carrito/Confimacion");
               } catch (error) {
                 console.error("Error al capturar el pago:", error);
               }

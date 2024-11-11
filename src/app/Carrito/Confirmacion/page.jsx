@@ -1,8 +1,5 @@
 "use client";
-import { useCompra } from "../CompraContext";
 function ConfirmarPago() {
-  const { compra, setCompra } = useCompra();
-  console.log(compra);
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 border-t-4 border-zinc-200">
       <div className="text-xl my-4 w-full flex flex-col items-center">
