@@ -205,10 +205,12 @@ export default function SoporteClient() {
                 Ver términos y condiciones
               </Link>
               <Link
-                href="/Usuario"
+                href={login ? "/Usuario" : "/IniciarSesion"}
                 className="text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1"
               >
-                Rastrear mis envíos
+                {login
+                  ? "Rastrear mis envíos"
+                  : "Identifíquese para rastrear sus envíos"}
               </Link>
               <Link
                 href="PoliticasPrivacidad"
