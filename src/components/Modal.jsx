@@ -25,15 +25,12 @@ const CarouselModal = ({ slides, onClose }) => {
         className="relative w-3/4 h-3/4 bg-white rounded-lg overflow-hidden shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Botón de cierre en la esquina superior derecha */}
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-xl w-10 h-10 flex justify-center items-center text-zinc-900 hover:text-white rounded-full px-2 py-1 hover:bg-zinc-600 z-50"
         >
           X
         </button>
-
-        {/* Contenido del carrusel */}
         <div className="relative w-full h-full">
           <div className="relative overflow-hidden h-full">
             {slides.map((slide, index) => (
@@ -52,8 +49,6 @@ const CarouselModal = ({ slides, onClose }) => {
               </div>
             ))}
           </div>
-
-          {/* Botones de navegación */}
           <button
             onClick={prevSlide}
             className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
@@ -73,7 +68,6 @@ const CarouselModal = ({ slides, onClose }) => {
             </span>
           </button>
 
-          {/* Indicadores */}
           <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
             {slides.map((_, index) => (
               <button
