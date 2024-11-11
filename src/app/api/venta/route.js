@@ -24,7 +24,7 @@ export async function POST(request) {
       await request.json();
 
     const [buscar_carrito] = await pool.query(
-      `SELECT * FROM carrito WHERE id_cliente = ?`,
+      "SELECT * FROM carrito WHERE id_cliente = ?",
       [payload.id]
     );
 
@@ -38,7 +38,7 @@ export async function POST(request) {
     const carritoId = buscar_carrito[0].id_carrito;
 
     const [carrito_items] = await pool.query(
-      `SELECT * FROM carrito_item WHERE id_carrito = ?`,
+      "SELECT * FROM carrito_item WHERE id_carrito = ?",
       [carritoId]
     );
 
@@ -48,7 +48,7 @@ export async function POST(request) {
 
     const idsProductos = carrito_items.map((item) => item.id_producto);
     const [productosDisponibles] = await pool.query(
-      `SELECT * FROM vista_productos_venta WHERE id_producto IN (?) AND estado = 'Disponible'`,
+      "SELECT * FROM vista_productos_venta WHERE id_producto IN (?) AND estado = 'Disponible'",
       [idsProductos]
     );
 
@@ -70,7 +70,7 @@ export async function POST(request) {
     }
 
     const [nuevaVenta] = await pool.query(
-      `INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, registro_venta, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, NOW(), ?, ?, ?, ?, ?, ?)`,
+      "INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, registro_venta, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, NOW(), ?, ?, ?, ?, ?, ?)",
       [payload.id, pais, cpostal, direccion, ciudad, region, referencia]
     );
 
@@ -85,7 +85,7 @@ export async function POST(request) {
       );
 
       await pool.query(
-        `INSERT INTO detalle_venta (id_venta, id_producto, cantidad_ordenada, subtotal, descuento) VALUES (?, ?, ?, ?, ?)`,
+        "INSERT INTO detalle_venta (id_venta, id_producto, cantidad_ordenada, subtotal, descuento) VALUES (?, ?, ?, ?, ?)",
         [
           ventaId,
           producto.id_producto_item,
@@ -96,19 +96,19 @@ export async function POST(request) {
       );
 
       await pool.query(
-        `UPDATE producto_item SET id_estado = 2 WHERE id_producto_item = ?`,
+        "UPDATE producto_item SET id_estado = 2 WHERE id_producto_item = ?",
         [producto.id_producto_item]
       );
     }
-    await pool.query(`UPDATE venta SET pago_total = ? WHERE id_venta = ?`, [
+    await pool.query("UPDATE venta SET pago_total = ? WHERE id_venta = ?", [
       totalVenta,
       ventaId,
     ]);
 
-    await pool.query(`DELETE FROM carrito_item WHERE id_carrito = ?`, [
+    await pool.query("DELETE FROM carrito_item WHERE id_carrito = ?", [
       carritoId,
     ]);
-    await pool.query(`DELETE FROM carrito WHERE id_carrito = ?`, [carritoId]);
+    await pool.query("DELETE FROM carrito WHERE id_carrito = ?", [carritoId]);
 
     return NextResponse.json(
       { message: "Venta realizada con éxito" },
