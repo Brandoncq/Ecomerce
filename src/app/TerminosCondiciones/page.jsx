@@ -155,10 +155,9 @@ export default function Terminos() {
             </h2>
             <div className="w-full md:pl-10 mb-10">
               <p>
-                BranviaTech ofrece una garantía de [especificar duración] para
-                productos que presenten defectos de fabricación. El Cliente
-                puede solicitar reparación, reemplazo o reembolso, según
-                corresponda.
+                BranviaTech ofrece una garantía de 365 dias para productos que
+                presenten defectos de fabricación. El Cliente puede solicitar
+                reparación, reemplazo o reembolso, según corresponda.
               </p>
             </div>
             <h2 className="text-xl font-semibold mt-6 bg-zinc-200 my-2 p-1">
