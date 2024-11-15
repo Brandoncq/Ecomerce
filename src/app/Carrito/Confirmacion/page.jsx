@@ -1,5 +1,8 @@
 "use client";
+import Link from "next/link";
+import { useCompra } from "../CompraContext";
 function ConfirmarPago() {
+  const { compra } = useCompra();
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 border-t-4 border-zinc-200">
       <div className="text-xl my-4 w-full flex flex-col items-center">
@@ -44,21 +47,27 @@ function ConfirmarPago() {
 
         <div className="mb-4">
           <p className="text-gray-500">Número de pedido:</p>
-          <p className="text-lg font-semibold">#123456789</p>
+          <p className="text-lg font-semibold">#{compra.ventaId}</p>
         </div>
 
         <div className="mb-4">
           <p className="text-gray-500">Monto total pagado:</p>
-          <p className="text-lg font-semibold">$99.99</p>
+          <p className="text-lg font-semibold">S/. {compra.totalVenta}</p>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center mt-6">
-          <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
+          <Link
+            href={"/Dashboard"}
+            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700"
+          >
             Ver detalles del pedido
-          </button>
-          <button className="bg-zinc-200 text-zinc-700 py-2 px-4 rounded-lg mt-3 md:mt-0 hover:bg-zinc-300">
+          </Link>
+          <Link
+            href={"/"}
+            className="bg-zinc-200 text-zinc-700 py-2 px-4 rounded-lg mt-3 md:mt-0 hover:bg-zinc-300"
+          >
             Volver al inicio
-          </button>
+          </Link>
         </div>
       </div>
     </div>

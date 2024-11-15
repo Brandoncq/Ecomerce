@@ -2,12 +2,13 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from "next/navigation";
 import { useCompra } from "../CompraContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function Pasarela() {
   const router = useRouter();
   const [errorItems, setErrorItems] = useState([]);
+  const [moneda, setMoneda] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { compra } = useCompra();
+  const { compra, setCompra } = useCompra();
   const venta = async () => {
     try {
       const url = "/api/venta";
@@ -27,6 +28,7 @@ function Pasarela() {
       });
 
       const data = await response.json();
+      console.log(data);
       if (!response.ok) {
         if (data.error && data.items) {
           setErrorMessage(data.error);
@@ -36,16 +38,39 @@ function Pasarela() {
         }
         return;
       }
-
+      console.log("Compra exitosa:", data);
       console.log("Compra exitosa:", data.message);
       setErrorMessage("");
       setErrorItems([]);
+      setCompra((prevCompra) => ({
+        ...prevCompra,
+        totalVenta: data.totalVenta,
+        ventaId: data.ventaId,
+      }));
     } catch (error) {
       setErrorMessage(
         "Hubo un problema al realizar la venta. Intenta nuevamente."
       );
     }
   };
+  useEffect(() => {
+    const fetchCambio = async () => {
+      try {
+        const response = await fetch("https://open.er-api.com/v6/latest/USD");
+        if (!response.ok) {
+          throw new Error("Error al obtener el tipo de cambio");
+        }
+        const data = await response.json();
+        const cambioSol = data.rates.PEN;
+        setMoneda(cambioSol);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    };
+
+    fetchCambio();
+  }, []);
+
   return (
     <div className="w-full flex flex-wrap justify-center p-5 md:px-5 lg:px-20 mb-4 border-t-4 border-zinc-200">
       <div className="text-xl my-4 w-full flex flex-col items-center">
@@ -82,8 +107,16 @@ function Pasarela() {
       </div>
 
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
+        <div className="p-2 my-6 w-full">
+          <h2 className="text-2xl font-semibold text-gray-800">
+            Cambio de Moneda: de Sol a Dólar
+          </h2>
+          <p className="mt-4 text-gray-600">
+            <span className="font-bold">1 Dólar:</span> {moneda} Soles
+          </p>
+        </div>
         {errorMessage && (
-          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4">
+          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4 w-full">
             <p className="font-bold">{errorMessage}</p>
             {errorItems.length > 0 && (
               <ul className="mt-2 list-disc list-inside">
@@ -109,9 +142,14 @@ function Pasarela() {
                 method: "POST",
               });
               const res = await order.json();
+              if (!res.id) {
+                setErrorMessage(res.error);
+                setErrorItems(res.items);
+                return;
+              }
               return res.id;
             }}
-            onCancel={(data) => {
+            onCancel={async (data) => {
               console.log(data);
             }}
             onApprove={async (data, actions) => {

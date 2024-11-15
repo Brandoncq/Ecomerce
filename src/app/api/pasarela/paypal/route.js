@@ -49,17 +49,26 @@ export async function POST(req) {
           })),
         });
       }
-      const totalAmount = existingItems.reduce(
-        (total, item) =>
-          total + parseFloat(item.precio_unitario) * item.cantidad,
-        0
-      );
+
+      const change = await fetch("https://open.er-api.com/v6/latest/USD");
+      const data = await change.json();
+      const cambioSol = data.rates.PEN;
+      console.log(cambioSol);
+      const totalAmount = (
+        existingItems.reduce(
+          (total, item) =>
+            total + parseFloat(item.precio_unitario) * item.cantidad,
+          0
+        ) / cambioSol
+      ).toFixed(2);
       const paypalItems = existingItems.map((item) => ({
         name: item.nombre_producto,
         quantity: String(item.cantidad),
         unit_amount: {
           currency_code: "USD",
-          value: String(parseFloat(item.precio_unitario).toFixed(2)),
+          value: String(
+            (parseFloat(item.precio_unitario) / cambioSol).toFixed(2)
+          ),
         },
       }));
       const paypalRequest = new paypal.orders.OrdersCreateRequest();

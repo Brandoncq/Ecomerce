@@ -19,7 +19,6 @@ export async function GET(request) {
       );
     }
 
-    // Obtener las ventas del cliente
     const [ventas] = await pool.query(
       "SELECT * FROM venta WHERE id_cliente = ?",
       [payload.id]
@@ -57,6 +56,7 @@ export async function GET(request) {
     );
   }
 }
+
 export async function POST(request) {
   try {
     const MytokenName = request.cookies.get("Sesion");
@@ -125,7 +125,7 @@ export async function POST(request) {
       }
     }
     const fechaEnvio = new Date();
-    fechaEnvio.setMonth(fechaEnvio.getMonth() + 3);
+    fechaEnvio.setDate(fechaEnvio.getDate() + 14);
     const fechaEnvioFormateada = fechaEnvio.toISOString().slice(0, 10);
 
     const [nuevaVenta] = await pool.query(
@@ -179,7 +179,11 @@ export async function POST(request) {
     await pool.query("DELETE FROM carrito WHERE id_carrito = ?", [carritoId]);
 
     return NextResponse.json(
-      { message: "Venta realizada con éxito" },
+      {
+        message: "Venta realizada con éxito",
+        ventaId: ventaId,
+        totalVenta: totalVenta,
+      },
       { status: 200 }
     );
   } catch (error) {
