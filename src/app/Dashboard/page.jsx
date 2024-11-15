@@ -33,7 +33,7 @@ function Dashboard() {
         <h2 className="text-2xl font-bold mb-2 px-4">Compras</h2>
         {ventas.length > 0 ? (
           <ul className="list-none list-inside border border-zinc-200 bg-slate-200 p-4 rounded-lg">
-            {ventas.map((venta) => (
+            {ventas.map((venta, index) => (
               <li key={venta.id_venta} className="mb-2">
                 <p className="font-bold">
                   Compra ID: {venta.id_venta} - Total: ${" "}
