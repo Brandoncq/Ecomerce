@@ -2,8 +2,11 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from "next/navigation";
 import { useCompra } from "../CompraContext";
+import { useState } from "react";
 function Pasarela() {
   const router = useRouter();
+  const [errorItems, setErrorItems] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   const { compra } = useCompra();
   const venta = async () => {
     try {
@@ -24,13 +27,23 @@ function Pasarela() {
       });
 
       const data = await response.json();
-      if (response.ok) {
-        console.log("Venta realizada con éxito:", data.message);
-      } else {
-        console.error("Error al realizar la venta:", data.message);
+      if (!response.ok) {
+        if (data.error && data.items) {
+          setErrorMessage(data.error);
+          setErrorItems(data.items);
+        } else {
+          throw new Error("Error inesperado en el proceso de compra.");
+        }
+        return;
       }
+
+      console.log("Compra exitosa:", data.message);
+      setErrorMessage("");
+      setErrorItems([]);
     } catch (error) {
-      console.error("Error durante el proceso de venta:", error);
+      setErrorMessage(
+        "Hubo un problema al realizar la venta. Intenta nuevamente."
+      );
     }
   };
   return (
@@ -67,7 +80,23 @@ function Pasarela() {
           <h2 className="px-2">Pasarela de Pagos</h2>
         </div>
       </div>
+
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
+        {errorMessage && (
+          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4">
+            <p className="font-bold">{errorMessage}</p>
+            {errorItems.length > 0 && (
+              <ul className="mt-2 list-disc list-inside">
+                {errorItems.map((item, index) => (
+                  <li key={index}>
+                    Producto: <strong>{item.product}</strong>, Solicitado:{" "}
+                    {item.requestedQuantity}, Disponible: {item.availableStock}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
         <PayPalScriptProvider
           options={{
             clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
@@ -87,8 +116,8 @@ function Pasarela() {
             }}
             onApprove={async (data, actions) => {
               try {
-                console.log("Pago aprobado:", data);
                 const capture = await actions.order.capture();
+                console.log("Pago aprobado:", data);
                 console.log("Captura exitosa:", capture);
                 await venta();
                 const UpdateCarEvent = new CustomEvent("deletecart");

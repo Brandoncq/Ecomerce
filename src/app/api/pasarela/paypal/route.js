@@ -23,7 +23,6 @@ export async function POST(req) {
       console.error("Error de verificación de JWT:", err);
     }
   }
-
   if (payload) {
     const [buscar_carrito] = await pool.query(
       `SELECT * FROM carrito WHERE id_cliente = ?`,
@@ -42,7 +41,7 @@ export async function POST(req) {
       );
       if (insufficientStockItems.length > 0) {
         return NextResponse.json({
-          error: "Insufficient stock for some items in the cart",
+          error: "Stock insuficiente para algunos artículos del carrito",
           items: insufficientStockItems.map((item) => ({
             product: item.nombre_producto,
             requestedQuantity: item.cantidad,
@@ -82,7 +81,6 @@ export async function POST(req) {
           },
         ],
       });
-
       const response = await client.execute(paypalRequest);
       if (response.result && response.result.id) {
         return NextResponse.json({ id: response.result.id });
