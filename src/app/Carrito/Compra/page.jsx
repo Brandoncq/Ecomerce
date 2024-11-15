@@ -382,19 +382,22 @@ function CarritoCompra() {
                       <div className="flex w-full md:w-1/3 px-2">
                         <div className="relative z-0 mb-5 group w-full">
                           <input
-                            type="number"
-                            max={4}
+                            type="text"
                             name="from_cpostal"
                             id="from_cpostal"
                             className="block py-2.5 px-0 w-full text-lg text-gray-900 font-semibold bg-transparent border-0 border-b-2 border-gray-600 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                             required
+                            maxLength={10}
                             value={compra.cpostal}
                             onChange={(e) => {
-                              setCompra((prevUser) => ({
-                                ...prevUser,
-                                cpostal: e.target.value,
-                              }));
+                              const value = e.target.value;
+                              if (/^[a-zA-Z0-9]{0,10}$/.test(value)) {
+                                setCompra((prevUser) => ({
+                                  ...prevUser,
+                                  cpostal: value,
+                                }));
+                              }
                             }}
                           />
                           <label

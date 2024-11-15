@@ -84,7 +84,11 @@ export async function POST(req) {
       });
 
       const response = await client.execute(paypalRequest);
-      return NextResponse.json({ id: response.result.id });
+      if (response.result && response.result.id) {
+        return NextResponse.json({ id: response.result.id });
+      } else {
+        return NextResponse.json({ error: "Error creating PayPal order" });
+      }
     }
   }
 

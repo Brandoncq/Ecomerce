@@ -15,5 +15,5 @@ export async function middleware(request) {
   }
 }
 export const config = {
-  matcher: ["/Usuario/:path*", "/Carrito/Pasarela", "/Carrito/Confirmacion"],
+  matcher: ["/Dashboard/:path*", "/Carrito/Pasarela", "/Carrito/Confirmacion"],
 };

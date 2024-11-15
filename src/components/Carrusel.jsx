@@ -66,7 +66,7 @@ const Carousel = ({ slides }) => {
               <div className="px-12 lg:px-4 my-3">
                 <Link
                   href={slide.url}
-                  className="px-6 py-2 bg-white text-black text-base md:text-xl font-normal rounded-md hover:bg-zinc-300"
+                  className="px-6 py-2 bg-white text-black text-base md:text-xl font-normal rounded-md transition-all ease-in-out duration-300 hover:bg-zinc-200"
                 >
                   {slide.button}
                 </Link>

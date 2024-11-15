@@ -107,7 +107,7 @@ function ClientOfertas() {
           ></path>
           <path
             d="M19.133 39.758H5.5V21.115h35.511v7.506"
-            className="fill-none stroke-zinc-800"
+            className="fill-none stroke-zinc-800 group-hover:stroke-blue-700"
           ></path>
           <path
             d="M18.082 30.437h-6.836v9.32M28.075 13.886V8.242H11.97v12.873h22.574v-7.23zM28.075 8.242l6.468 5.644M24.967 13.886h-9.385M30.801 17.183H15.582"

@@ -135,7 +135,7 @@ function Autenticacion() {
                   setShowDropdown(false);
                 }}
               >
-                <Link href="/Usuario">Usuario</Link>
+                <Link href="/Dashboard">Dashboard</Link>
               </li>
               <li
                 className="p-2 text-zinc-200 hover:bg-blue-500 rounded cursor-pointer"

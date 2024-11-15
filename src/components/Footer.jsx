@@ -12,8 +12,8 @@ function Footer() {
             </h2>
             <ul className="text-gray-500 font-medium">
               <li className="mb-2">
-                <Link href="/" className=" hover:underline">
-                  Compras
+                <Link href="/Comprar" className=" hover:underline">
+                  Comprar
                 </Link>
               </li>
               <li className="mb-2">
@@ -22,7 +22,7 @@ function Footer() {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/Comprar/Ofertas" className=" hover:underline">
+                <Link href="/Ofertas" className=" hover:underline">
                   Ofertas
                 </Link>
               </li>
@@ -34,33 +34,31 @@ function Footer() {
             </h2>
             <ul className="text-gray-500 font-medium">
               <li className="mb-2">
-                <Link href="/Comprar/Laptops" className="hover:underline">
-                  Laptops
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="/Comprar/Computadoras" className="hover:underline">
-                  Computadoras
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="/Comprar/Celulares" className="hover:underline">
-                  Celulares
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="/Comprar/Tablets" className="hover:underline">
-                  Tablets
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="/Comprar/Accesorios" className="hover:underline">
-                  Accesorios
+                <Link href="/Comprar/LaptopsGamer" className="hover:underline">
+                  Laptops Gamer
                 </Link>
               </li>
               <li className="mb-2">
                 <Link href="/Comprar/Monitores" className="hover:underline">
                   Monitores
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link href="/Comprar/Impresoras" className="hover:underline">
+                  Impresoras
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link href="/Comprar/Perifericos" className="hover:underline">
+                  Perifericos
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/Comprar/LaptopsOficina"
+                  className="hover:underline"
+                >
+                  Laptops de Oficina
                 </Link>
               </li>
             </ul>
@@ -76,7 +74,7 @@ function Footer() {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="/" className="hover:underline">
+                <Link href="/Soporte" className="hover:underline">
                   Soporte
                 </Link>
               </li>
@@ -88,19 +86,14 @@ function Footer() {
             </h2>
             <ul className="text-gray-500 font-medium">
               <li className="mb-2">
-                <a href="/" className="hover:underline">
-                  Contacto
-                </a>
+                <Link href="/TerminosCondiciones" className="hover:underline">
+                  Términos y Condiciones de Uso
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="/" className="hover:underline">
-                  Medios de pago
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/" className="hover:underline">
-                  Estado de tu orden
-                </a>
+                <Link href="/PoliticasPrivacidad" className="hover:underline">
+                  Políticas de Privacidad y Datos
+                </Link>
               </li>
             </ul>
           </div>

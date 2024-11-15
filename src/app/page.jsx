@@ -208,6 +208,53 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="w-full">
+          <div className="w-full flex flex-wrap items-start justify-center px-4 md:px-5 lg;px-10 mb-5 md:mb-20">
+            <h1 className="w-full text-3xl md:text-5xl md:px-6 font-bold my-10">
+              Acceso Rápido
+            </h1>
+            <div className="w-full md:w-1/2 flex flex-col md:px-5">
+              <Link
+                className="w-full border border-zinc-400 flex flex-col group"
+                href={"/IniciarSesion"}
+              >
+                <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+                  <h1 className="text-3xl mb-2 font-light">INICIAR SESIÓN</h1>
+                  <p className="text-sm">
+                    Accede a tu cuenta para gestionar tus preferencias
+                  </p>
+                </div>
+                <div className="w-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1615494487949-f5f68968330e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt=""
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+              </Link>
+            </div>
+            <div className="w-full md:w-1/2 flex flex-col md:px-5">
+              <Link
+                className="w-full border border-zinc-400 flex flex-col group"
+                href={"/Comprar"}
+              >
+                <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+                  <h1 className="text-3xl mb-2 font-light">COMPRAR</h1>
+                  <p className="text-sm">
+                    Explora nuestras categorías y encuentra lo que necesitas
+                  </p>
+                </div>
+                <div className="w-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1580983559367-0dc2f8934365?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt=""
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

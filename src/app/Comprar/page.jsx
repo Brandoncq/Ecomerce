@@ -14,31 +14,31 @@ const slides = [
   {
     id: 2,
     image:
-      "https://images.unsplash.com/photo-1626379961798-54f819ee896a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    titulo: "ACCESORIOS",
+      "https://images.unsplash.com/photo-1705332112231-4dff35a9587c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    titulo: "PERIFERICOS",
     frase: "Los accesorios más cómodos",
     text: "Complementos diseñados para profesionales.",
-    url: "/Comprar/Accesorios",
+    url: "/Comprar/Perifericos",
     button: "Comprar",
   },
   {
     id: 3,
+    image:
+      "https://images.unsplash.com/photo-1610438250910-01cb769c1334?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    titulo: "LAPTOPS",
+    frase: "El poder en tus manos para usted",
+    text: "Rendimiento excepcional para tareas exigentes y productividad",
+    url: "/Comprar/Laptops",
+    button: "Comprar",
+  },
+  {
+    id: 4,
     image:
       "https://blog.oficinadosbits.com.br/wp-content/uploads/2023/06/acer-nitro-5-2.jpg",
     titulo: "Acer Nitro 5",
     frase: "La gama de computadoras mas alta",
     text: "Tecnología de última generación al alcance de tus manos.",
     url: "/Buscar/Acer%20Nitro%205",
-    button: "Comprar",
-  },
-  {
-    id: 4,
-    image:
-      "https://images.unsplash.com/photo-1610465299993-e6675c9f9efa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    titulo: "LAPTOPS",
-    frase: "El poder en tus manos para usted",
-    text: "Rendimiento excepcional para tareas exigentes y productividad",
-    url: "/Comprar/Laptops",
     button: "Comprar",
   },
   {
@@ -271,6 +271,65 @@ export default function Comprar() {
             <h3 className="text-xl hover:underline hover:underline-offset-8">
               Ofertas
             </h3>
+          </Link>
+        </div>
+      </div>
+      <div className="w-full flex flex-wrap items-start justify-center px-4 md:px-5 lg;px-10 mb-5 md:mb-20">
+        <h1 className="w-full text-3xl md:text-5xl md:px-6 font-bold my-10">
+          Ver todas las Ofertas
+        </h1>
+        <div className="w-full md:w-1/3 flex flex-col md:px-5">
+          <Link
+            className="w-full border border-zinc-400 flex flex-col group"
+            href={"/Comprar/Perifericos?ofertas=Si"}
+          >
+            <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+              <h1 className="text-3xl mb-2 font-light">PERIFERICOS</h1>
+              <p className="text-sm">Tu comudidad es primordial</p>
+            </div>
+            <div className="w-full">
+              <img
+                src="https://images.unsplash.com/photo-1714537114796-b837f5d4b18e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </Link>
+        </div>
+        <div className="w-full md:w-1/3 flex flex-col md:px-5">
+          <Link
+            className="w-full border border-zinc-400 flex flex-col group"
+            href={"/Comprar/LaptopsGamer?ofertas=Si"}
+          >
+            <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+              <h1 className="text-3xl mb-2 font-light">LAPTOPS GAMER</h1>
+              <p className="text-sm">Amplia tu visión</p>
+            </div>
+            <div className="w-full">
+              <img
+                src="https://images.unsplash.com/photo-1510435586480-6372f195d2a3?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </Link>
+        </div>
+        <div className="w-full md:w-1/3 flex flex-col md:px-5">
+          <Link
+            className="w-full border border-zinc-400 flex flex-col group"
+            href={"/Comprar/Monitores?ofertas=Si"}
+          >
+            <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+              <h1 className="text-3xl mb-2 font-light">MONITORES</h1>
+              <p className="text-sm">Tu mundo en tus manos</p>
+            </div>
+            <div className="w-full">
+              <img
+                src="https://images.unsplash.com/photo-1616763355548-1b606f439f86?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </Link>
         </div>
       </div>

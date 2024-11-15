@@ -1,7 +1,62 @@
 import { NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 import pool from "../config/route";
+export async function GET(request) {
+  try {
+    const MytokenName = request.cookies.get("Sesion");
+    let payload;
 
+    if (MytokenName) {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      const verified = await jwtVerify(MytokenName.value, secret);
+      payload = verified.payload;
+    }
+
+    if (!payload) {
+      return NextResponse.json(
+        { message: "Usuario no autenticado" },
+        { status: 401 }
+      );
+    }
+
+    // Obtener las ventas del cliente
+    const [ventas] = await pool.query(
+      "SELECT * FROM venta WHERE id_cliente = ?",
+      [payload.id]
+    );
+
+    if (ventas.length === 0) {
+      return NextResponse.json(
+        { message: "No se encontraron ventas para este usuario" },
+        { status: 404 }
+      );
+    }
+
+    // Agregar detalles de cada venta
+    for (const venta of ventas) {
+      const [detallesVenta] = await pool.query(
+        "SELECT dv.*, p.nombre_producto AS producto_nombre, pi.serie FROM detalle_venta dv JOIN producto_item pi ON dv.id_producto = pi.id_producto_item JOIN producto p ON pi.id_producto = p.id_producto WHERE dv.id_venta = ?",
+        [venta.id_venta]
+      );
+
+      venta.detalles = detallesVenta;
+    }
+
+    return NextResponse.json(
+      {
+        message: "Ventas obtenidas con éxito",
+        ventas,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error al obtener las ventas:", error);
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
 export async function POST(request) {
   try {
     const MytokenName = request.cookies.get("Sesion");
@@ -69,10 +124,22 @@ export async function POST(request) {
         }
       }
     }
+    const fechaEnvio = new Date();
+    fechaEnvio.setMonth(fechaEnvio.getMonth() + 3);
+    const fechaEnvioFormateada = fechaEnvio.toISOString().slice(0, 10);
 
     const [nuevaVenta] = await pool.query(
-      "INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, registro_venta, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, NOW(), ?, ?, ?, ?, ?, ?)",
-      [payload.id, pais, cpostal, direccion, ciudad, region, referencia]
+      "INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, registro_venta, fecha_envio, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, NOW(), ?, ?, ?, ?, ?, ?, ?)",
+      [
+        payload.id,
+        fechaEnvioFormateada,
+        pais,
+        cpostal,
+        direccion,
+        ciudad,
+        region,
+        referencia,
+      ]
     );
 
     const ventaId = nuevaVenta.insertId;

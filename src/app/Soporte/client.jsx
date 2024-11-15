@@ -205,7 +205,7 @@ export default function SoporteClient() {
                 Ver términos y condiciones
               </Link>
               <Link
-                href={login ? "/Usuario" : "/IniciarSesion"}
+                href={login ? "/Dashboard" : "/IniciarSesion"}
                 className="text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1"
               >
                 {login
@@ -352,7 +352,7 @@ export default function SoporteClient() {
             </div>
             <div className="w-full flex flex-col">
               <Link
-                href={login ? "/Usuario" : "/IniciarSesion"}
+                href={login ? "/Dashboard" : "/IniciarSesion"}
                 className="flex items-center text-blue-500 hover:text-blue-700 underline underline-offset-2 my-3 group"
               >
                 <svg
