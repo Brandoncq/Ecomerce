@@ -1,4 +1,3 @@
-import ClientTablets from "./client";
 export const metadata = {
   title: "Soporte Tecnico BranviaTech",
   description: "Soporte Tecnico de la Empresa BranviaTech",
