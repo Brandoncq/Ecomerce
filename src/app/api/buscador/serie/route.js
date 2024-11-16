@@ -12,7 +12,6 @@ export async function GET(request) {
       );
     }
 
-    // Consulta a la vista que ya tiene toda la información
     const [items] = await pool.query(
       "SELECT * FROM vista_productos_venta WHERE serie = ?",
       [query]
@@ -25,7 +24,6 @@ export async function GET(request) {
       );
     }
 
-    // Retornamos directamente el primer resultado
     const producto = items[0];
     return NextResponse.json(producto);
   } catch (error) {

@@ -2,7 +2,10 @@ export const metadata = {
   title: "Soporte Tecnico BranviaTech",
   description: "Soporte Tecnico de la Empresa BranviaTech",
   openGraph: {
-    images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
+    title: "Soporte BranViaTech",
+    url: "https://ecomerce-five-lilac.vercel.app/Soporte",
+    images:
+      "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
   },
 };
 import SoporteClient from "./client";

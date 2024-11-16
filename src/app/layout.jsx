@@ -19,7 +19,10 @@ export const metadata = {
   title: "BranviaTech Ecomerce",
   description: "Tienda Online de Equipos de Computo",
   openGraph: {
-    images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
+    title: "BranViaTech",
+    url: "https://ecomerce-five-lilac.vercel.app",
+    images:
+      "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
   },
 };
 

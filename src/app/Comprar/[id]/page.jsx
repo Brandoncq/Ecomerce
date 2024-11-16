@@ -1,11 +1,5 @@
 import ClientProducto from "./client";
-export const metadata = {
-  title: "Laptops BranviaTech",
-  description: "Compra laptos a tu comidad desde diversos precios y marcas.",
-  openGraph: {
-    images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
-  },
-};
+
 const categoriaBanner = {
   LaptopsGamer:
     "Laptops Gamer: Potencia y rendimiento para tus juegos favoritos.",
@@ -17,6 +11,19 @@ const categoriaBanner = {
   Perifericos:
     "Periféricos: Completa tu equipo con nuestros accesorios esenciales.",
 };
+
+export async function generateMetadata({ params }) {
+  return {
+    title: decodeURIComponent(params.id) + " - BranViaTech",
+    description: categoriaBanner[params.id],
+    openGraph: {
+      title: decodeURIComponent(params.id) + " - BranViaTech",
+      url: `https://ecomerce-five-lilac.vercel.app/buscar/${params.id}`,
+      images:
+        "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+    },
+  };
+}
 export const Productos = async ({ params }) => {
   return (
     <div className="w-full flex flex-col">

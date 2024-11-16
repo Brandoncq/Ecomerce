@@ -1,3 +1,13 @@
+export const metadata = {
+  title: "Soporte Tecnico BranviaTech",
+  description: "Soporte Tecnico de la Empresa BranviaTech",
+  openGraph: {
+    title: "Politicas y Privacidad BranViaTech",
+    url: "https://ecomerce-five-lilac.vercel.app/PoliticasPrivacidad",
+    images:
+      "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+  },
+};
 export default function Poiticas() {
   return (
     <>

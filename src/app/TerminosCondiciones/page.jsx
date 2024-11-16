@@ -1,3 +1,13 @@
+export const metadata = {
+  title: "Terminos y  Condiciones BranviaTech",
+  description: "Soporte Tecnico de la Empresa BranviaTech",
+  openGraph: {
+    title: "Politicas y Privacidad BranViaTech",
+    url: "https://ecomerce-five-lilac.vercel.app/TerminosCondiciones",
+    images:
+      "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+  },
+};
 export default function Terminos() {
   return (
     <>
@@ -70,7 +80,7 @@ export default function Terminos() {
             </h2>{" "}
             <div className="w-full md:pl-10 mb-10">
               <p>Razón Social: BranviaTech</p>
-              <p>R.U.C./Identificación Fiscal: 321325332</p>
+              <p>R.U.C.: 321325332</p>
               <p>Datos de contacto: cfchavezc@unjbg.edu.pe</p>
             </div>
             <h2 className="text-xl font-semibold mt-6 bg-zinc-200 my-2 p-1">

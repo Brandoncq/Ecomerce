@@ -1,8 +1,12 @@
 export const metadata = {
   title: "Ofertas BranviaTech",
-  description: "Compra laptos a tu comidad desde diversos precios y marcas.",
+  description:
+    "Ofertas de laptos y otros productos a tu comidad desde diversos precios y marcas.",
   openGraph: {
-    images: "https://purepng.com/public/uploads/large/laptop-symbol-azy.png",
+    title: "Ofertas BranViaTech",
+    url: "https://ecomerce-five-lilac.vercel.app/Ofertas",
+    images:
+      "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
   },
 };
 import ClientOfertas from "./clientOfertas";
