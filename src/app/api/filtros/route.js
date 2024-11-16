@@ -80,7 +80,7 @@ export async function GET(request) {
       `SELECT COUNT(*) AS total 
       FROM producto 
       WHERE descuento_fijo != 0 
-      AND status = 1
+      AND status = 1 AND stock > 0
      ${!isNaN(id_categoria) ? "AND id_categoria_producto = ?" : ""}`,
       !isNaN(id_categoria) ? [id_categoria] : []
     );

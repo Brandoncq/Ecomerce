@@ -57,9 +57,9 @@ function Dashboard() {
             {ventas.map((venta) => (
               <li
                 key={venta.id_venta}
-                className="mb-4 border border-zinc-300 bg-white p-4 rounded-lg"
+                className="mb-4 border border-zinc-300 bg-white p-4 rounded-lg shadow-lg"
               >
-                <p>
+                <p className="border-b border-zinc-600 px-4 py-2">
                   <span className="font-bold">Compra ID: {venta.id_venta}</span>{" "}
                   - Total: S/. {venta.pago_total} - Fecha de Compra:{" "}
                   {formatearFecha(venta.registro_venta)} - Fecha de Envío:{" "}
@@ -78,7 +78,7 @@ function Dashboard() {
                           <p>{detalle.producto_nombre} </p>{" "}
                           <p>Cantidad: {detalle.cantidad_ordenada} </p>
                           <p>Precio: S/. {detalle.subtotal} </p>
-                          <p className="text-sm text-gray-700">
+                          <p className="text-sm text-gray-800">
                             Series: {detalle.series.join(", ")}
                           </p>
                         </li>

@@ -209,7 +209,7 @@ export default function SoporteClient() {
               >
                 {login
                   ? "Visualizar mi historial de compras"
-                  : "Identifíquese para rastrear sus envíos"}
+                  : "Identifíquese para obeservar sus compras"}
               </Link>
               <Link
                 href="PoliticasPrivacidad"

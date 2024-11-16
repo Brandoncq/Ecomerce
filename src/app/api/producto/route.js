@@ -43,12 +43,12 @@ export async function GET(request) {
   let query = `SELECT * FROM producto WHERE 1=1`;
   const queryParams = [];
 
-  if (ofertas) {
-    query += ` AND descuento_fijo != 0`;
-  }
   /*if (ofertas) {
-    query += ` AND descuento_fijo != 0 AND stock > 0`;
+    query += ` AND descuento_fijo != 0`;
   }*/
+  if (ofertas) {
+    query += ` AND descuento_fijo != 0 AND stock > 0`;
+  }
 
   if (id_categoria_producto) {
     query += ` AND id_categoria_producto = ?`;

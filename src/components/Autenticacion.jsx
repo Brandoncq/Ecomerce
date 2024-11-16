@@ -137,7 +137,7 @@ function Autenticacion() {
               >
                 <Link className="text-zinc-200 w-full" href="/Dashboard">
                   <p className="p-3 w-full hover:bg-blue-500 rounded-lg border-b-[0.25px] border-zinc-300">
-                    Dashboard
+                    Historial
                   </p>
                 </Link>
               </li>
