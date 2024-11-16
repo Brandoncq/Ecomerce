@@ -7,7 +7,7 @@ export async function generateMetadata({ params }) {
     description: `Resultados de búsqueda para ${readableId} en nuestra tienda online BranviaTech`,
     openGraph: {
       title: `Buscar BranViaTech - ${readableId}`,
-      url: `https://ecomerce-five-lilac.vercel.app/buscar/${id}`,
+      url: `https://ecomerce-five-lilac.vercel.app/Buscar/${id}`,
       images: [
         {
           url: "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",

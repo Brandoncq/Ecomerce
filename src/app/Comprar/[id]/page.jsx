@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
     description: categoriaBanner[params.id],
     openGraph: {
       title: decodeURIComponent(params.id) + " - BranViaTech",
-      url: `https://ecomerce-five-lilac.vercel.app/buscar/${params.id}`,
+      url: `https://ecomerce-five-lilac.vercel.app/Comprar/${params.id}`,
       images:
         "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
     },
