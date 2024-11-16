@@ -142,8 +142,7 @@ export default function SoporteClient() {
                 </div>
                 <div></div>
                 <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
-                  Use Herramientas de diágnostico para encontrar y soucionar
-                  problemas
+                  Ver detalles de los productos adquiridos
                 </div>
               </div>
             </button>
@@ -209,7 +208,7 @@ export default function SoporteClient() {
                 className="text-blue-500 hover:text-blue-700 underline underline-offset-2 my-1"
               >
                 {login
-                  ? "Rastrear mis envíos"
+                  ? "Visualizar mi historial de compras"
                   : "Identifíquese para rastrear sus envíos"}
               </Link>
               <Link

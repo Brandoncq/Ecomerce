@@ -78,8 +78,8 @@ function Header() {
           <div
             className={`flex items-center ${
               scrolled
-                ? "hover:text-blue-400 fill-zinc-200 hover:fill-blue-400"
-                : "hover:text-blue-600 fill-zinc-900 hover:fill-blue-600"
+                ? "hover:text-blue-400 md:fill-zinc-200 hover:fill-blue-400"
+                : "hover:text-blue-600 md:fill-zinc-900 hover:fill-blue-600"
             }`}
           >
             <Autenticacion />
