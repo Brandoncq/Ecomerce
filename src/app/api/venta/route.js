@@ -34,10 +34,9 @@ export async function GET(request) {
     // Agregar detalles de cada venta
     for (const venta of ventas) {
       const [detallesVenta] = await pool.query(
-        "SELECT dv.*, p.nombre_producto AS producto_nombre, pi.serie FROM detalle_venta dv JOIN producto_item pi ON dv.id_producto = pi.id_producto_item JOIN producto p ON pi.id_producto = p.id_producto WHERE dv.id_venta = ?",
+        "SELECT dv.*, p.nombre_producto AS producto_nombre, pi.serie, p.imagen FROM detalle_venta dv JOIN producto_item pi ON dv.id_producto = pi.id_producto_item JOIN producto p ON pi.id_producto = p.id_producto WHERE dv.id_venta = ?",
         [venta.id_venta]
       );
-
       venta.detalles = detallesVenta;
     }
 
@@ -164,7 +163,7 @@ export async function POST(request) {
       );
 
       await pool.query(
-        "UPDATE producto_item SET id_estado = 2 WHERE id_producto_item = ?",
+        "UPDATE producto_item SET id_estado = 2, garantia = DATE_ADD(NOW(), INTERVAL 1 YEAR) WHERE id_producto_item = ?",
         [producto.id_producto_item]
       );
     }

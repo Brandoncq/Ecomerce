@@ -140,6 +140,14 @@ function Pasarela() {
             createOrder={async () => {
               const order = await fetch("/api/pasarela/paypal", {
                 method: "POST",
+                body: JSON.stringify({
+                  pais: compra.pais,
+                  cpostal: compra.cpostal,
+                  direccion: compra.direccion,
+                  referencia: compra.referencia,
+                  region: compra.region,
+                  ciudad: compra.ciudad,
+                }),
               });
               const res = await order.json();
               if (!res.id) {

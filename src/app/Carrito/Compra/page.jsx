@@ -334,19 +334,15 @@ function CarritoCompra() {
                       <div className="w-full flex mt-2 mb-4">
                         <p className="text-base text-gray-700 font-semibold mb-2">
                           <span className="text-blue-600 font-semibold">
-                            Complete País
+                            Complete Región
                           </span>{" "}
-                          para poder llenar{" "}
-                          <span className="text-blue-600 font-semibold">
-                            Región
-                          </span>{" "}
-                          y lo mismo procedimeinto para{" "}
+                          (Regiones de Peru) para poder llenar{" "}
                           <span className="text-blue-600 font-semibold">
                             Ciudad
                           </span>
                         </p>
                       </div>
-                      <div className="flex flex-col w-1/3 px-2 relative">
+                      {/*<div className="flex flex-col w-1/3 px-2 relative">
                         <DirectionSearchInputs
                           setLocation={(value) => updateLocation("pais", value)}
                           type="countries"
@@ -354,8 +350,8 @@ function CarritoCompra() {
                           label="País"
                           conditional=""
                         />
-                      </div>
-                      <div className="flex flex-col w-1/3 px-2 relative">
+                      </div>*/}
+                      <div className="flex flex-col w-1/2 px-2 relative">
                         <DirectionSearchInputs
                           setLocation={(value) =>
                             updateLocation("region", value)
@@ -366,7 +362,7 @@ function CarritoCompra() {
                           conditional={compra.pais}
                         />
                       </div>
-                      <div className="flex flex-col w-1/3 px-2 relative">
+                      <div className="flex flex-col w-1/2 px-2 relative">
                         <DirectionSearchInputs
                           setLocation={(value) =>
                             updateLocation("ciudad", value)

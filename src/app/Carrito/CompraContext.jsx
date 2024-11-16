@@ -6,7 +6,7 @@ const CompraContext = createContext();
 // Proveedor del contexto
 export function CompraProvider({ children }) {
   const [compra, setCompra] = useState({
-    pais: "",
+    pais: "Peru",
     cpostal: "",
     direccion: "",
     referencia: "",

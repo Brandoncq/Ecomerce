@@ -10,6 +10,26 @@ const environment = new paypal.core.SandboxEnvironment(
 const client = new paypal.core.PayPalHttpClient(environment);
 
 export async function POST(req) {
+  const body = await req.json();
+
+  // Validar que existan todos los datos requeridos
+  const requiredFields = [
+    "pais",
+    "cpostal",
+    "direccion",
+    "referencia",
+    "region",
+    "ciudad",
+  ];
+  const missingFields = requiredFields.filter((field) => !body[field]);
+
+  if (missingFields.length > 0) {
+    return NextResponse.json({
+      error:
+        "Faltan datos en la solicitud vuelva a llenar los datos en la seccion anterior",
+      items: [],
+    });
+  }
   const MytokenName = req.cookies.get("Sesion");
 
   let payload;

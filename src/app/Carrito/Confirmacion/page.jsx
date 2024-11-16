@@ -31,14 +31,14 @@ function ConfirmarPago() {
           </div>
         </div>
         <div className="text-left w-full mt-3 max-lg:mt-6 flex items-center">
-          <div className="border-2 border-green-600 rounded-full w-10 h-10 flex justify-center items-center">
+          <div className="border-2 border-blue-600 rounded-full w-10 h-10 flex justify-center items-center">
             3
           </div>
           <h2 className="px-2">Confirmación del Pago</h2>
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg md:px-5 lg:px-20">
-        <h3 className="text-2xl font-bold mb-4 text-green-600">
+        <h3 className="text-2xl font-bold mb-4 text-blue-600">
           ¡Pago Confirmado!
         </h3>
         <p className="text-gray-700 mb-6">
@@ -58,7 +58,7 @@ function ConfirmarPago() {
         <div className="flex flex-col md:flex-row justify-between items-center mt-6">
           <Link
             href={"/Dashboard"}
-            className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700"
+            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
           >
             Ver detalles del pedido
           </Link>

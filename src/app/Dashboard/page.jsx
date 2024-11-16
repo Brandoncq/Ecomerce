@@ -21,41 +21,83 @@ function Dashboard() {
       .catch((error) => setError(error.message));
   }, []);
 
+  // Función para agrupar detalles por id_producto
+  const agruparDetalles = (detalles) => {
+    return detalles.reduce((acumulador, detalle) => {
+      if (!acumulador[detalle.id_producto]) {
+        // Si no existe en el acumulador, añadirlo
+        acumulador[detalle.id_producto] = {
+          ...detalle,
+          cantidad_total: detalle.cantidad_ordenada,
+          subtotal_total: detalle.subtotal,
+          series: [detalle.serie],
+        };
+      } else {
+        // Si ya existe, actualizar cantidad, subtotal y series
+        acumulador[detalle.id_producto].cantidad_total +=
+          detalle.cantidad_ordenada;
+        acumulador[detalle.id_producto].subtotal_total += detalle.subtotal;
+        acumulador[detalle.id_producto].series.push(detalle.serie);
+      }
+      return acumulador;
+    }, {});
+  };
+  const formatearFecha = (fechaMySQL) => {
+    const fecha = new Date(fechaMySQL);
+    return fecha.toLocaleDateString(); // Formato de fecha regional
+  };
   return (
     <div className="w-full p-5 h-[calc(100vh-8rem)] overflow-y-auto flex flex-col gap-4">
-      {/* Mostrar error si ocurre */}
-      {error && (
-        <div className="text-red-500 px-4">
-          <p>Error al cargar las ventas: {error}</p>
-        </div>
-      )}
-      <div className="border border-gray-300 p-4 rounded shadow h-full overflow-y-auto">
-        <h2 className="text-2xl font-bold mb-2 px-4">Compras</h2>
+      <div className="border border-gray-300 p-4 rounded shadow h-full overflow-y-auto bg-slate-200">
+        <h2 className="text-2xl font-semibold my-2 px-2">
+          HISTORIAL DE COMPRAS
+        </h2>
         {ventas.length > 0 ? (
-          <ul className="list-none list-inside border border-zinc-200 bg-slate-200 p-4 rounded-lg">
-            {ventas.map((venta, index) => (
-              <li key={venta.id_venta} className="mb-2">
-                <p className="font-bold">
-                  Compra ID: {venta.id_venta} - Total: ${" "}
-                  {venta.detalles.reduce(
-                    (total, detalle) => total + parseFloat(detalle.subtotal),
-                    0
-                  )}
+          <ul className="list-none list-inside">
+            {ventas.map((venta) => (
+              <li
+                key={venta.id_venta}
+                className="mb-4 border border-zinc-300 bg-white p-4 rounded-lg"
+              >
+                <p>
+                  <span className="font-bold">Compra ID: {venta.id_venta}</span>{" "}
+                  - Total: S/. {venta.pago_total} - Fecha de Compra:{" "}
+                  {formatearFecha(venta.registro_venta)} - Fecha de Envío:{" "}
+                  {formatearFecha(venta.fecha_envio)} - Código Postal:{" "}
+                  {venta.codigo_postal} - Región: {venta.region} - Ciudad:{" "}
+                  {venta.ciudad}
                 </p>
                 <ul className="ml-4 list-circle">
-                  {venta.detalles.map((detalle, idx) => (
-                    <li key={idx}>
-                      {detalle.producto_nombre} - Cantidad:{" "}
-                      {detalle.cantidad_ordenada} - Precio: ${detalle.subtotal}{" "}
-                      - Serie: {detalle.serie}
-                    </li>
-                  ))}
+                  {Object.values(agruparDetalles(venta.detalles)).map(
+                    (detalle) => (
+                      <div
+                        key={detalle.id_producto}
+                        className="flex flex-wrap items-center mb-2 md:space-x-10"
+                      >
+                        <li>
+                          <p>{detalle.producto_nombre} </p>{" "}
+                          <p>Cantidad: {detalle.cantidad_ordenada} </p>
+                          <p>Precio: S/. {detalle.subtotal} </p>
+                          <p className="text-sm text-gray-700">
+                            Series: {detalle.series.join(", ")}
+                          </p>
+                        </li>
+                        <div className="w-full md:w-40 flex justify-center">
+                          <img
+                            src={detalle.imagen}
+                            alt={detalle.producto_nombre}
+                            className="md:w-full w-40"
+                          />
+                        </div>
+                      </div>
+                    )
+                  )}
                 </ul>
               </li>
             ))}
           </ul>
         ) : (
-          <p>No hay ventas registradas.</p>
+          <p className="px-2">No hay ventas registradas.</p>
         )}
       </div>
     </div>

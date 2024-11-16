@@ -40,7 +40,7 @@ function VerificaCuenta() {
         </div>
       </div>
       <div className="w-full md:w-1/2 p-5 shadow-lg shadow-zinc-400 md:px-5 lg:px-20 border border-zinc-200 rounded-lg bg-white text-center">
-        <h4 className="text-2xl font-semibold my-4 text-green-600">
+        <h4 className="text-2xl font-semibold my-4 text-blue-600">
           ¡Gracias por verificar tu cuenta,{" "}
           <span className="font-bold">{formData.nombre}</span>!
         </h4>
@@ -56,7 +56,7 @@ function VerificaCuenta() {
           contactarnos. ¡Estamos aquí para ayudarte a encontrar exactamente lo
           que necesitas!
         </p>
-        <p className="text-lg font-medium text-green-600 mb-5">
+        <p className="text-lg font-medium text-blue-600 mb-5">
           ¡Bienvenido/a a la familia BranviaTech!
         </p>
       </div>
