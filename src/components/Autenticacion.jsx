@@ -125,20 +125,24 @@ function Autenticacion() {
       </button>
       {showDropdown && (
         <ul
-          className={`absolute top-full right-0 bg-blue-600 mt-2 shadow-lg p-2 rounded w-32 z-50`}
+          className={`absolute top-full right-0 bg-blue-600 mt-2 shadow-lg rounded w-32 z-50`}
         >
           {isLoggedIn ? (
             <>
               <li
-                className="p-2 text-zinc-200 hover:bg-blue-500 rounded cursor-pointer"
+                className="flex w-full"
                 onClick={() => {
                   setShowDropdown(false);
                 }}
               >
-                <Link href="/Dashboard">Dashboard</Link>
+                <Link className="text-zinc-200 w-full" href="/Dashboard">
+                  <p className="p-3 w-full hover:bg-blue-500 rounded-lg border-b-[0.25px] border-zinc-300">
+                    Dashboard
+                  </p>
+                </Link>
               </li>
               <li
-                className="p-2 text-zinc-200 hover:bg-blue-500 rounded cursor-pointer"
+                className="flex w-full p-3 text-zinc-200 hover:bg-blue-500 rounded cursor-pointer"
                 onClick={() => {
                   setShowDropdown(false);
                   handleLogout();
@@ -150,20 +154,31 @@ function Autenticacion() {
           ) : (
             <>
               <li
-                className="p-2 text-zinc-200 hover:bg-blue-500 rounded"
+                className="flex w-full"
                 onClick={() => {
                   setShowDropdown(false);
                 }}
               >
-                <Link href="/IniciarSesion">Iniciar Sesión</Link>
+                <Link className="text-zinc-200 w-full" href="/IniciarSesion">
+                  <p className="p-3 w-full hover:bg-blue-500 rounded-lg border-b-[0.25px] border-zinc-300">
+                    Iniciar Sesión
+                  </p>
+                </Link>
               </li>
               <li
-                className="p-2 text-zinc-200 hover:bg-blue-500 rounded"
+                className="flex w-full"
                 onClick={() => {
                   setShowDropdown(false);
                 }}
               >
-                <Link href="/CrearCuenta/Crear">Crear Cuenta</Link>
+                <Link
+                  className=" text-zinc-200 w-full"
+                  href="/CrearCuenta/Crear"
+                >
+                  <p className="p-3 w-full hover:bg-blue-500 rounded-lg">
+                    Crear Cuenta
+                  </p>
+                </Link>
               </li>
             </>
           )}
