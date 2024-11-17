@@ -74,7 +74,9 @@ export default function Productos({
     setProducto(refinando);
     setResultados(refinando.length);
   };
-
+  const redireccion = (nombre_producto) => {
+    router.push(`/Buscar/${nombre_producto}`);
+  };
   useEffect(() => {
     cambiarPagina(paginaActual);
   }, [JSON.stringify(filtros), paginaActual, limite, list]);
@@ -109,14 +111,12 @@ export default function Productos({
                   <h2>{producto.stock > 0 ? "En inventario" : "Agotado"}</h2>
                 </div>
               </div>
-              <h2
+              <Link
                 className="text-lg text-blue-600 cursor-pointer"
-                onClick={() => {
-                  redireccion(producto.nombre_producto);
-                }}
+                href={`/Buscar/${producto.nombre_producto}`}
               >
                 {producto.nombre_producto}
-              </h2>
+              </Link>
               <h2 className="text-lg">A partir de:</h2>
               <h2 className="text-2xl font-semibold flex max-xl:flex-col">
                 {producto.stock > 0 ? (
