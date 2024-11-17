@@ -14,6 +14,12 @@ export async function generateMetadata({ params }) {
           alt: "BranViaTech Logo",
         },
       ],
+      siteName: "BranviaTech",
+      type: "website",
+    },
+    authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
+    appleWebApp: {
+      title: "BranViaTech",
     },
   };
 }

@@ -16,7 +16,6 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   title: "BranviaTech Ecomerce",
   description: "Tienda Online de Equipos de Computo",
   openGraph: {
@@ -28,6 +27,7 @@ export const metadata = {
     siteName: "BranviaTech",
     type: "website",
   },
+  authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
     title: "BranViaTech",
   },

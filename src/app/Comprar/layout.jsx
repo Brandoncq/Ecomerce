@@ -7,6 +7,12 @@ export const metadata = {
     url: "https://ecomerce-five-lilac.vercel.app/Comprar",
     images:
       "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+    siteName: "BranviaTech",
+    type: "website",
+  },
+  authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
+  appleWebApp: {
+    title: "BranViaTech",
   },
 };
 export default function RootLayout_comprar({ children }) {
