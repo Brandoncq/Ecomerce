@@ -112,7 +112,7 @@ export default function Productos({
                 </div>
               </div>
               <Link
-                className="text-lg text-blue-500 cursor-pointer hover:underline-offset-2 hover:text-blue-700"
+                className="text-lg text-blue-500 cursor-pointer hover:underline hover:underline-offset-2 hover:text-blue-700"
                 href={`/Buscar/${producto.nombre_producto}`}
               >
                 {producto.nombre_producto}
