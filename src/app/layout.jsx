@@ -22,14 +22,15 @@ export const metadata = {
   openGraph: {
     title: "BranViaTech",
     url: "https://ecomerce-five-lilac.vercel.app",
-    images:
+    images: [
       "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+    ],
+    siteName: "BranviaTech",
   },
   appleWebApp: {
     title: "BranViaTech",
   },
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
