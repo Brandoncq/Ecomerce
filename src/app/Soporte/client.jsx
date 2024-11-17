@@ -119,11 +119,11 @@ export default function SoporteClient() {
             <h2 className="my-10 text-xl">¿Cómo podemos ayudarlo?</h2>
           </div>
           <div className="w-full flex flex-wrap justify-center items-stretch">
-            <button
-              className="w-full md:w-1/4 p-4 flex"
-              onClick={scrollToIdentificacion}
-            >
-              <div className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col">
+            <div className="w-full md:w-1/4 p-4 flex">
+              <button
+                className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col"
+                onClick={scrollToIdentificacion}
+              >
                 <div className="w-full h-full transition-all ease-in-out duration-300 group-hover:bg-zinc-100 flex items-center p-4 border-b border-zinc-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -144,13 +144,13 @@ export default function SoporteClient() {
                 <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
                   Ver detalles de los productos adquiridos
                 </div>
-              </div>
-            </button>
-            <button
-              className="w-full md:w-1/4 p-4 flex"
-              onClick={scrollToIdentificacion}
-            >
-              <div className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col">
+              </button>
+            </div>
+            <div className="w-full md:w-1/4 p-4 flex">
+              <button
+                className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col"
+                onClick={scrollToIdentificacion}
+              >
                 <div className="w-full h-full group-hover:bg-zinc-100 flex items-center p-4 border-b border-zinc-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -168,15 +168,15 @@ export default function SoporteClient() {
                 <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
                   Comprueba el Estado de la Garantía
                 </div>
-              </div>
-            </button>
-            <button
-              className="w-full md:w-1/4 p-4 flex"
-              onClick={() => {
-                window.location.href = "mailto:cfchavezc@unjbg.edu.pe";
-              }}
-            >
-              <div className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col">
+              </button>
+            </div>
+            <div className="w-full md:w-1/4 p-4 flex">
+              <button
+                className="w-full h-full border border-zinc-500 group cursor-pointer flex flex-col"
+                onClick={() => {
+                  window.location.href = "mailto:cfchavezc@unjbg.edu.pe";
+                }}
+              >
                 <div className="w-full h-full group-hover:bg-zinc-100 flex items-center p-4 border-b border-zinc-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -189,12 +189,12 @@ export default function SoporteClient() {
                     <path d="M38.5 5.4c-9.1 2.9-15.8 8.5-19.6 16.5-1.8 3.7-2.4 6.8-2.7 15.6-.2 6-.8 11.4-1.3 11.9-1.8 1.9-1 10.2 1.2 13 1.1 1.4 2.6 2.6 3.2 2.6.7 0 3.1 4.1 5.5 9.1 4.7 9.9 11.6 18.3 16.9 20.5 3.8 1.6 12 1.8 15.7.4C60.2 94 69 86.3 69 84.9c0-.5-1.6-.9-3.5-.9s-3.5.4-3.5.9C62 87 54.3 91 50.1 91c-5.4 0-9-1.9-13.5-7.1C33.3 80 25 64.5 25 62.1c0-.6-1.1-1.3-2.5-1.7-1.5-.4-2.8-1.6-3.1-3.1-.8-3.1-.1-3.7 2.4-2.4 1.2.6 3 1.1 4.1 1.1 1.9 0 2.1-.6 2.1-8 0-7.7.1-8 2.3-8 4.8 0 18.3-4.1 22.9-6.9l4.6-2.9 1.9 2c1 1.1 4.2 3.4 7.1 5l5.2 3v16l3-.4c2.6-.4 3-.1 3 1.8 0 1.3-.6 2.7-1.4 3.1-1.1.6-7.6 13.4-7.6 14.9 0 .2.8.4 1.8.5 2.8.2-2.9 1.7-6.8 1.8-2.5.1-3.9-.5-4.8-1.9-1-1.6-2.3-2-7-2-6.7 0-8.2 1.1-8.2 6s1.5 6 8.2 6c4.7 0 6-.4 7-2 1.1-1.7 2.4-2 7.8-2 10.3 0 17-5.6 17-14.3 0-2.9.4-3.7 1.8-3.7 3.3 0 4.2-2.2 4.2-10s-.9-10-4.2-10c-1.6 0-1.8-.9-1.8-7.5 0-13.2-4.9-21.9-15-26.4C66.5 9 62.9 8 60.9 8c-2.3 0-4.2-.7-5.4-2-2.1-2.4-10.5-2.7-17-.6m14.7 5.3c1 .9 4.3 2 7.4 2.4 7.7 1 12.6 4.5 15.8 11.1 2.8 5.9 4.7 19.8 2.7 19.8-.6 0-1.1 1.1-1.1 2.4 0 1.4-.4 2.8-1 3.1-.6.4-1-2-1-6.4v-6.9l-4.7-2.3c-2.5-1.2-6.3-4-8.3-6.1-2.1-2.1-4.2-3.8-4.8-3.8-.5 0-3.3 1.6-6.2 3.5-5.3 3.5-12.4 6.1-19.5 7.1-9 1.2-8.5.7-8.5 8.5 0 6.8 0 6.9-2.1 5.8s-2.1-1.6-1.6-10.1c1-14.8 6.5-23.3 18.2-27.8 6.3-2.4 12.2-2.5 14.7-.3"></path>
                   </svg>
                 </div>
-                <div></div>
+
                 <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
                   Contacte un agente de BranviaTech soporte
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
             <div className="w-full md:w-1/4 p-4 text-base flex flex-col px-6">
               <h3 className="font-semibold">Más recursos de soporte</h3>
               <Link
