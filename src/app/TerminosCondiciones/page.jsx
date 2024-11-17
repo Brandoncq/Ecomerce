@@ -4,8 +4,13 @@ export const metadata = {
   openGraph: {
     title: "Politicas y Privacidad BranViaTech",
     url: "https://ecomerce-five-lilac.vercel.app/TerminosCondiciones",
-    images:
-      "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+    images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
+    siteName: "BranviaTech",
+    type: "website",
+  },
+  authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
+  appleWebApp: {
+    title: "BranViaTech",
   },
 };
 export default function Terminos() {

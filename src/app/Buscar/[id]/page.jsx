@@ -60,7 +60,7 @@ export default function Buscador({ params }) {
     getProducto();
   }, []);
   return (
-    <div className="w-full flex flex-col border-t-4 border-zinc-200">
+    <div className="w-full flex flex-col border-t-4 border-zinc-200 min-h-[calc(100vh-15rem)]">
       <section className="w-full flex md:px-4 md:py-10">
         {productos.map((producto, index) => (
           <div

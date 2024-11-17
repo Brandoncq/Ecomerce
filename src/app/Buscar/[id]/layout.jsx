@@ -1,7 +1,6 @@
 export async function generateMetadata({ params }) {
   const { id } = params;
   const readableId = decodeURIComponent(id);
-  console.log(readableId);
   return {
     title: `Buscar BranviaTech - ${readableId}`,
     description: `Resultados de búsqueda para ${readableId} en nuestra tienda online BranviaTech`,
@@ -10,7 +9,7 @@ export async function generateMetadata({ params }) {
       url: `https://ecomerce-five-lilac.vercel.app/Buscar/${id}`,
       images: [
         {
-          url: "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+          url: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
           alt: "BranViaTech Logo",
         },
       ],

@@ -28,7 +28,6 @@ function Pasarela() {
       });
 
       const data = await response.json();
-      console.log(data);
       if (!response.ok) {
         if (data.error && data.items) {
           setErrorMessage(data.error);
@@ -38,8 +37,7 @@ function Pasarela() {
         }
         return;
       }
-      console.log("Compra exitosa:", data);
-      console.log("Compra exitosa:", data.message);
+
       setErrorMessage("");
       setErrorItems([]);
       setCompra((prevCompra) => ({
@@ -157,14 +155,10 @@ function Pasarela() {
               }
               return res.id;
             }}
-            onCancel={async (data) => {
-              console.log(data);
-            }}
+            onCancel={async (data) => {}}
             onApprove={async (data, actions) => {
               try {
                 const capture = await actions.order.capture();
-                console.log("Pago aprobado:", data);
-                console.log("Captura exitosa:", capture);
                 await venta();
                 const UpdateCarEvent = new CustomEvent("deletecart");
                 window.dispatchEvent(UpdateCarEvent);

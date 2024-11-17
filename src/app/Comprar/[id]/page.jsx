@@ -19,8 +19,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: decodeURIComponent(params.id) + " - BranViaTech",
       url: `https://ecomerce-five-lilac.vercel.app/Comprar/${params.id}`,
-      images:
-        "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+      images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
       siteName: "BranviaTech",
       type: "website",
     },
