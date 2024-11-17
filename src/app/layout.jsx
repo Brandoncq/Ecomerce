@@ -16,6 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
+  authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   title: "BranviaTech Ecomerce",
   description: "Tienda Online de Equipos de Computo",
   openGraph: {
@@ -23,6 +24,9 @@ export const metadata = {
     url: "https://ecomerce-five-lilac.vercel.app",
     images:
       "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
+  },
+  appleWebApp: {
+    title: "BranViaTech",
   },
 };
 
