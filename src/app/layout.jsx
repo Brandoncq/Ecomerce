@@ -26,6 +26,7 @@ export const metadata = {
       "https://res.cloudinary.com/dmo6ofy2z/image/upload/v1731785868/satelite-ico_rcneow.jpg",
     ],
     siteName: "BranviaTech",
+    type: "website",
   },
   appleWebApp: {
     title: "BranViaTech",
