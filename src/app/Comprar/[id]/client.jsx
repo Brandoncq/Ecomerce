@@ -304,88 +304,90 @@ export default function ClientLaptops({ params }) {
           </div>
         </div>
       </div>
-      <div
-        className={`w-full lg:w-1/4 md:px-2 py-2 flex flex-wrap max-lg:bg-black max-lg:text-white ${
-          menufiltro ? "" : "max-md:p-4"
-        }`}
-      >
+      <div className="w-full flex flex-wrap min-h-[calc(100vh-15rem)]">
         <div
-          className={`w-full lg:sticky top-20 overflow-y-auto lg:max-h-[calc(100vh-5.5rem)] px-4 transition-all ease-in-out duration-500 max-lg:bg-black ${
-            menufiltro
-              ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
-              : "translate-x-0"
+          className={`w-full lg:w-1/4 md:px-2 py-2 flex flex-wrap max-lg:bg-black max-lg:text-white ${
+            menufiltro ? "" : "max-md:p-4"
           }`}
         >
-          <div className="w-full flex justify-center flex-col mt-4 lg:hidden">
-            <h3 className="text-xl lg:text-2xl">ORDEN</h3>
-            <hr className="w-full h-px mt-2 mb-4 max-lg:bg-gray-200 bg-gray-800 border-0" />
+          <div
+            className={`w-full lg:sticky top-20 overflow-y-auto lg:max-h-[calc(100vh-5.5rem)] px-4 transition-all ease-in-out duration-500 max-lg:bg-black ${
+              menufiltro
+                ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
+                : "translate-x-0"
+            }`}
+          >
+            <div className="w-full flex justify-center flex-col mt-4 lg:hidden">
+              <h3 className="text-xl lg:text-2xl">ORDEN</h3>
+              <hr className="w-full h-px mt-2 mb-4 max-lg:bg-gray-200 bg-gray-800 border-0" />
+            </div>
+            <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4 lg:hidden">
+              <select
+                id="underline_select"
+                className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-sm font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
+                value={list}
+                onChange={(e) => {
+                  setList(e.target.value);
+                }}
+              >
+                <option value="ASC">Ordenar Precio | Menor a Mayor</option>
+                <option value="DESC">Ordenar Precio | Mayor a Menor</option>
+              </select>
+            </div>
+            <Filtro
+              label="PRECIOS"
+              options={preciosOptions}
+              isRange={true}
+              count={count.precios}
+              selectedOptions={filtros.precios}
+              handleChange={(option, event) =>
+                handleCheckboxChange("precios", option, event)
+              }
+              formatOption={(min, max) =>
+                `S/.${min.toFixed(2)} a S/.${max.toFixed(2)}`
+              }
+            />
+            <Filtro
+              label="OFERTAS"
+              options={ofertasOptions}
+              isRange={false}
+              count={count.ofertas}
+              selectedOptions={filtros.ofertas}
+              handleChange={(option, event) =>
+                handleCheckboxChange("ofertas", option, event)
+              }
+            />
+            <Filtro
+              label="MARCAS"
+              options={marcasOptions}
+              isRange={false}
+              count={count.marcas}
+              selectedOptions={filtros.marcas}
+              handleChange={(option, event) =>
+                handleCheckboxChange("marcas", option, event)
+              }
+            />
+            <Filtro
+              label="COLORES"
+              options={coloresOptions}
+              isRange={false}
+              count={count.colores}
+              selectedOptions={filtros.colores}
+              handleChange={(option, event) =>
+                handleCheckboxChange("colores", option, event)
+              }
+            />
           </div>
-          <div className="w-full flex justify-between lg:hover:bg-zinc-100 mb-4 lg:hidden">
-            <select
-              id="underline_select"
-              className="px-2 my-1.5 cursor-pointer block py-2.5 w-full text-sm font-semibold bg-white text-black bg-transparent border-0 border-b-2 border-white  focus:outline-none focus:ring-0 focus:border-white peer rounded-lg"
-              value={list}
-              onChange={(e) => {
-                setList(e.target.value);
-              }}
-            >
-              <option value="ASC">Ordenar Precio | Menor a Mayor</option>
-              <option value="DESC">Ordenar Precio | Mayor a Menor</option>
-            </select>
-          </div>
-          <Filtro
-            label="PRECIOS"
-            options={preciosOptions}
-            isRange={true}
-            count={count.precios}
-            selectedOptions={filtros.precios}
-            handleChange={(option, event) =>
-              handleCheckboxChange("precios", option, event)
-            }
-            formatOption={(min, max) =>
-              `S/.${min.toFixed(2)} a S/.${max.toFixed(2)}`
-            }
-          />
-          <Filtro
-            label="OFERTAS"
-            options={ofertasOptions}
-            isRange={false}
-            count={count.ofertas}
-            selectedOptions={filtros.ofertas}
-            handleChange={(option, event) =>
-              handleCheckboxChange("ofertas", option, event)
-            }
-          />
-          <Filtro
-            label="MARCAS"
-            options={marcasOptions}
-            isRange={false}
-            count={count.marcas}
-            selectedOptions={filtros.marcas}
-            handleChange={(option, event) =>
-              handleCheckboxChange("marcas", option, event)
-            }
-          />
-          <Filtro
-            label="COLORES"
-            options={coloresOptions}
-            isRange={false}
-            count={count.colores}
-            selectedOptions={filtros.colores}
-            handleChange={(option, event) =>
-              handleCheckboxChange("colores", option, event)
-            }
+        </div>
+        <div className="w-full lg:w-3/4 md:px-2">
+          <Productos
+            filtros={filtros}
+            paginaActual={paginaActual}
+            limite={limite}
+            list={list}
+            setResultados={setResultados}
           />
         </div>
-      </div>
-      <div className="w-full lg:w-3/4 md:px-2">
-        <Productos
-          filtros={filtros}
-          paginaActual={paginaActual}
-          limite={limite}
-          list={list}
-          setResultados={setResultados}
-        />
       </div>
       <div className="w-full flex justify-center mb-10">
         <Pagination
