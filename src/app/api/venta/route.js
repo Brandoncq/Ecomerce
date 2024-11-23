@@ -167,7 +167,7 @@ export async function POST(request) {
       "INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, pago_total, registro_venta, fecha_envio, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, ?, NOW(), ?, ?, ?, ?, ?, ?, ?)",
       [
         payload.id,
-        total * 1.18,
+        total,
         fechaEnvioFormateada,
         pais,
         cpostal,
@@ -188,10 +188,10 @@ export async function POST(request) {
       const descuento =
         item.cantidad *
         (producto.descuento_fijo > 0
-          ? (1 - producto.descuento_fijo) * producto.precio // Porcentaje de descuento
+          ? (1 - producto.descuento_fijo) * producto.precio
           : producto.descuento_fijo < 0
-          ? -producto.descuento_fijo // Descuento fijo absoluto
-          : 0); // Sin descuento
+          ? -producto.descuento_fijo
+          : 0);
 
       await pool.query(
         "INSERT INTO detalle_venta (id_venta, id_producto, cantidad_ordenada, subtotal, descuento) VALUES (?, ?, ?, ?, ?)",
@@ -199,7 +199,7 @@ export async function POST(request) {
           ventaId,
           item.id_producto,
           item.cantidad,
-          (subtotal - descuento) * 1.18,
+          subtotal - descuento,
           descuento,
         ]
       );
@@ -227,9 +227,9 @@ export async function POST(request) {
         "F001",
         12345,
         new Date(),
-        total,
+        total * 0.82,
         total * 0.18,
-        total * 1.18,
+        total,
       ]
     );
 
