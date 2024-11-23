@@ -541,6 +541,16 @@ function CarritoCompra() {
                   )}
                 </h3>
               </div>
+              <div className="w-full flex justify-between my-1">
+                <h3>Impuestos:</h3>
+                <h3>
+                  S/.
+                  {cartItems.reduce(
+                    (total, item) => total + item.precio * item.cantidad,
+                    0
+                  ) * 0.18}
+                </h3>
+              </div>
               <hr className="w-full bg-zinc-200 h-0.5 mt-2" />
             </div>
             <div className="w-full bg-white p-5 shadow-lg shadow-zinc-400">
@@ -551,7 +561,7 @@ function CarritoCompra() {
                   {cartItems.reduce(
                     (total, item) => total + item.precio * item.cantidad,
                     0
-                  )}
+                  ) * 1.18}
                 </h3>
               </div>
             </div>

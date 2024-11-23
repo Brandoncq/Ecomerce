@@ -167,7 +167,7 @@ export async function POST(request) {
       "INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, pago_total, registro_venta, fecha_envio, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, ?, NOW(), ?, ?, ?, ?, ?, ?, ?)",
       [
         payload.id,
-        total,
+        total * 1.18,
         fechaEnvioFormateada,
         pais,
         cpostal,
@@ -199,7 +199,7 @@ export async function POST(request) {
           ventaId,
           item.id_producto,
           item.cantidad,
-          subtotal - descuento,
+          (subtotal - descuento) * 1.18,
           descuento,
         ]
       );
