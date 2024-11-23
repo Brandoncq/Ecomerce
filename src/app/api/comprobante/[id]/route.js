@@ -2,7 +2,6 @@ import pool from "../../config/route";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-  console.log(params);
   try {
     const { id } = params;
     if (!id) {
