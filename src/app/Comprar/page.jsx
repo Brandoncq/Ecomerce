@@ -283,15 +283,15 @@ export default function Comprar() {
             className="w-full border border-zinc-400 flex flex-col group"
             href={"/Comprar/Perifericos?ofertas=Si"}
           >
-            <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+            <div className="w-full border-b border-zinc-400 p-5 bg-slate-100 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
               <h1 className="text-3xl mb-2 font-light">PERIFERICOS</h1>
               <p className="text-sm">Tu comudidad es primordial</p>
             </div>
-            <div className="w-full">
+            <div className="w-full overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1714537114796-b837f5d4b18e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt=""
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover group-hover:grayscale group-hover:scale-110 transition-all ease-in-out duration-300"
               />
             </div>
           </Link>
@@ -301,15 +301,15 @@ export default function Comprar() {
             className="w-full border border-zinc-400 flex flex-col group"
             href={"/Comprar/LaptopsGamer?ofertas=Si"}
           >
-            <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+            <div className="w-full border-b border-zinc-400 p-5 bg-slate-100 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
               <h1 className="text-3xl mb-2 font-light">LAPTOPS GAMER</h1>
               <p className="text-sm">Amplia tu visión</p>
             </div>
-            <div className="w-full">
+            <div className="w-full overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1510435586480-6372f195d2a3?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt=""
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover group-hover:grayscale group-hover:scale-110 transition-all ease-in-out duration-300"
               />
             </div>
           </Link>
@@ -319,15 +319,15 @@ export default function Comprar() {
             className="w-full border border-zinc-400 flex flex-col group"
             href={"/Comprar/Monitores?ofertas=Si"}
           >
-            <div className="w-full border-b border-zinc-400 p-5 bg-slate-200 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
+            <div className="w-full border-b border-zinc-400 p-5 bg-slate-100 group-hover:bg-slate-300 transition-all duration-300 ease-in-out">
               <h1 className="text-3xl mb-2 font-light">MONITORES</h1>
               <p className="text-sm">Tu mundo en tus manos</p>
             </div>
-            <div className="w-full">
+            <div className="w-full overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1616763355548-1b606f439f86?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt=""
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover group-hover:grayscale group-hover:scale-110 transition-all ease-in-out duration-300"
               />
             </div>
           </Link>
