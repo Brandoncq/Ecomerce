@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 
 function Dashboard() {
   const [ventas, setVentas] = useState([]);
-  const [error, setError] = useState(null);
 
-  // Fetch datos de ventas
   useEffect(() => {
     fetch("/api/venta")
       .then((response) => {
@@ -21,30 +19,9 @@ function Dashboard() {
       .catch((error) => setError(error.message));
   }, []);
 
-  // Función para agrupar detalles por id_producto
-  const agruparDetalles = (detalles) => {
-    return detalles.reduce((acumulador, detalle) => {
-      if (!acumulador[detalle.id_producto]) {
-        // Si no existe en el acumulador, añadirlo
-        acumulador[detalle.id_producto] = {
-          ...detalle,
-          cantidad_total: detalle.cantidad_ordenada,
-          subtotal_total: detalle.subtotal,
-          series: [detalle.serie],
-        };
-      } else {
-        // Si ya existe, actualizar cantidad, subtotal y series
-        acumulador[detalle.id_producto].cantidad_total +=
-          detalle.cantidad_ordenada;
-        acumulador[detalle.id_producto].subtotal_total += detalle.subtotal;
-        acumulador[detalle.id_producto].series.push(detalle.serie);
-      }
-      return acumulador;
-    }, {});
-  };
   const formatearFecha = (fechaMySQL) => {
     const fecha = new Date(fechaMySQL);
-    return fecha.toLocaleDateString(); // Formato de fecha regional
+    return fecha.toLocaleDateString();
   };
   return (
     <div className="w-full p-5 h-[calc(100vh-8rem)] overflow-y-auto flex flex-col gap-4">
@@ -68,30 +45,37 @@ function Dashboard() {
                   {venta.ciudad}
                 </p>
                 <ul className="ml-4 list-circle">
-                  {Object.values(agruparDetalles(venta.detalles)).map(
-                    (detalle) => (
-                      <div
-                        key={detalle.id_producto}
-                        className="flex flex-wrap items-center mb-2 md:space-x-10"
-                      >
-                        <li>
-                          <p>{detalle.producto_nombre} </p>{" "}
-                          <p>Cantidad: {detalle.cantidad_ordenada} </p>
-                          <p>Precio: S/. {detalle.subtotal} </p>
-                          <p className="text-sm text-gray-800">
-                            Series: {detalle.series.join(", ")}
-                          </p>
-                        </li>
-                        <div className="w-full md:w-40 flex justify-center">
-                          <img
-                            src={detalle.imagen}
-                            alt={detalle.producto_nombre}
-                            className="md:w-full w-40"
-                          />
+                  {venta.detalles.map((detalle) => (
+                    <div
+                      key={detalle.id_producto}
+                      className="flex flex-wrap items-center mb-2 md:space-x-10"
+                    >
+                      <li>
+                        <p>{detalle.producto_nombre} </p>{" "}
+                        <p>Cantidad: {detalle.cantidad_ordenada} </p>
+                        <p>Precio: S/. {detalle.subtotal} </p>
+                        <div className="text-sm text-gray-800">
+                          <p>Series:</p>
+                          {detalle.series.length > 0 ? (
+                            <ul>
+                              {detalle.series.map((serie, index) => (
+                                <li key={index}>{serie}</li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p>No hay series asociadas.</p>
+                          )}
                         </div>
+                      </li>
+                      <div className="w-full md:w-40 flex justify-center">
+                        <img
+                          src={detalle.imagen}
+                          alt={detalle.producto_nombre}
+                          className="md:w-full w-40"
+                        />
                       </div>
-                    )
-                  )}
+                    </div>
+                  ))}
                 </ul>
               </li>
             ))}

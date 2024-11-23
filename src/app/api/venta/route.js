@@ -19,6 +19,7 @@ export async function GET(request) {
       );
     }
 
+    // Obtener las ventas asociadas al cliente autenticado
     const [ventas] = await pool.query(
       "SELECT * FROM venta WHERE id_cliente = ?",
       [payload.id]
@@ -31,15 +32,37 @@ export async function GET(request) {
       );
     }
 
-    // Agregar detalles de cada venta
+    // Iterar sobre las ventas para obtener los detalles
     for (const venta of ventas) {
       const [detallesVenta] = await pool.query(
-        "SELECT dv.*, p.nombre_producto AS producto_nombre, pi.serie, p.imagen FROM detalle_venta dv JOIN producto_item pi ON dv.id_producto = pi.id_producto_item JOIN producto p ON pi.id_producto = p.id_producto WHERE dv.id_venta = ?",
+        `SELECT 
+          dv.id_detalle_venta,
+          dv.id_producto,
+          dv.cantidad_ordenada,
+          dv.subtotal,
+          p.nombre_producto AS producto_nombre,
+          p.imagen,
+          GROUP_CONCAT(pi.serie) AS series
+        FROM 
+          detalle_venta dv
+        LEFT JOIN 
+          detalle_venta_has_producto_item dvhpi ON dv.id_detalle_venta = dvhpi.id_detalle_venta
+        LEFT JOIN 
+          producto_item pi ON dvhpi.id_producto_item = pi.id_producto_item
+        LEFT JOIN 
+          producto p ON dv.id_producto = p.id_producto
+        WHERE 
+          dv.id_venta = ?
+        GROUP BY 
+          dv.id_detalle_venta;`,
         [venta.id_venta]
       );
+
+      detallesVenta.forEach((detalle) => {
+        detalle.series = detalle.series ? detalle.series.split(",") : [];
+      });
       venta.detalles = detallesVenta;
     }
-
     return NextResponse.json(
       {
         message: "Ventas obtenidas con éxito",
@@ -55,7 +78,6 @@ export async function GET(request) {
     );
   }
 }
-
 export async function POST(request) {
   try {
     const MytokenName = request.cookies.get("Sesion");
@@ -127,10 +149,25 @@ export async function POST(request) {
     fechaEnvio.setDate(fechaEnvio.getDate() + 14);
     const fechaEnvioFormateada = fechaEnvio.toISOString().slice(0, 10);
 
+    let total = 0;
+    for (const item of carrito_items) {
+      const producto = productosDisponibles.find(
+        (p) => p.id_producto === item.id_producto
+      );
+      const descuento =
+        item.cantidad *
+        (producto.descuento_fijo > 0
+          ? (1 - producto.descuento_fijo) * producto.precio
+          : producto.descuento_fijo < 0
+          ? -producto.descuento_fijo
+          : 0);
+      total += (producto.precio - descuento) * item.cantidad;
+    }
     const [nuevaVenta] = await pool.query(
-      "INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, registro_venta, fecha_envio, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, NOW(), ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO venta (id_cliente, id_empleado, id_metodo_pago, pago_total, registro_venta, fecha_envio, pais, codigo_postal, direccion_completa, ciudad, region, referencia) VALUES (?, 2, 4, ?, NOW(), ?, ?, ?, ?, ?, ?, ?)",
       [
         payload.id,
+        total,
         fechaEnvioFormateada,
         pais,
         cpostal,
@@ -142,35 +179,31 @@ export async function POST(request) {
     );
 
     const ventaId = nuevaVenta.insertId;
-    let totalVenta = 0;
-    for (const producto of productosDisponibles) {
-      const subtotal = producto.precio - producto.descuento_fijo;
-      totalVenta += subtotal;
-      await pool.query(
-        "SELECT id_producto FROM producto_item WHERE id_producto_item =?",
-        [producto.id_producto_item]
+
+    for (const item of carrito_items) {
+      const producto = productosDisponibles.find(
+        (p) => p.id_producto === item.id_producto
       );
+      const subtotal = item.cantidad * producto.precio;
+      const descuento =
+        item.cantidad *
+        (producto.descuento_fijo > 0
+          ? (1 - producto.descuento_fijo) * producto.precio // Porcentaje de descuento
+          : producto.descuento_fijo < 0
+          ? -producto.descuento_fijo // Descuento fijo absoluto
+          : 0); // Sin descuento
 
       await pool.query(
         "INSERT INTO detalle_venta (id_venta, id_producto, cantidad_ordenada, subtotal, descuento) VALUES (?, ?, ?, ?, ?)",
         [
           ventaId,
-          producto.id_producto_item,
-          1,
-          subtotal,
-          producto.descuento_fijo,
+          item.id_producto,
+          item.cantidad,
+          subtotal - descuento,
+          descuento,
         ]
       );
-
-      await pool.query(
-        "UPDATE producto_item SET id_estado = 2, garantia = DATE_ADD(NOW(), INTERVAL 1 YEAR) WHERE id_producto_item = ?",
-        [producto.id_producto_item]
-      );
     }
-    await pool.query("UPDATE venta SET pago_total = ? WHERE id_venta = ?", [
-      totalVenta,
-      ventaId,
-    ]);
 
     await pool.query("DELETE FROM carrito_item WHERE id_carrito = ?", [
       carritoId,
@@ -181,7 +214,7 @@ export async function POST(request) {
       {
         message: "Venta realizada con éxito",
         ventaId: ventaId,
-        totalVenta: totalVenta,
+        totalVenta: total,
       },
       { status: 200 }
     );
