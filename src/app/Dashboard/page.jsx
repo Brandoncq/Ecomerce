@@ -399,24 +399,24 @@ function Dashboard() {
             <div className="md:p-2 flex justify-center items-center flex-wrap gap-2">
               <button
                 onClick={descargarImagen}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4 select-none"
               >
                 Descargar Imagen
               </button>
               <button
                 onClick={descargarPDF}
-                className="bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg mt-4"
+                className="bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg mt-4 select-none"
               >
                 Descargar PDF
               </button>
               <button
                 onClick={imprimirPDF}
-                className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg mt-4"
+                className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg mt-4 select-none"
               >
                 Imprimir
               </button>
               <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg mt-4"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg mt-4 select-none"
                 onClick={cerrarModal}
               >
                 Cerrar
