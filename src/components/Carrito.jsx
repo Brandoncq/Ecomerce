@@ -24,7 +24,7 @@ function Carrito() {
     setCartItems(data);
     if (addedItem) {
       setQuantityChanged(true);
-      setTimeout(() => setQuantityChanged(false), 2000);
+      setTimeout(() => setQuantityChanged(false), 3000);
     }
   };
   useEffect(() => {
