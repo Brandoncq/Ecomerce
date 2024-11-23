@@ -27,7 +27,7 @@ export const metadata = {
   },
   authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
-    title: "BranViaTech",
+    title: "CompuFenix",
   },
 };
 export default function RootLayout({ children }) {

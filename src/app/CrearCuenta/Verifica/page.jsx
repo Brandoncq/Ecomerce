@@ -23,7 +23,7 @@ function VerificaCuenta() {
         </div>
         <div className="w-full md:w-1/2 justify-center items-center flex text-sm md:text-base text-center">
           <div className="flex justify-center items-center w-1/3">
-            <p>Crear ID de BranviaTech</p>
+            <p>Crear ID de CompuFenix</p>
           </div>
           <div className="flex justify-center items-center w-1/3">
             <p>Revisa el correo electrónico</p>
@@ -57,7 +57,7 @@ function VerificaCuenta() {
           que necesitas!
         </p>
         <p className="text-lg font-medium text-blue-600 mb-5">
-          ¡Bienvenido/a a la familia BranviaTech!
+          ¡Bienvenido/a a la familia CompuFenix!
         </p>
       </div>
     </div>

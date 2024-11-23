@@ -14,18 +14,18 @@ const categoriaBanner = {
 
 export async function generateMetadata({ params }) {
   return {
-    title: decodeURIComponent(params.id) + " - BranViaTech",
+    title: decodeURIComponent(params.id) + " - CompuFenix",
     description: categoriaBanner[params.id],
     openGraph: {
-      title: decodeURIComponent(params.id) + " - BranViaTech",
+      title: decodeURIComponent(params.id) + " - CompuFenix",
       url: `https://ecomerce-five-lilac.vercel.app/Comprar/${params.id}`,
       images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
-      siteName: "BranviaTech",
+      siteName: "CompuFenix",
       type: "website",
     },
     authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
     appleWebApp: {
-      title: "BranViaTech",
+      title: "CompuFenix",
     },
   };
 }

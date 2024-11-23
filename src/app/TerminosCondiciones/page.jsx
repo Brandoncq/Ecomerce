@@ -1,16 +1,16 @@
 export const metadata = {
-  title: "Terminos y  Condiciones BranviaTech",
-  description: "Soporte Tecnico de la Empresa BranviaTech",
+  title: "Terminos y  Condiciones CompuFenix",
+  description: "Soporte Tecnico de la Empresa CompuFenix",
   openGraph: {
-    title: "Politicas y Privacidad BranViaTech",
+    title: "Politicas y Privacidad CompuFenix",
     url: "https://ecomerce-five-lilac.vercel.app/TerminosCondiciones",
     images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
-    siteName: "BranviaTech",
+    siteName: "CompuFenix",
     type: "website",
   },
   authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
-    title: "BranViaTech",
+    title: "CompuFenix",
   },
 };
 export default function Terminos() {
@@ -19,7 +19,7 @@ export default function Terminos() {
       <div className="w-full flex flex-col border-t-2 border-zinc-400">
         <section className="w-full mb-10">
           <h1 className="text-4xl mb-4 font-light bg-slate-300 p-5 md:px-10">
-            Términos y Condiciones BranViaTech
+            Términos y Condiciones CompuFenix
           </h1>
           <div className="w-full max-md:p-4 md:px-20">
             <h2 className="text-xl font-semibold mt-6 bg-zinc-200 my-2 p-1">
@@ -27,7 +27,7 @@ export default function Terminos() {
             </h2>
             <div className="w-full md:pl-10 mb-10">
               <p>
-                Bienvenido al sitio web de BranviaTech. Estos términos y
+                Bienvenido al sitio web de CompuFenix. Estos términos y
                 condiciones de venta aplican al pedido, compra y entrega de
                 productos adquiridos únicamente a través del sitio web de
                 <a
@@ -35,7 +35,7 @@ export default function Terminos() {
                   className="underline-offset-8 text-blue-500 hover:text-blue-700"
                 >
                   {" "}
-                  BranviaTech
+                  CompuFenix
                 </a>
               </p>
             </div>
@@ -44,7 +44,7 @@ export default function Terminos() {
             </h2>{" "}
             <div className="w-full md:pl-10 mb-10">
               <p>
-                BranviaTech: hace referencia a la entidad que gestiona el sitio
+                CompuFenix: hace referencia a la entidad que gestiona el sitio
                 web y sus productos o servicios.
               </p>
               <p>
@@ -62,7 +62,7 @@ export default function Terminos() {
                   className="underline-offset-8 text-blue-500 hover:text-blue-700"
                 >
                   {" "}
-                  BranviaTech
+                  CompuFenix
                 </a>
                 .
               </p>
@@ -84,7 +84,7 @@ export default function Terminos() {
               4. Identificación del Vendedor de los Productos y Servicios
             </h2>{" "}
             <div className="w-full md:pl-10 mb-10">
-              <p>Razón Social: BranviaTech</p>
+              <p>Razón Social: CompuFenix</p>
               <p>R.U.C.: 321325332</p>
               <p>Datos de contacto: cfchavezc@unjbg.edu.pe</p>
             </div>
@@ -93,7 +93,7 @@ export default function Terminos() {
             </h2>{" "}
             <div className="w-full md:pl-10 mb-10">
               <p>
-                BranviaTech se comunicará con el Cliente a través de correo
+                CompuFenix se comunicará con el Cliente a través de correo
                 electrónico para brindar información sobre el estado de sus
                 pedidos y cualquier otra comunicación relevante.
               </p>
@@ -105,7 +105,7 @@ export default function Terminos() {
               <p>
                 Todos los precios están expresados en Soles. Los precios
                 incluyen impuestos aplicables y el costo del despacho se detalla
-                por separado. BranviaTech difundirá el precio final del producto
+                por separado. CompuFenix difundirá el precio final del producto
                 o servicio al momento de seleccionarlo.
               </p>
             </div>
@@ -149,7 +149,7 @@ export default function Terminos() {
               <p>
                 El tiempo estimado de entrega y el costo de envío se
                 proporcionarán al Cliente antes de finalizar la compra.
-                BranviaTech hará el esfuerzo de cumplir los plazos estimados y
+                CompuFenix hará el esfuerzo de cumplir los plazos estimados y
                 mantendrá informado al Cliente de cualquier eventualidad.
               </p>
             </div>
@@ -170,7 +170,7 @@ export default function Terminos() {
             </h2>
             <div className="w-full md:pl-10 mb-10">
               <p>
-                BranviaTech ofrece una garantía de 365 dias para productos que
+                CompuFenix ofrece una garantía de 365 dias para productos que
                 presenten defectos de fabricación. El Cliente puede solicitar
                 reparación, reemplazo o reembolso, según corresponda.
               </p>

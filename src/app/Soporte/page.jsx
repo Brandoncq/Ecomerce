@@ -1,16 +1,16 @@
 export const metadata = {
-  title: "Soporte Tecnico BranviaTech",
-  description: "Soporte Tecnico de la Empresa BranviaTech",
+  title: "Soporte Tecnico CompuFenix",
+  description: "Soporte Tecnico de la Empresa CompuFenix",
   openGraph: {
-    title: "Soporte BranViaTech",
+    title: "Soporte CompuFenix",
     url: "https://ecomerce-five-lilac.vercel.app/Soporte",
     images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
-    siteName: "BranviaTech",
+    siteName: "CompuFenix",
     type: "website",
   },
   authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
-    title: "BranViaTech",
+    title: "CompuFenix",
   },
 };
 import SoporteClient from "./client";

@@ -1,17 +1,17 @@
 export const metadata = {
-  title: "Nosotros BranviaTech",
+  title: "Nosotros CompuFenix",
   description:
     "Nuestra Tienda Online tiene el objetivo de satisfacer las necesidades del cliente",
   openGraph: {
-    title: "Nosotros BranViaTech",
+    title: "Nosotros CompuFenix",
     url: "https://ecomerce-five-lilac.vercel.app/Nosotros",
     images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
-    siteName: "BranviaTech",
+    siteName: "CompuFenix",
     type: "website",
   },
   authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
-    title: "BranViaTech",
+    title: "CompuFenix",
   },
 };
 export default function RootLayout_Nosotros({ children }) {

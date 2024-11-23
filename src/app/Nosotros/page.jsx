@@ -22,7 +22,7 @@ export default function Monitores() {
               className="w-full h-full object-cover"
             />
             <div className="text-white absolute w-full flex justify-center items-center h-full text-4xl md:text-7xl font-bold text-center">
-              <h2>Bienvenidos a BranViaTech</h2>
+              <h2>Bienvenidos a CompuFenix</h2>
             </div>{" "}
           </div>{" "}
           <ul className="w-full h-[28%] flex justify-center items-start py-6 md:px-20 text-center">

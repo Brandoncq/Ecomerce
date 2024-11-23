@@ -8,7 +8,7 @@ function Footer() {
         <div className="grid grid-cols-2 gap-8 md:px-20 py-6 lg:py-8 md:grid-cols-4">
           <div className="max-md:px-4">
             <h2 className="mb-4 text-base font-semibold text-gray-900 uppercase">
-              Sobre BranviaTech
+              Sobre CompuFenix
             </h2>
             <ul className="text-gray-500 font-medium">
               <li className="mb-2">
@@ -100,7 +100,7 @@ function Footer() {
         </div>
         <div className="px-2 md:px-16 py-6 bg-zinc-900 md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-300 sm:text-center">
-            © 2024 <Link href="/">BranviaTech</Link>. Todos los Derechos
+            © 2024 <Link href="/">CompuFenix</Link>. Todos los Derechos
             Reservados
           </span>
           <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">

@@ -62,7 +62,7 @@ function Header() {
                 : "bg-blue-700"
             }`}
           >
-            BranviaTech
+            CompuFenix
           </Link>
         </div>
         <div

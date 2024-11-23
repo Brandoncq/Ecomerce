@@ -5,7 +5,7 @@ const slides = [
     id: 1,
     image:
       "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    titulo: "BranviaTech",
+    titulo: "CompuFenix",
     frase: "Nuestra Historia",
     text: "Innovando en tecnología, brindando soluciones tecnológicas para mejorar tu experiencia digital.",
     url: "/Nosotros",
@@ -52,7 +52,7 @@ export default function Home() {
         <section className="w-full flex flex-col">
           <div className="w-full flex my-8">
             <h2 className="text-3xl md:text-5xl px-4 md:px-10 font-bold">
-              Explorar BranviaTech
+              Explorar CompuFenix
             </h2>
           </div>
           <div className="w-full flex flex-wrap justify-center items-start px-4 md:px-10 mb-5 md:mb-10">

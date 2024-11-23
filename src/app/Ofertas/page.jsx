@@ -1,17 +1,17 @@
 export const metadata = {
-  title: "Ofertas BranviaTech",
+  title: "Ofertas CompuFenix",
   description:
     "Ofertas de laptos y otros productos a tu comidad desde diversos precios y marcas.",
   openGraph: {
-    title: "Ofertas BranViaTech",
+    title: "Ofertas CompuFenix",
     url: "https://ecomerce-five-lilac.vercel.app/Ofertas",
     images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
-    siteName: "BranviaTech",
+    siteName: "CompuFenix",
     type: "website",
   },
   authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
-    title: "BranViaTech",
+    title: "CompuFenix",
   },
 };
 import ClientOfertas from "./clientOfertas";

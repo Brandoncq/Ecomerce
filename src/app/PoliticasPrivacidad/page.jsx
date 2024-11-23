@@ -1,16 +1,16 @@
 export const metadata = {
-  title: "Soporte Tecnico BranviaTech",
-  description: "Soporte Tecnico de la Empresa BranviaTech",
+  title: "Soporte Tecnico CompuFenix",
+  description: "Soporte Tecnico de la Empresa CompuFenix",
   openGraph: {
-    title: "Politicas y Privacidad BranViaTech",
+    title: "Politicas y Privacidad CompuFenix",
     url: "https://ecomerce-five-lilac.vercel.app/PoliticasPrivacidad",
     images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
-    siteName: "BranviaTech",
+    siteName: "CompuFenix",
     type: "website",
   },
   authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
-    title: "BranViaTech",
+    title: "CompuFenix",
   },
 };
 export default function Poiticas() {
@@ -26,17 +26,17 @@ export default function Poiticas() {
         </section>
         <section className="w-full flex flex-col p-4 md:px-20">
           <h2 className="text-center text-4xl font-normal my-5">
-            Declaración de Privacidad Global de BranViaTech
+            Declaración de Privacidad Global de CompuFenix
           </h2>
           <p className="my-4">
-            En BranViaTech, reconocemos que la privacidad es un derecho
+            En CompuFenix, reconocemos que la privacidad es un derecho
             fundamental y entendemos la importancia de la privacidad, la
             seguridad y la protección de los datos para nuestros usuarios y
             socios. Como proyecto de comercio electrónico, nos esforzamos por
             implementar medidas de protección de datos que cumplan con las leyes
             aplicables y mantenemos políticas y procedimientos rigurosos en
             todas nuestras operaciones. Los términos como &quot;nosotros&quot;,
-            &quot;nos&quot; y &quot;nuestro&quot; hacen referencia a BranViaTech
+            &quot;nos&quot; y &quot;nuestro&quot; hacen referencia a CompuFenix
             y a nuestras posibles futuras filiales, según la definición de la
             legislación local.
           </p>
@@ -46,9 +46,9 @@ export default function Poiticas() {
             derechos que puede ejercer en relación con sus datos personales.
             Esto incluye la información que podemos recopilar a partir de su
             actividad en línea, el uso de nuestros servicios y las interacciones
-            que mantenga con BranViaTech tanto en línea como fuera de línea,
-            como cuando contacta a nuestro servicio de atención al cliente. Esta
-            declaración se aplica a BranViaTech, sus sitios web, dominios,
+            que mantenga con CompuFenix tanto en línea como fuera de línea, como
+            cuando contacta a nuestro servicio de atención al cliente. Esta
+            declaración se aplica a CompuFenix, sus sitios web, dominios,
             servicios, aplicaciones y productos bajo nuestro control, en el
             contexto de consumidor o cliente empresarial. Para ciertos
             servicios, podríamos proporcionarle información adicional de
@@ -67,7 +67,7 @@ export default function Poiticas() {
             este documento, las referencias a &quot;legislación local&quot; o
             &quot;legislación aplicable&quot; hacen referencia a las leyes que
             regulan la privacidad de datos en el país o región en la que usted
-            reside o donde BranViaTech opera y procesa datos personales.
+            reside o donde CompuFenix opera y procesa datos personales.
           </p>
         </section>
       </div>

@@ -191,7 +191,7 @@ export default function SoporteClient() {
                 </div>
 
                 <div className="w-full h-full bg-zinc-800 text-white group-hover:text-black group-hover:bg-zinc-200 p-4 transition-all ease-in-out duration-300">
-                  Contacte un agente de BranviaTech soporte
+                  Contacte un agente de CompuFenix soporte
                 </div>
               </button>
             </div>

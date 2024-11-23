@@ -1,17 +1,17 @@
 import Nav from "./nav";
 export const metadata = {
-  title: "Comprar BranviaTech",
-  description: "Compra los distintos productos de la tienda online BranviaTech",
+  title: "Comprar CompuFenix",
+  description: "Compra los distintos productos de la tienda online CompuFenix",
   openGraph: {
-    title: "Comprar en BranViaTech",
+    title: "Comprar en CompuFenix",
     url: "https://ecomerce-five-lilac.vercel.app/Comprar",
     images: "https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg",
-    siteName: "BranviaTech",
+    siteName: "CompuFenix",
     type: "website",
   },
   authors: [{ name: "Davis Brandon", url: "https://github.com/Brandoncq" }],
   appleWebApp: {
-    title: "BranViaTech",
+    title: "CompuFenix",
   },
 };
 export default function RootLayout_comprar({ children }) {
