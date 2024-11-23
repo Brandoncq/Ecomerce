@@ -96,7 +96,7 @@ export async function POST(request) {
       );
     }
 
-    const { pais, cpostal, direccion, referencia, region, ciudad } =
+    const { pais, cpostal, direccion, referencia, region, ciudad, factura } =
       await request.json();
 
     const [buscar_carrito] = await pool.query(
@@ -209,6 +209,29 @@ export async function POST(request) {
       carritoId,
     ]);
     await pool.query("DELETE FROM carrito WHERE id_carrito = ?", [carritoId]);
+
+    await pool.query(
+      `INSERT INTO comprobante (
+            id_venta,
+            tipo_comprobante,
+            serie,
+            numero,
+            fecha_emision,
+            subtotal,
+            impuestos,
+            total
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        ventaId,
+        factura ? "FACTURA" : "BOLETA",
+        "F001",
+        12345,
+        new Date(),
+        total,
+        total * 0.18,
+        total * 1.18,
+      ]
+    );
 
     return NextResponse.json(
       {

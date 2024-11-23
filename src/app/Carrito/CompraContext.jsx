@@ -12,7 +12,7 @@ export function CompraProvider({ children }) {
     referencia: "",
     region: "",
     ciudad: "",
-    factura: "",
+    factura: false,
     ventaId: "",
     totalVenta: "",
   });

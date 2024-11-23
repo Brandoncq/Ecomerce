@@ -24,6 +24,7 @@ function Pasarela() {
           referencia: compra.referencia,
           region: compra.region,
           ciudad: compra.ciudad,
+          factura: compra.factura,
         }),
       });
 
