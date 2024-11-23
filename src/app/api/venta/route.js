@@ -21,7 +21,7 @@ export async function GET(request) {
 
     // Obtener las ventas asociadas al cliente autenticado
     const [ventas] = await pool.query(
-      "SELECT * FROM venta WHERE id_cliente = ?",
+      "SELECT * FROM venta WHERE id_cliente = ? ORDER BY registro_venta DESC",
       [payload.id]
     );
 
