@@ -12,6 +12,7 @@
     "@paypal/checkout-server-sdk": "^1.0.3",
     "@paypal/react-paypal-js": "^8.7.0",
     "cookie": "^0.6.0",
+    "html2canvas": "^1.4.1",
     "jose": "^5.9.3",
     "jsonwebtoken": "^9.0.2",
     "mysql-aes": "^0.1.0",
