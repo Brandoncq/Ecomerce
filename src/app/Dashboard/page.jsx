@@ -223,10 +223,10 @@ function Dashboard() {
             }
           }}
         >
-          <div className="bg-white p-3 rounded-lg w-11/12 md:w-3/4 xl:w-2/5 flex flex-col justify-center items-center">
+          <div className="bg-white py-3 rounded-lg w-11/12 md:w-3/4 xl:w-2/5 flex flex-col justify-center items-center">
             <div
               id="modal-content"
-              className="w-full flex flex-col justify-center p-3"
+              className="w-full flex flex-col justify-center px-6 pb-1"
             >
               <h2 className="font-bold text-xl md:text-3xl text-center mt-2">
                 TIENDA COMPUFENIX S.A.C.
@@ -396,7 +396,7 @@ function Dashboard() {
                 <strong>Total:</strong> S/. {ventaSeleccionada.total}
               </p>
             </div>
-            <div className="md:p-2 flex justify-center items-center space-x-2">
+            <div className="md:p-2 flex justify-center items-center flex-wrap gap-2">
               <button
                 onClick={descargarImagen}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-4"
