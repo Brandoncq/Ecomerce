@@ -210,6 +210,16 @@ export async function POST(request) {
     ]);
     await pool.query("DELETE FROM carrito WHERE id_carrito = ?", [carritoId]);
 
+    const [max_num] = await pool.query(
+      `SELECT MAX(numero) AS ultimo_numero 
+       FROM comprobante 
+       WHERE serie = ?`,
+      [factura ? "F100" : "B100"]
+    );
+
+    const ultimoNumero = max_num[0]?.ultimo_numero || 0;
+    const nuevoNumero = ultimoNumero + 1;
+
     await pool.query(
       `INSERT INTO comprobante (
             id_venta,
@@ -224,8 +234,8 @@ export async function POST(request) {
       [
         ventaId,
         factura ? "FACTURA" : "BOLETA",
-        "F001",
-        12345,
+        factura ? "F100" : "B100",
+        nuevoNumero,
         new Date(),
         total * 0.82,
         total * 0.18,
