@@ -100,126 +100,113 @@ function Header() {
             <li className="group max-md:border-b-[1px] border-zinc-600">
               <Link
                 href="/Nosotros"
-                className="block py-2 px-1 rounded hover:text-zinc-800"
+                className="group"
                 onClick={() => setmenu(!menuopen)}
+                aria-current="page"
               >
-                Nosotros
+                <p className="block py-2 px-1 rounded group-hover:text-zinc-800">
+                  Nosotros
+                </p>
+                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
               </Link>
-              <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
             </li>
             <li className="group max-md:border-b-[1px] border-zinc-600">
               <Link
                 href="/Soporte"
-                className="block py-2 px-1 rounded hover:text-zinc-800"
-                aria-current="page"
+                className="group"
                 onClick={() => setmenu(!menuopen)}
+                aria-current="page"
               >
-                Soporte
+                <p className="block py-2 px-1 rounded hover:text-zinc-800">
+                  Soporte
+                </p>
+                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>{" "}
               </Link>
-              <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
             </li>
-            <li className="group max-md:border-b-[1px] border-zinc-600">
+            <li className="max-md:border-b-[1px] border-zinc-600">
               <Link
                 href="/Ofertas"
-                className="block py-2 px-1 rounded hover:text-zinc-800"
+                className="group"
                 aria-current="page"
                 onClick={() => setmenu(!menuopen)}
               >
-                Ofertas
+                <p className="block py-2 px-1 rounded group-hover:text-zinc-800">
+                  Ofertas
+                </p>
+                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>{" "}
               </Link>
-              <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
             </li>
-            <li className="group max-md:border-b-[1px] border-zinc-600">
-              <div className="w-ful flex justify-between">
-                <Link
-                  href="/Comprar"
-                  className="block py-2 px-1 rounded hover:text-zinc-800 flex-grow"
-                  aria-current="page"
-                  onClick={() => setmenu(!menuopen)}
-                >
-                  Comprar
-                </Link>
-                <button
-                  className={`block py-2 px-1 rounded hover:text-zinc-800 transition-all ease-in-out duration-300 ${
-                    comprarOpen ? "" : "-rotate-90"
-                  }`}
-                  aria-current="page"
-                  onClick={() => setComprarOpen(!comprarOpen)}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="120"
-                    height="120"
-                    version="1"
-                    viewBox="0 0 90 90"
-                    className={`w-6 h-6 transition-all duration-300 ease-in-out fill-blue-600`}
+            <li className="max-md:border-b-[1px] border-zinc-600">
+              <div className="w-full flex flex-col group">
+                <div className="w-full flex justify-between">
+                  <Link
+                    href="/Comprar"
+                    className="block py-2 px-1 rounded hover:text-zinc-800 flex-grow"
+                    aria-current="page"
+                    onClick={() => setmenu(!menuopen)}
                   >
-                    <path d="M12 35.8c0 2.2 2.9 5.7 15.3 18C38.8 65.3 43.1 69 45 69c3.8 0 33-29.4 33-33.3V33H12z"></path>
-                  </svg>
-                </button>
+                    Comprar
+                  </Link>
+                  <button
+                    className={`block py-2 px-1 rounded hover:text-zinc-800 transition-all ease-in-out duration-300 ${
+                      comprarOpen ? "" : "-rotate-90"
+                    }`}
+                    aria-current="page"
+                    onClick={() => setComprarOpen(!comprarOpen)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="120"
+                      height="120"
+                      version="1"
+                      viewBox="0 0 90 90"
+                      className={`w-6 h-6 transition-all duration-300 ease-in-out fill-blue-600`}
+                    >
+                      <path d="M12 35.8c0 2.2 2.9 5.7 15.3 18C38.8 65.3 43.1 69 45 69c3.8 0 33-29.4 33-33.3V33H12z"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
               </div>
-              <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
+
+              {/* Submenu */}
+              <div
+                className={`transition-all duration-300 ease-in-out ${
+                  comprarOpen
+                    ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
+                    : "translate-x-0"
+                }`}
+              >
+                <ul className="flex flex-col pl-4">
+                  {[
+                    { href: "/Comprar/LaptopsGamer", label: "Laptops Gamer" },
+                    {
+                      href: "/Comprar/LaptopsOficina",
+                      label: "Laptops de Oficina",
+                    },
+                    { href: "/Comprar/Monitores", label: "Monitores" },
+                    { href: "/Comprar/Impresoras", label: "Impresoras" },
+                    { href: "/Comprar/Perifericos", label: "Periféricos" },
+                  ].map((item, index) => (
+                    <li
+                      key={index}
+                      className="max-md:border-b-[1px] border-zinc-600"
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setmenu(!menuopen)}
+                        className="group"
+                      >
+                        <p className="block py-2 px-1 rounded group-hover:text-zinc-800">
+                          {item.label}
+                        </p>
+                        <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
-            <div
-              className={`transition-all duration-300 ease-in-out ${
-                comprarOpen
-                  ? "-translate-x-full lg:translate-x-0 max-lg:max-h-0 overflow-hidden"
-                  : "translate-x-0"
-              }`}
-            >
-              <ul className="flex flex-col pl-4">
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/LaptopsGamer"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Laptops Gamer
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/LaptopsOficina"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Laptops de Oficina
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/Monitores"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Monitores
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/Impresoras"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Impresoras
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
-                <li className="group max-md:border-b-[1px] border-zinc-600">
-                  <Link
-                    href="/Comprar/Perifericos"
-                    className="block py-2 px-1 rounded hover:text-zinc-800"
-                    onClick={() => setmenu(!menuopen)}
-                  >
-                    Perifericos
-                  </Link>
-                  <div className="h-1 w-0 group-hover:w-full transition-all duration-300 ease-in-out bg-blue-600"></div>
-                </li>
-              </ul>
-            </div>
           </ul>
         </div>
       </div>

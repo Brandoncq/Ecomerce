@@ -25,22 +25,24 @@ function Sections({ menuItems }) {
               className="group"
               onClick={() => setSelectedIndex(index)}
             >
-              <Link
-                href={item.href}
-                className={`block py-1 px-1 rounded ${
-                  selectedIndex === index
-                    ? "text-blue-600"
-                    : "hover:text-zinc-600"
-                }`}
-                aria-current="page"
-              >
-                {item.label}
+              <Link href={item.href} aria-current="page" className="group">
+                <p
+                  className={`block py-1 px-1 rounded ${
+                    selectedIndex === index
+                      ? "text-blue-600"
+                      : "group-hover:text-zinc-600"
+                  }`}
+                >
+                  {item.label}
+                </p>
+                <div
+                  className={`h-1 transition-all duration-300 ease-in-out bg-blue-600 ${
+                    selectedIndex === index
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }`}
+                ></div>
               </Link>
-              <div
-                className={`h-1 transition-all duration-300 ease-in-out bg-blue-600 ${
-                  selectedIndex === index ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              ></div>
             </li>
           ))}
         </ul>

@@ -209,6 +209,7 @@ export default function ClientLaptops({ params }) {
       const url = `/api/filtros?${queryParams}`;
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data)
       setCount(data);
     } catch (error) {
       console.error("Error fetching data:", error);
