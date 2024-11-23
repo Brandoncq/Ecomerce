@@ -26,6 +26,7 @@ function Dashboard() {
   };
   const abrirComprobante = async (id) => {
     // Aquí debes hacer la solicitud para obtener los detalles del comprobante
+    console.log(id);
     await fetch(`/api/comprobante/${id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -52,7 +53,7 @@ function Dashboard() {
   return (
     <div className="w-full p-5 h-[calc(100vh-8rem)] overflow-y-auto flex flex-col gap-4">
       <div className="border border-gray-300 p-4 rounded shadow h-full overflow-y-auto bg-slate-200">
-        <h2 className="text-2xl font-semibold my-2 px-2">
+        <h2 className="text-2xl font-semibold mt-2 mb-4 px-2">
           HISTORIAL DE COMPRAS
         </h2>
         {ventas.length > 0 ? (
@@ -256,13 +257,11 @@ function Dashboard() {
             <p>
               <strong>Dirección:</strong> Av. Alfonso Ugarte N26
             </p>
-            <hr class="h-px my-2 w-full bg-gray-500 border-0 dark:bg-gray-700" />
+            <hr className="h-px my-2 w-full bg-gray-500 border-0 dark:bg-gray-700" />
             <h3 className="text-xl font-semibold mb-2">
-              {
-                (ventaSeleccionada.serie = "F100"
-                  ? "FACTURA DE VENTA ELECTRÓNICA"
-                  : "BOLETA DE VENTA ELECTRÓNICA")
-              }
+              {ventaSeleccionada.serie == "F100"
+                ? "FACTURA DE VENTA ELECTRÓNICA"
+                : "BOLETA DE VENTA ELECTRÓNICA"}
             </h3>
             <div className="flex space-x-4">
               <p>
@@ -272,10 +271,18 @@ function Dashboard() {
                 <strong>Número:</strong> {ventaSeleccionada.numero}
               </p>
             </div>
-            <p>
-              <strong>Fecha de Emisión:</strong>{" "}
-              {formatearFecha(ventaSeleccionada.fecha_emision)}
-            </p>
+            <div className="flex space-x-4">
+              <p>
+                <strong>Fecha de Emisión:</strong>{" "}
+                {formatearFecha(ventaSeleccionada.fecha_emision)}
+              </p>
+              {ventaSeleccionada.fecha_envio && (
+                <p>
+                  <strong>Fecha de Envío:</strong>{" "}
+                  {formatearFecha(ventaSeleccionada.fecha_envio)}
+                </p>
+              )}
+            </div>
             <p>
               <strong>Vendedor:</strong> {ventaSeleccionada.nombre_vendedor}
             </p>
@@ -308,7 +315,7 @@ function Dashboard() {
                 <strong>Subtotal:</strong> S/. {ventaSeleccionada.subtotal}
               </p>
               <p>
-                <strong>IGV:</strong> S/. {ventaSeleccionada.impuestos}
+                <strong>IGV-18% :</strong> S/. {ventaSeleccionada.impuestos}
               </p>
             </div>
             <p>

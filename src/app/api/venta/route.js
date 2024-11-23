@@ -195,13 +195,7 @@ export async function POST(request) {
 
       await pool.query(
         "INSERT INTO detalle_venta (id_venta, id_producto, cantidad_ordenada, subtotal, descuento) VALUES (?, ?, ?, ?, ?)",
-        [
-          ventaId,
-          item.id_producto,
-          item.cantidad,
-          subtotal - descuento,
-          descuento,
-        ]
+        [ventaId, item.id_producto, item.cantidad, subtotal, descuento]
       );
     }
 
@@ -219,7 +213,7 @@ export async function POST(request) {
 
     const ultimoNumero = max_num[0]?.ultimo_numero || 0;
     const nuevoNumero = ultimoNumero + 1;
-
+    console.log(factura);
     await pool.query(
       `INSERT INTO comprobante (
             id_venta,

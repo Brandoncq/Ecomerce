@@ -1,10 +1,10 @@
 import pool from "../../config/route";
 import { NextResponse } from "next/server";
 
-export async function GET({ params }) {
+export async function GET(request, { params }) {
+  console.log(params);
   try {
     const { id } = params;
-
     if (!id) {
       return NextResponse.json(
         { error: "Debe proporcionar un id_venta válido." },
