@@ -226,7 +226,7 @@ function Dashboard() {
           <div className="bg-white py-3 rounded-lg w-11/12 md:w-3/4 xl:w-2/5 flex flex-col justify-center items-center">
             <div
               id="modal-content"
-              className="w-full flex flex-col justify-center px-6 pb-1"
+              className="w-full flex flex-col justify-center px-6 pb-3"
             >
               <h2 className="font-bold text-xl md:text-3xl text-center mt-2">
                 TIENDA COMPUFENIX S.A.C.

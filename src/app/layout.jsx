@@ -16,10 +16,10 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "BranviaTech Ecomerce",
+  title: "CompuFenix Ecomerce",
   description: "Tienda Online de Equipos de Computo",
   openGraph: {
-    title: "BranViaTech",
+    title: "CompuFenix",
     url: "https://ecomerce-five-lilac.vercel.app",
     images: ["https://brandoncq.github.io/GaleriaImagenes/satelite-ico.jpg"],
     siteName: "BranviaTech",
