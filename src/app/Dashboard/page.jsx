@@ -332,7 +332,7 @@ function Dashboard() {
               </div>
 
               <hr className="h-px my-2 w-full bg-gray-500 border-0 dark:bg-gray-700" />
-              <h3 className="text-xl font-semibold mb-2 text-center">
+              <h3 className="text-lg md:text-xl font-semibold mb-2 text-center">
                 {ventaSeleccionada.serie == "F100"
                   ? "FACTURA DE VENTA ELECTRÓNICA"
                   : "BOLETA DE VENTA ELECTRÓNICA"}
