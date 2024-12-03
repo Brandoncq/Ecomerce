@@ -182,7 +182,7 @@ function IniciarSesion() {
             </div>
             <div className="w-full flex max-md:flex-col justify-between max-md:justify-center max-md:text-center text-blue-600 my-6">
               <p className="hover:underline hover:underline-offset-8">
-                ¿Olvido su Contraseña?
+                {/*¿Olvido su Contraseña?*/}
               </p>
               <Link
                 href="/CrearCuenta/Crear"
