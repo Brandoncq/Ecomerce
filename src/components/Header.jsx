@@ -27,7 +27,7 @@ function Header() {
       } ${menuopen ? "" : "h-lvh fixed"}`}
     >
       <div className="w-full px-3 lg:px-5 flex flex-wrap items-center justify-between">
-        <div className="flex flex-row items-center max-md:space-x-14">
+        <div className="flex flex-row items-center max-md:space-x-4">
           <div
             className="w-8 h-8 flex justify-center items-center cursor-pointer md:hidden"
             onClick={() => setmenu(!menuopen)}
